@@ -1,0 +1,161 @@
+{
+    "sources": [
+        {
+            "filepath": [
+                "tests/fixtures/mock_raw_data/raw_data_file.csv"
+            ],
+            "name": "mock_data",
+            "master_key": "id"
+        },
+        {
+            "filepath": [
+                "tests/fixtures/mock_raw_data/secondary_raw_data_file.csv"
+            ],
+            "name": "secondary_mock_data",
+            "master_key": "id"
+        }
+    ],
+    "mapping": {
+        "master_key": {
+            "source": "mock_data",
+            "field": "id",
+            "filter_rules": [
+                {
+                    "description": "example filtering",
+                    "source": "mock_data",
+                    "field": "id",
+                    "query_field": "categorical_field",
+                    "drop_values": [
+                        "irrelevant_categorical_value"
+                    ],
+                    "sort_by": {
+                        "field": "datetime",
+                        "apply_first": "True"
+                    }
+                }
+            ]
+        },
+        "secondary_key": {
+            "source": "mock_data",
+            "field": "id2"
+        },
+        "date_reference_field_name": "year_of_birth",
+        "metadata": {
+            "year_of_birth": {
+                "source": "mock_data",
+                "field": "year_of_birth",
+                "type": "numerical"
+            },
+            "ethnic_origin": {
+                "source": "mock_data",
+                "field": "ethnic_origin",
+                "type": "categorical"
+            },
+            "sex": {
+                "source": "mock_data",
+                "field": "sex",
+                "type": "categorical"
+            },
+            "method_of_admission": {
+                "source": "mock_data",
+                "field": "method_of_admission",
+                "type": "categorical"
+            },
+            "diagnosis": {
+                "source": "mock_data",
+                "field": "diagnosis",
+                "type": "categorical",
+                "delimiter": ","
+            }
+        },
+        "numerical_features": [
+            "numerical_field_name",
+            "additional_numerical_field_name"
+        ],
+        "numerical_feature_exclude_list": {
+            "numerical_field": [
+                "redacted"
+            ]
+        },
+        "categorical_features": [
+            {
+                "name": "categorical_field_name",
+                "source": "mock_data",
+                "field": "categorical_field"
+            },
+            {
+                "name": "additional_categorical_field_name",
+                "source": "secondary_mock_data",
+                "field": "additional_categorical_field"
+            }
+
+        ],
+        "events": [
+            {
+                "category": "datapoint",
+                "source": "mock_data",
+                "datetime": "datetime",
+                "features": [
+                    {
+                        "name": "numerical_field_name",
+                        "field": "numerical_field",
+                        "type": "numerical"
+                    },
+                    {
+                        "name": "categorical_field_name",
+                        "field": "categorical_field",
+                        "type": "categorical"
+                    }
+                ]
+            },
+            {
+                "category": "second_datapoint",
+                "source": "secondary_mock_data",
+                "datetime": "datetime",
+                "features": [
+                    {
+                        "name": "additional_numerical_field_name",
+                        "field": "additional_numerical_field",
+                        "type": "numerical"
+                    }
+                ]
+            },
+            {
+                "category": "third_datapoint",
+                "source": "secondary_mock_data",
+                "datetime": "datetime",
+                "features": [
+                    {
+                        "name": "additional_categorical_field_name",
+                        "field": "additional_categorical_field",
+                        "type": "categorical"
+                    }
+                ]
+            }
+        ],
+        "labelling": {
+            "labels": {
+                "adverse_outcome": {
+                    "time_step": "6",
+                    "max_look_ahead": "9",
+                    "labels": {
+                        "mortality": {
+                            "name": "additional_categorical_field_name",
+                            "values": ["adverse_categorical_value"]
+                        },
+                        "itu": {
+                            "name": "additional_categorical_field_name",
+                            "values": ["adverse_categorical_value"]
+                        },
+                        "dialysis": {
+                            "name": "additional_categorical_field_name",
+                            "values": ["adverse_categorical_value"]
+                        }
+                    }
+                }
+            },
+            "numerical_labels": {
+            }
+        }
+    }
+}

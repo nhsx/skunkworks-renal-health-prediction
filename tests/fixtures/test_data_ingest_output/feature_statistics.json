@@ -1,0 +1,13 @@
+{
+    "feature": {
+        "centile_1": 0.0,
+        "centile_99": 0.0,
+        "max": 0.0,
+        "mean": 0.0,
+        "min": 0.0,
+        "std": 0.0,
+        "values": [
+            0.0
+        ]
+    }
+}

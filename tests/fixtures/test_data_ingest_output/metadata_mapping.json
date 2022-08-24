@@ -1,0 +1,11 @@
+{
+    "diagnosis_a": 1,
+    "diagnosis_b": 2,
+    "ethnic_origin_a": 3,
+    "ethnic_origin_b": 4,
+    "method_of_admission_a": 5,
+    "method_of_admission_b": 6,
+    "sex_a": 7,
+    "sex_b": 8,
+    "year_of_birth": 0
+}

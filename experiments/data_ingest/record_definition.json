@@ -1,0 +1,31 @@
+{
+    "record_number": "None",    # Record index
+    "master_key": "None",    # Master key for record
+    "episodes": [    # Spells for key (only ever one)
+        {    # Patient spell
+            "events": [    # List of events in patient spell
+                {
+                    "category": "None",
+                    "datetime": "None",
+                    "entries": [    # Feature changes for this event
+                        {
+                            "feature_category_idx": "None",
+                            "feature_idx": "None",
+                            "feature_value": "None"
+                        }
+                    ],
+                    "labels": {
+                        # Outcome labelling state for this event
+                        "adverse_outcome": None,
+                        "adverse_outcome_in_spell": None,
+                        "adverse_outcome_mortality_within_6h": None
+                        "segment_mask": None  # Set to "1" following an adverse outcome.
+                    },
+                    "numerical_labels": {
+                        # Numerical labelling state for this event
+                    }
+                }
+            ]
+        }
+    ]
+}
