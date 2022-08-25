@@ -1,5 +1,5 @@
 [![MIT License](https://img.shields.io/badge/License-MIT-lightgray.svg)](LICENSE)
-[![Python Version](https://img.shields.io/badge/Python-3.7.5-blue.svg)](https://www.python.org/downloads/release/python-375/)
+[![Python Version](https://img.shields.io/badge/Python-3.7.13-blue.svg)](https://www.python.org/downloads/release/python-3713/)
 <!-- Add in additional badges as appropriate -->
 
 ![Banner of NHS AI Lab Skunkworks ](docs/banner.png)
@@ -145,10 +145,10 @@ When ingested this structure is represented as a single JSON line within a JSONL
 2. Switch to the required branch (default is `main` branch: `git checkout main`)
 3. Create a new virtual environment (Ideally Python 3.7 for compatibility with DeepMind codebase): `python3 -m virtualenv venv`
 4. Activate virtual environment (on linux environment): `source venv/bin/activate` or on Windows `.\venv\Scripts\activate.bat`
-5. Install the requirements of this template: `pip install -e .[cpu]` or `pip install -e .[gpu]` depending on the installation environment.
+5. Install the requirements of this template: `pip install -e ".[cpu]"` or `pip install -e ".[gpu]"` depending on the installation environment.
 
-To install requirements for testing and documentation, run `pip install -e .[tests]` and `pip install -e .[docs]` respectively.
-For experimental work, `pip install -e .[experiments]` will install the nessesary components for any standalone experiments or jupyter notebooks (which would not be required for normal running of the tool).
+To install requirements for testing and documentation, run `pip install -e ".[tests]"` and `pip install -e ".[docs]"` respectively.
+For experimental work, `pip install -e ".[experiments]"` will install the nessesary components for any standalone experiments or jupyter notebooks (which would not be required for normal running of the tool).
 
 When developing it is advised to use the `pre-commit` tooling available. Either install the test requirements, or `pip install pre-commit`, and then enable pre-commits: `pre-commit install`.
 The pre-commit configuration will apply linting and general formatting checks and adjustments (using flake8 and black formatting).
