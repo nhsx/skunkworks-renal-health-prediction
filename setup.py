@@ -68,6 +68,7 @@ experiments_requires = [
 
 docs_requires = [
     "sphinx==5.1.0",
+    "sphinx_rtd_theme==1.0.0",
     "sphinxcontrib-napoleon==0.7",
     "mistune~=0.8.4",
     "m2r2==0.3.2",

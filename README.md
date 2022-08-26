@@ -187,7 +187,7 @@ pre-commit run --all-files
 
 ## Building docs
 
-Documentation is automatically deployed to [X] by a [Github action](.github/workflows/build-docs.yml).
+Documentation is automatically deployed to [https://nhsx.github.io/skunkworks-renal-health-prediction/](https://nhsx.github.io/skunkworks-renal-health-prediction/) by a [Github action](.github/workflows/build-docs.yml).
 
 To build the docs manually, in your environment, run:
 
