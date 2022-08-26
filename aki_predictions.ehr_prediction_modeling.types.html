@@ -1,242 +1,308 @@
-
 <!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
-
-    <title>aki_predictions.ehr_prediction_modeling.types module &#8212; aki-predictions 1.0.0 documentation</title>
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="_static/alabaster.css" />
-    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
-    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="_static/doctools.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>aki_predictions.ehr_prediction_modeling.types module &mdash; aki-predictions 1.0.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+    <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="aki_predictions.evaluation package" href="aki_predictions.evaluation.html" />
-    <link rel="prev" title="aki_predictions.ehr_prediction_modeling.mask_manager module" href="aki_predictions.ehr_prediction_modeling.mask_manager.html" />
-   
-  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
-  
-  
-  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+    <link rel="prev" title="aki_predictions.ehr_prediction_modeling.mask_manager module" href="aki_predictions.ehr_prediction_modeling.mask_manager.html" /> 
+</head>
 
-  </head><body>
-  
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> aki-predictions
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="readme.html">NHS AI Lab Skunkworks project: Predictive Renal Health</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="aki_predictions.html">aki_predictions package</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="aki_predictions.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="aki_predictions.data_processing.html">aki_predictions.data_processing package</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="aki_predictions.ehr_prediction_modeling.html">aki_predictions.ehr_prediction_modeling package</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="aki_predictions.ehr_prediction_modeling.html#subpackages">Subpackages</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="aki_predictions.ehr_prediction_modeling.html#submodules">Submodules</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="aki_predictions.evaluation.html">aki_predictions.evaluation package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="aki_predictions.inference.html">aki_predictions.inference package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="aki_predictions.training.html">aki_predictions.training package</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="aki_predictions.html#submodules">Submodules</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">aki_predictions</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="aki_predictions.html">aki_predictions package</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="aki_predictions.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="aki_predictions.data_processing.html">aki_predictions.data_processing package</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="aki_predictions.ehr_prediction_modeling.html">aki_predictions.ehr_prediction_modeling package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="aki_predictions.evaluation.html">aki_predictions.evaluation package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="aki_predictions.inference.html">aki_predictions.inference package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="aki_predictions.training.html">aki_predictions.training package</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="aki_predictions.html#submodules">Submodules</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
 
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
-          
+        </div>
+      </div>
+    </nav>
 
-          <div class="body" role="main">
-            
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">aki-predictions</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="aki_predictions.html">aki_predictions package</a> &raquo;</li>
+          <li><a href="aki_predictions.ehr_prediction_modeling.html">aki_predictions.ehr_prediction_modeling package</a> &raquo;</li>
+      <li>aki_predictions.ehr_prediction_modeling.types module</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/aki_predictions.ehr_prediction_modeling.types.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
   <section id="module-aki_predictions.ehr_prediction_modeling.types">
-<span id="aki-predictions-ehr-prediction-modeling-types-module"></span><h1>aki_predictions.ehr_prediction_modeling.types module<a class="headerlink" href="#module-aki_predictions.ehr_prediction_modeling.types" title="Permalink to this heading">¶</a></h1>
+<span id="aki-predictions-ehr-prediction-modeling-types-module"></span><h1>aki_predictions.ehr_prediction_modeling.types module<a class="headerlink" href="#module-aki_predictions.ehr_prediction_modeling.types" title="Permalink to this heading"></a></h1>
 <p>Definitions for namedtuples and enums used throughout experiments.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="aki_predictions.ehr_prediction_modeling.types.ActivationFunction">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">aki_predictions.ehr_prediction_modeling.types.</span></span><span class="sig-name descname"><span class="pre">ActivationFunction</span></span><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.ActivationFunction" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">aki_predictions.ehr_prediction_modeling.types.</span></span><span class="sig-name descname"><span class="pre">ActivationFunction</span></span><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.ActivationFunction" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Available activation functions for cells in lstm_model.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="aki_predictions.ehr_prediction_modeling.types.ActivationFunction.ELISH">
-<span class="sig-name descname"><span class="pre">ELISH</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'elish'</span></em><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.ActivationFunction.ELISH" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">ELISH</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'elish'</span></em><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.ActivationFunction.ELISH" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="aki_predictions.ehr_prediction_modeling.types.ActivationFunction.ELU">
-<span class="sig-name descname"><span class="pre">ELU</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'elu'</span></em><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.ActivationFunction.ELU" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">ELU</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'elu'</span></em><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.ActivationFunction.ELU" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="aki_predictions.ehr_prediction_modeling.types.ActivationFunction.HARD_ELISH">
-<span class="sig-name descname"><span class="pre">HARD_ELISH</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'hard_elish'</span></em><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.ActivationFunction.HARD_ELISH" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">HARD_ELISH</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'hard_elish'</span></em><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.ActivationFunction.HARD_ELISH" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="aki_predictions.ehr_prediction_modeling.types.ActivationFunction.HARD_SIGMOID">
-<span class="sig-name descname"><span class="pre">HARD_SIGMOID</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'hard_sigmoid'</span></em><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.ActivationFunction.HARD_SIGMOID" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">HARD_SIGMOID</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'hard_sigmoid'</span></em><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.ActivationFunction.HARD_SIGMOID" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="aki_predictions.ehr_prediction_modeling.types.ActivationFunction.LRELU">
-<span class="sig-name descname"><span class="pre">LRELU</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'lrelu'</span></em><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.ActivationFunction.LRELU" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">LRELU</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'lrelu'</span></em><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.ActivationFunction.LRELU" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="aki_predictions.ehr_prediction_modeling.types.ActivationFunction.RELU">
-<span class="sig-name descname"><span class="pre">RELU</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'relu'</span></em><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.ActivationFunction.RELU" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">RELU</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'relu'</span></em><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.ActivationFunction.RELU" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="aki_predictions.ehr_prediction_modeling.types.ActivationFunction.SIGMOID">
-<span class="sig-name descname"><span class="pre">SIGMOID</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'sigmoid'</span></em><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.ActivationFunction.SIGMOID" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">SIGMOID</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'sigmoid'</span></em><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.ActivationFunction.SIGMOID" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="aki_predictions.ehr_prediction_modeling.types.ActivationFunction.SLU">
-<span class="sig-name descname"><span class="pre">SLU</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'selu'</span></em><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.ActivationFunction.SLU" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">SLU</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'selu'</span></em><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.ActivationFunction.SLU" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="aki_predictions.ehr_prediction_modeling.types.ActivationFunction.SWISH">
-<span class="sig-name descname"><span class="pre">SWISH</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'swish'</span></em><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.ActivationFunction.SWISH" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">SWISH</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'swish'</span></em><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.ActivationFunction.SWISH" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="aki_predictions.ehr_prediction_modeling.types.ActivationFunction.TANH">
-<span class="sig-name descname"><span class="pre">TANH</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'tanh'</span></em><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.ActivationFunction.TANH" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">TANH</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'tanh'</span></em><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.ActivationFunction.TANH" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="aki_predictions.ehr_prediction_modeling.types.ActivationFunction.TANH_PEN">
-<span class="sig-name descname"><span class="pre">TANH_PEN</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'tanh_pen'</span></em><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.ActivationFunction.TANH_PEN" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">TANH_PEN</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'tanh_pen'</span></em><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.ActivationFunction.TANH_PEN" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="aki_predictions.ehr_prediction_modeling.types.BestModelMetric">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">aki_predictions.ehr_prediction_modeling.types.</span></span><span class="sig-name descname"><span class="pre">BestModelMetric</span></span><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.BestModelMetric" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">aki_predictions.ehr_prediction_modeling.types.</span></span><span class="sig-name descname"><span class="pre">BestModelMetric</span></span><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.BestModelMetric" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Best model metric object.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="aki_predictions.ehr_prediction_modeling.types.BestModelMetric.L1">
-<span class="sig-name descname"><span class="pre">L1</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'l1'</span></em><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.BestModelMetric.L1" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">L1</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'l1'</span></em><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.BestModelMetric.L1" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="aki_predictions.ehr_prediction_modeling.types.BestModelMetric.PRAUC">
-<span class="sig-name descname"><span class="pre">PRAUC</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'prauc'</span></em><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.BestModelMetric.PRAUC" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">PRAUC</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'prauc'</span></em><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.BestModelMetric.PRAUC" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="aki_predictions.ehr_prediction_modeling.types.BestModelMetric.ROCAUC">
-<span class="sig-name descname"><span class="pre">ROCAUC</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'rocauc'</span></em><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.BestModelMetric.ROCAUC" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">ROCAUC</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'rocauc'</span></em><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.BestModelMetric.ROCAUC" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="aki_predictions.ehr_prediction_modeling.types.EmbeddingCombinationMethod">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">aki_predictions.ehr_prediction_modeling.types.</span></span><span class="sig-name descname"><span class="pre">EmbeddingCombinationMethod</span></span><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.EmbeddingCombinationMethod" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">aki_predictions.ehr_prediction_modeling.types.</span></span><span class="sig-name descname"><span class="pre">EmbeddingCombinationMethod</span></span><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.EmbeddingCombinationMethod" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Available embedding combination methods.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="aki_predictions.ehr_prediction_modeling.types.EmbeddingCombinationMethod.COMBINE_SNR_OUT">
-<span class="sig-name descname"><span class="pre">COMBINE_SNR_OUT</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'combine_snr_out'</span></em><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.EmbeddingCombinationMethod.COMBINE_SNR_OUT" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">COMBINE_SNR_OUT</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'combine_snr_out'</span></em><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.EmbeddingCombinationMethod.COMBINE_SNR_OUT" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="aki_predictions.ehr_prediction_modeling.types.EmbeddingCombinationMethod.CONCATENATE">
-<span class="sig-name descname"><span class="pre">CONCATENATE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'concatenate'</span></em><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.EmbeddingCombinationMethod.CONCATENATE" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">CONCATENATE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'concatenate'</span></em><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.EmbeddingCombinationMethod.CONCATENATE" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="aki_predictions.ehr_prediction_modeling.types.EmbeddingCombinationMethod.SUM_ALL">
-<span class="sig-name descname"><span class="pre">SUM_ALL</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'sum_all'</span></em><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.EmbeddingCombinationMethod.SUM_ALL" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">SUM_ALL</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'sum_all'</span></em><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.EmbeddingCombinationMethod.SUM_ALL" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="aki_predictions.ehr_prediction_modeling.types.EmbeddingCombinationMethod.SUM_BY_SUFFIX">
-<span class="sig-name descname"><span class="pre">SUM_BY_SUFFIX</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'sum_by_suffix'</span></em><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.EmbeddingCombinationMethod.SUM_BY_SUFFIX" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">SUM_BY_SUFFIX</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'sum_by_suffix'</span></em><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.EmbeddingCombinationMethod.SUM_BY_SUFFIX" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="aki_predictions.ehr_prediction_modeling.types.EmbeddingEncoderType">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">aki_predictions.ehr_prediction_modeling.types.</span></span><span class="sig-name descname"><span class="pre">EmbeddingEncoderType</span></span><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.EmbeddingEncoderType" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">aki_predictions.ehr_prediction_modeling.types.</span></span><span class="sig-name descname"><span class="pre">EmbeddingEncoderType</span></span><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.EmbeddingEncoderType" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Available encoders for DeepEmbedding.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="aki_predictions.ehr_prediction_modeling.types.EmbeddingEncoderType.FC">
-<span class="sig-name descname"><span class="pre">FC</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'fc'</span></em><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.EmbeddingEncoderType.FC" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">FC</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'fc'</span></em><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.EmbeddingEncoderType.FC" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="aki_predictions.ehr_prediction_modeling.types.EmbeddingEncoderType.RESIDUAL">
-<span class="sig-name descname"><span class="pre">RESIDUAL</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'residual'</span></em><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.EmbeddingEncoderType.RESIDUAL" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">RESIDUAL</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'residual'</span></em><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.EmbeddingEncoderType.RESIDUAL" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="aki_predictions.ehr_prediction_modeling.types.EmbeddingEncoderType.SNR">
-<span class="sig-name descname"><span class="pre">SNR</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'snr'</span></em><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.EmbeddingEncoderType.SNR" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">SNR</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'snr'</span></em><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.EmbeddingEncoderType.SNR" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="aki_predictions.ehr_prediction_modeling.types.EmbeddingType">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">aki_predictions.ehr_prediction_modeling.types.</span></span><span class="sig-name descname"><span class="pre">EmbeddingType</span></span><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.EmbeddingType" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">aki_predictions.ehr_prediction_modeling.types.</span></span><span class="sig-name descname"><span class="pre">EmbeddingType</span></span><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.EmbeddingType" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Available embedding types.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="aki_predictions.ehr_prediction_modeling.types.EmbeddingType.DEEP_EMBEDDING">
-<span class="sig-name descname"><span class="pre">DEEP_EMBEDDING</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'DeepEmbedding'</span></em><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.EmbeddingType.DEEP_EMBEDDING" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">DEEP_EMBEDDING</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'DeepEmbedding'</span></em><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.EmbeddingType.DEEP_EMBEDDING" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="aki_predictions.ehr_prediction_modeling.types.EmbeddingType.LOOKUP">
-<span class="sig-name descname"><span class="pre">LOOKUP</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'Lookup'</span></em><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.EmbeddingType.LOOKUP" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">LOOKUP</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'Lookup'</span></em><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.EmbeddingType.LOOKUP" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="aki_predictions.ehr_prediction_modeling.types.FeatureTypes">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">aki_predictions.ehr_prediction_modeling.types.</span></span><span class="sig-name descname"><span class="pre">FeatureTypes</span></span><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.FeatureTypes" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">aki_predictions.ehr_prediction_modeling.types.</span></span><span class="sig-name descname"><span class="pre">FeatureTypes</span></span><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.FeatureTypes" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Types of features available in the data representation.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="aki_predictions.ehr_prediction_modeling.types.FeatureTypes.CATEGORY_COUNTS_SEQ">
-<span class="sig-name descname"><span class="pre">CATEGORY_COUNTS_SEQ</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'count_s'</span></em><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.FeatureTypes.CATEGORY_COUNTS_SEQ" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">CATEGORY_COUNTS_SEQ</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'count_s'</span></em><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.FeatureTypes.CATEGORY_COUNTS_SEQ" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="aki_predictions.ehr_prediction_modeling.types.FeatureTypes.DIAGNOSIS">
-<span class="sig-name descname"><span class="pre">DIAGNOSIS</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'diagnosis'</span></em><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.FeatureTypes.DIAGNOSIS" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">DIAGNOSIS</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'diagnosis'</span></em><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.FeatureTypes.DIAGNOSIS" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="aki_predictions.ehr_prediction_modeling.types.FeatureTypes.ETHNIC_ORIGIN">
-<span class="sig-name descname"><span class="pre">ETHNIC_ORIGIN</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'ethnic_origin'</span></em><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.FeatureTypes.ETHNIC_ORIGIN" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">ETHNIC_ORIGIN</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'ethnic_origin'</span></em><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.FeatureTypes.ETHNIC_ORIGIN" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="aki_predictions.ehr_prediction_modeling.types.FeatureTypes.METHOD_OF_ADMISSION">
-<span class="sig-name descname"><span class="pre">METHOD_OF_ADMISSION</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'method_of_admission'</span></em><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.FeatureTypes.METHOD_OF_ADMISSION" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">METHOD_OF_ADMISSION</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'method_of_admission'</span></em><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.FeatureTypes.METHOD_OF_ADMISSION" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="aki_predictions.ehr_prediction_modeling.types.FeatureTypes.NUMERIC_SEQ">
-<span class="sig-name descname"><span class="pre">NUMERIC_SEQ</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'num_s'</span></em><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.FeatureTypes.NUMERIC_SEQ" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">NUMERIC_SEQ</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'num_s'</span></em><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.FeatureTypes.NUMERIC_SEQ" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="aki_predictions.ehr_prediction_modeling.types.FeatureTypes.PRESENCE_SEQ">
-<span class="sig-name descname"><span class="pre">PRESENCE_SEQ</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'pres_s'</span></em><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.FeatureTypes.PRESENCE_SEQ" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">PRESENCE_SEQ</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'pres_s'</span></em><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.FeatureTypes.PRESENCE_SEQ" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="aki_predictions.ehr_prediction_modeling.types.FeatureTypes.SEX">
-<span class="sig-name descname"><span class="pre">SEX</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'sex'</span></em><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.FeatureTypes.SEX" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">SEX</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'sex'</span></em><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.FeatureTypes.SEX" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="aki_predictions.ehr_prediction_modeling.types.FeatureTypes.YEAR_OF_BIRTH">
-<span class="sig-name descname"><span class="pre">YEAR_OF_BIRTH</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'year_of_birth'</span></em><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.FeatureTypes.YEAR_OF_BIRTH" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">YEAR_OF_BIRTH</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'year_of_birth'</span></em><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.FeatureTypes.YEAR_OF_BIRTH" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="aki_predictions.ehr_prediction_modeling.types.ForwardFunctionReturns">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">aki_predictions.ehr_prediction_modeling.types.</span></span><span class="sig-name descname"><span class="pre">ForwardFunctionReturns</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model_output</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hidden_states</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inputs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">activations</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.ForwardFunctionReturns" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">aki_predictions.ehr_prediction_modeling.types.</span></span><span class="sig-name descname"><span class="pre">ForwardFunctionReturns</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model_output</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hidden_states</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inputs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">activations</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.ForwardFunctionReturns" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <a class="reference internal" href="#aki_predictions.ehr_prediction_modeling.types.ForwardFunctionReturns" title="aki_predictions.ehr_prediction_modeling.types.ForwardFunctionReturns"><code class="xref py py-class docutils literal notranslate"><span class="pre">ForwardFunctionReturns</span></code></a></p>
 <p>The variables returned by the forward function.</p>
 <p>Create new instance of ForwardFunctionReturns(model_output, hidden_states, inputs, activations)</p>
@@ -244,61 +310,61 @@
 
 <dl class="py class">
 <dt class="sig sig-object py" id="aki_predictions.ehr_prediction_modeling.types.LearningRateScheduling">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">aki_predictions.ehr_prediction_modeling.types.</span></span><span class="sig-name descname"><span class="pre">LearningRateScheduling</span></span><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.LearningRateScheduling" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">aki_predictions.ehr_prediction_modeling.types.</span></span><span class="sig-name descname"><span class="pre">LearningRateScheduling</span></span><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.LearningRateScheduling" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Learning rate scheduling definitions.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="aki_predictions.ehr_prediction_modeling.types.LearningRateScheduling.EXPONENTIAL_DECAY">
-<span class="sig-name descname"><span class="pre">EXPONENTIAL_DECAY</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'exponential_decay'</span></em><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.LearningRateScheduling.EXPONENTIAL_DECAY" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">EXPONENTIAL_DECAY</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'exponential_decay'</span></em><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.LearningRateScheduling.EXPONENTIAL_DECAY" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="aki_predictions.ehr_prediction_modeling.types.LearningRateScheduling.FIXED">
-<span class="sig-name descname"><span class="pre">FIXED</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'fixed'</span></em><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.LearningRateScheduling.FIXED" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">FIXED</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'fixed'</span></em><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.LearningRateScheduling.FIXED" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="aki_predictions.ehr_prediction_modeling.types.LossCombinationType">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">aki_predictions.ehr_prediction_modeling.types.</span></span><span class="sig-name descname"><span class="pre">LossCombinationType</span></span><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.LossCombinationType" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">aki_predictions.ehr_prediction_modeling.types.</span></span><span class="sig-name descname"><span class="pre">LossCombinationType</span></span><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.LossCombinationType" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Loss combination type object.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="aki_predictions.ehr_prediction_modeling.types.LossCombinationType.SUM_ALL">
-<span class="sig-name descname"><span class="pre">SUM_ALL</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'SUM_ALL'</span></em><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.LossCombinationType.SUM_ALL" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">SUM_ALL</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'SUM_ALL'</span></em><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.LossCombinationType.SUM_ALL" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="aki_predictions.ehr_prediction_modeling.types.LossCombinationType.UNCERTAINTY_WEIGHTED">
-<span class="sig-name descname"><span class="pre">UNCERTAINTY_WEIGHTED</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'UNCERTAINTY_WEIGHTED'</span></em><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.LossCombinationType.UNCERTAINTY_WEIGHTED" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">UNCERTAINTY_WEIGHTED</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'UNCERTAINTY_WEIGHTED'</span></em><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.LossCombinationType.UNCERTAINTY_WEIGHTED" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="aki_predictions.ehr_prediction_modeling.types.ModelMode">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">aki_predictions.ehr_prediction_modeling.types.</span></span><span class="sig-name descname"><span class="pre">ModelMode</span></span><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.ModelMode" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">aki_predictions.ehr_prediction_modeling.types.</span></span><span class="sig-name descname"><span class="pre">ModelMode</span></span><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.ModelMode" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Available modes for the model.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="aki_predictions.ehr_prediction_modeling.types.ModelMode.EVAL">
-<span class="sig-name descname"><span class="pre">EVAL</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'eval'</span></em><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.ModelMode.EVAL" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">EVAL</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'eval'</span></em><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.ModelMode.EVAL" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="aki_predictions.ehr_prediction_modeling.types.ModelMode.PREDICT">
-<span class="sig-name descname"><span class="pre">PREDICT</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'predict'</span></em><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.ModelMode.PREDICT" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">PREDICT</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'predict'</span></em><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.ModelMode.PREDICT" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="aki_predictions.ehr_prediction_modeling.types.ModelMode.TRAIN">
-<span class="sig-name descname"><span class="pre">TRAIN</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'train'</span></em><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.ModelMode.TRAIN" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">TRAIN</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'train'</span></em><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.ModelMode.TRAIN" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="aki_predictions.ehr_prediction_modeling.types.ModelMode.is_train">
-<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">is_train</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mode</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.ModelMode.is_train" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">is_train</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mode</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.ModelMode.is_train" title="Permalink to this definition"></a></dt>
 <dd><p>Class method check if mode is TRAIN.</p>
 </dd></dl>
 
@@ -306,314 +372,314 @@
 
 <dl class="py class">
 <dt class="sig sig-object py" id="aki_predictions.ehr_prediction_modeling.types.ModelTypes">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">aki_predictions.ehr_prediction_modeling.types.</span></span><span class="sig-name descname"><span class="pre">ModelTypes</span></span><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.ModelTypes" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">aki_predictions.ehr_prediction_modeling.types.</span></span><span class="sig-name descname"><span class="pre">ModelTypes</span></span><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.ModelTypes" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Model types object.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="aki_predictions.ehr_prediction_modeling.types.ModelTypes.RNN">
-<span class="sig-name descname"><span class="pre">RNN</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'RNN'</span></em><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.ModelTypes.RNN" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">RNN</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'RNN'</span></em><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.ModelTypes.RNN" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="aki_predictions.ehr_prediction_modeling.types.ModelTypes.SNRNN">
-<span class="sig-name descname"><span class="pre">SNRNN</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'SNRNN'</span></em><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.ModelTypes.SNRNN" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">SNRNN</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'SNRNN'</span></em><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.ModelTypes.SNRNN" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="aki_predictions.ehr_prediction_modeling.types.Optimizers">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">aki_predictions.ehr_prediction_modeling.types.</span></span><span class="sig-name descname"><span class="pre">Optimizers</span></span><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.Optimizers" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">aki_predictions.ehr_prediction_modeling.types.</span></span><span class="sig-name descname"><span class="pre">Optimizers</span></span><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.Optimizers" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Optimizers object definitions.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="aki_predictions.ehr_prediction_modeling.types.Optimizers.ADAM">
-<span class="sig-name descname"><span class="pre">ADAM</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'Adam'</span></em><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.Optimizers.ADAM" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">ADAM</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'Adam'</span></em><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.Optimizers.ADAM" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="aki_predictions.ehr_prediction_modeling.types.Optimizers.RMSPROP">
-<span class="sig-name descname"><span class="pre">RMSPROP</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'RMSprop'</span></em><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.Optimizers.RMSPROP" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">RMSPROP</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'RMSprop'</span></em><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.Optimizers.RMSPROP" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="aki_predictions.ehr_prediction_modeling.types.Optimizers.SGD">
-<span class="sig-name descname"><span class="pre">SGD</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'SGD'</span></em><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.Optimizers.SGD" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">SGD</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'SGD'</span></em><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.Optimizers.SGD" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="aki_predictions.ehr_prediction_modeling.types.RNNCellType">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">aki_predictions.ehr_prediction_modeling.types.</span></span><span class="sig-name descname"><span class="pre">RNNCellType</span></span><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.RNNCellType" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">aki_predictions.ehr_prediction_modeling.types.</span></span><span class="sig-name descname"><span class="pre">RNNCellType</span></span><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.RNNCellType" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Available cell types for rnn_model.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="aki_predictions.ehr_prediction_modeling.types.RNNCellType.LSTM">
-<span class="sig-name descname"><span class="pre">LSTM</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'LSTM'</span></em><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.RNNCellType.LSTM" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">LSTM</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'LSTM'</span></em><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.RNNCellType.LSTM" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="aki_predictions.ehr_prediction_modeling.types.RNNCellType.SRU">
-<span class="sig-name descname"><span class="pre">SRU</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'SRU'</span></em><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.RNNCellType.SRU" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">SRU</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'SRU'</span></em><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.RNNCellType.SRU" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="aki_predictions.ehr_prediction_modeling.types.RNNCellType.UGRNN">
-<span class="sig-name descname"><span class="pre">UGRNN</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'UGRNN'</span></em><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.RNNCellType.UGRNN" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">UGRNN</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'UGRNN'</span></em><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.RNNCellType.UGRNN" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="aki_predictions.ehr_prediction_modeling.types.RegularizationType">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">aki_predictions.ehr_prediction_modeling.types.</span></span><span class="sig-name descname"><span class="pre">RegularizationType</span></span><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.RegularizationType" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">aki_predictions.ehr_prediction_modeling.types.</span></span><span class="sig-name descname"><span class="pre">RegularizationType</span></span><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.RegularizationType" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Available types of regularization for model and embedding weights.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="aki_predictions.ehr_prediction_modeling.types.RegularizationType.L1">
-<span class="sig-name descname"><span class="pre">L1</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'L1'</span></em><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.RegularizationType.L1" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">L1</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'L1'</span></em><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.RegularizationType.L1" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="aki_predictions.ehr_prediction_modeling.types.RegularizationType.L2">
-<span class="sig-name descname"><span class="pre">L2</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'L2'</span></em><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.RegularizationType.L2" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">L2</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'L2'</span></em><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.RegularizationType.L2" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="aki_predictions.ehr_prediction_modeling.types.RegularizationType.NONE">
-<span class="sig-name descname"><span class="pre">NONE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'None'</span></em><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.RegularizationType.NONE" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">NONE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'None'</span></em><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.RegularizationType.NONE" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="aki_predictions.ehr_prediction_modeling.types.SNRBlockConnType">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">aki_predictions.ehr_prediction_modeling.types.</span></span><span class="sig-name descname"><span class="pre">SNRBlockConnType</span></span><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.SNRBlockConnType" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">aki_predictions.ehr_prediction_modeling.types.</span></span><span class="sig-name descname"><span class="pre">SNRBlockConnType</span></span><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.SNRBlockConnType" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Available unit types for SNREncoder.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="aki_predictions.ehr_prediction_modeling.types.SNRBlockConnType.FC">
-<span class="sig-name descname"><span class="pre">FC</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'fc'</span></em><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.SNRBlockConnType.FC" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">FC</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'fc'</span></em><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.SNRBlockConnType.FC" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="aki_predictions.ehr_prediction_modeling.types.SNRBlockConnType.HIGHWAY">
-<span class="sig-name descname"><span class="pre">HIGHWAY</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'highway'</span></em><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.SNRBlockConnType.HIGHWAY" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">HIGHWAY</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'highway'</span></em><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.SNRBlockConnType.HIGHWAY" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="aki_predictions.ehr_prediction_modeling.types.SNRBlockConnType.NONE">
-<span class="sig-name descname"><span class="pre">NONE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'None'</span></em><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.SNRBlockConnType.NONE" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">NONE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'None'</span></em><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.SNRBlockConnType.NONE" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="aki_predictions.ehr_prediction_modeling.types.SNRBlockConnType.RESIDUAL">
-<span class="sig-name descname"><span class="pre">RESIDUAL</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'residual'</span></em><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.SNRBlockConnType.RESIDUAL" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">RESIDUAL</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'residual'</span></em><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.SNRBlockConnType.RESIDUAL" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="aki_predictions.ehr_prediction_modeling.types.SNRInputCombinationType">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">aki_predictions.ehr_prediction_modeling.types.</span></span><span class="sig-name descname"><span class="pre">SNRInputCombinationType</span></span><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.SNRInputCombinationType" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">aki_predictions.ehr_prediction_modeling.types.</span></span><span class="sig-name descname"><span class="pre">SNRInputCombinationType</span></span><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.SNRInputCombinationType" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Available combination methods for subnetwork input.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="aki_predictions.ehr_prediction_modeling.types.SNRInputCombinationType.CONCATENATE">
-<span class="sig-name descname"><span class="pre">CONCATENATE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'concatenate'</span></em><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.SNRInputCombinationType.CONCATENATE" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">CONCATENATE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'concatenate'</span></em><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.SNRInputCombinationType.CONCATENATE" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="aki_predictions.ehr_prediction_modeling.types.SNRInputCombinationType.SUM_ALL">
-<span class="sig-name descname"><span class="pre">SUM_ALL</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'sum'</span></em><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.SNRInputCombinationType.SUM_ALL" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">SUM_ALL</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'sum'</span></em><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.SNRInputCombinationType.SUM_ALL" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="aki_predictions.ehr_prediction_modeling.types.SubNettoSubNetConnType">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">aki_predictions.ehr_prediction_modeling.types.</span></span><span class="sig-name descname"><span class="pre">SubNettoSubNetConnType</span></span><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.SubNettoSubNetConnType" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">aki_predictions.ehr_prediction_modeling.types.</span></span><span class="sig-name descname"><span class="pre">SubNettoSubNetConnType</span></span><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.SubNettoSubNetConnType" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Available connection types between subnetworks.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="aki_predictions.ehr_prediction_modeling.types.SubNettoSubNetConnType.BOOL">
-<span class="sig-name descname"><span class="pre">BOOL</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'bool'</span></em><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.SubNettoSubNetConnType.BOOL" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">BOOL</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'bool'</span></em><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.SubNettoSubNetConnType.BOOL" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="aki_predictions.ehr_prediction_modeling.types.SubNettoSubNetConnType.SCALAR_WEIGHT">
-<span class="sig-name descname"><span class="pre">SCALAR_WEIGHT</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'scalar_weight'</span></em><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.SubNettoSubNetConnType.SCALAR_WEIGHT" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">SCALAR_WEIGHT</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'scalar_weight'</span></em><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.SubNettoSubNetConnType.SCALAR_WEIGHT" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="aki_predictions.ehr_prediction_modeling.types.TaskLayerTypes">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">aki_predictions.ehr_prediction_modeling.types.</span></span><span class="sig-name descname"><span class="pre">TaskLayerTypes</span></span><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.TaskLayerTypes" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">aki_predictions.ehr_prediction_modeling.types.</span></span><span class="sig-name descname"><span class="pre">TaskLayerTypes</span></span><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.TaskLayerTypes" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Task layer types object.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="aki_predictions.ehr_prediction_modeling.types.TaskLayerTypes.MLP">
-<span class="sig-name descname"><span class="pre">MLP</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'MLP'</span></em><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.TaskLayerTypes.MLP" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">MLP</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'MLP'</span></em><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.TaskLayerTypes.MLP" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="aki_predictions.ehr_prediction_modeling.types.TaskLayerTypes.NONE">
-<span class="sig-name descname"><span class="pre">NONE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'none'</span></em><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.TaskLayerTypes.NONE" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">NONE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'none'</span></em><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.TaskLayerTypes.NONE" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="aki_predictions.ehr_prediction_modeling.types.TaskLayerTypes.SNRMLP">
-<span class="sig-name descname"><span class="pre">SNRMLP</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'SNRMLP'</span></em><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.TaskLayerTypes.SNRMLP" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">SNRMLP</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'SNRMLP'</span></em><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.TaskLayerTypes.SNRMLP" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="aki_predictions.ehr_prediction_modeling.types.TaskLossType">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">aki_predictions.ehr_prediction_modeling.types.</span></span><span class="sig-name descname"><span class="pre">TaskLossType</span></span><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.TaskLossType" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">aki_predictions.ehr_prediction_modeling.types.</span></span><span class="sig-name descname"><span class="pre">TaskLossType</span></span><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.TaskLossType" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Task loss type object.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="aki_predictions.ehr_prediction_modeling.types.TaskLossType.BRIER">
-<span class="sig-name descname"><span class="pre">BRIER</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'Brier'</span></em><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.TaskLossType.BRIER" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">BRIER</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'Brier'</span></em><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.TaskLossType.BRIER" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="aki_predictions.ehr_prediction_modeling.types.TaskLossType.CE">
-<span class="sig-name descname"><span class="pre">CE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'CE'</span></em><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.TaskLossType.CE" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">CE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'CE'</span></em><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.TaskLossType.CE" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="aki_predictions.ehr_prediction_modeling.types.TaskLossType.L1">
-<span class="sig-name descname"><span class="pre">L1</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'L1'</span></em><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.TaskLossType.L1" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">L1</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'L1'</span></em><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.TaskLossType.L1" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="aki_predictions.ehr_prediction_modeling.types.TaskLossType.L2">
-<span class="sig-name descname"><span class="pre">L2</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'L2'</span></em><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.TaskLossType.L2" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">L2</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'L2'</span></em><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.TaskLossType.L2" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="aki_predictions.ehr_prediction_modeling.types.TaskLossType.MULTI_CE">
-<span class="sig-name descname"><span class="pre">MULTI_CE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'MULTI_CE'</span></em><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.TaskLossType.MULTI_CE" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">MULTI_CE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'MULTI_CE'</span></em><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.TaskLossType.MULTI_CE" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="aki_predictions.ehr_prediction_modeling.types.TaskNames">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">aki_predictions.ehr_prediction_modeling.types.</span></span><span class="sig-name descname"><span class="pre">TaskNames</span></span><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.TaskNames" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">aki_predictions.ehr_prediction_modeling.types.</span></span><span class="sig-name descname"><span class="pre">TaskNames</span></span><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.TaskNames" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Names of available tasks.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="aki_predictions.ehr_prediction_modeling.types.TaskNames.ADVERSE_OUTCOME_RISK">
-<span class="sig-name descname"><span class="pre">ADVERSE_OUTCOME_RISK</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'AdverseOutcomeRisk'</span></em><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.TaskNames.ADVERSE_OUTCOME_RISK" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">ADVERSE_OUTCOME_RISK</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'AdverseOutcomeRisk'</span></em><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.TaskNames.ADVERSE_OUTCOME_RISK" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="aki_predictions.ehr_prediction_modeling.types.TaskNames.BINARIZED_LOS">
-<span class="sig-name descname"><span class="pre">BINARIZED_LOS</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'BinarizedLengthOfStay'</span></em><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.TaskNames.BINARIZED_LOS" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">BINARIZED_LOS</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'BinarizedLengthOfStay'</span></em><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.TaskNames.BINARIZED_LOS" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="aki_predictions.ehr_prediction_modeling.types.TaskNames.DIALYSIS_OUTCOME">
-<span class="sig-name descname"><span class="pre">DIALYSIS_OUTCOME</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'DialysisOutcome'</span></em><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.TaskNames.DIALYSIS_OUTCOME" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">DIALYSIS_OUTCOME</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'DialysisOutcome'</span></em><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.TaskNames.DIALYSIS_OUTCOME" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="aki_predictions.ehr_prediction_modeling.types.TaskNames.ITU_OUTCOME">
-<span class="sig-name descname"><span class="pre">ITU_OUTCOME</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'ITUOutcome'</span></em><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.TaskNames.ITU_OUTCOME" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">ITU_OUTCOME</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'ITUOutcome'</span></em><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.TaskNames.ITU_OUTCOME" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="aki_predictions.ehr_prediction_modeling.types.TaskNames.LAB_REGRESSION">
-<span class="sig-name descname"><span class="pre">LAB_REGRESSION</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'Labs'</span></em><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.TaskNames.LAB_REGRESSION" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">LAB_REGRESSION</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'Labs'</span></em><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.TaskNames.LAB_REGRESSION" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="aki_predictions.ehr_prediction_modeling.types.TaskNames.MORTALITY">
-<span class="sig-name descname"><span class="pre">MORTALITY</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'MortalityRisk'</span></em><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.TaskNames.MORTALITY" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">MORTALITY</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'MortalityRisk'</span></em><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.TaskNames.MORTALITY" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="aki_predictions.ehr_prediction_modeling.types.TaskNames.MORTALITY_OUTCOME">
-<span class="sig-name descname"><span class="pre">MORTALITY_OUTCOME</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'MortalityOutcome'</span></em><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.TaskNames.MORTALITY_OUTCOME" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">MORTALITY_OUTCOME</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'MortalityOutcome'</span></em><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.TaskNames.MORTALITY_OUTCOME" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="aki_predictions.ehr_prediction_modeling.types.TaskNames.READMISSION">
-<span class="sig-name descname"><span class="pre">READMISSION</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'ReadmissionRisk'</span></em><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.TaskNames.READMISSION" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">READMISSION</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'ReadmissionRisk'</span></em><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.TaskNames.READMISSION" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="aki_predictions.ehr_prediction_modeling.types.TaskNames.REGRESSION_LOS">
-<span class="sig-name descname"><span class="pre">REGRESSION_LOS</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'RegressionLengthOfStay'</span></em><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.TaskNames.REGRESSION_LOS" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">REGRESSION_LOS</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'RegressionLengthOfStay'</span></em><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.TaskNames.REGRESSION_LOS" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="aki_predictions.ehr_prediction_modeling.types.TaskType">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">aki_predictions.ehr_prediction_modeling.types.</span></span><span class="sig-name descname"><span class="pre">TaskType</span></span><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.TaskType" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">aki_predictions.ehr_prediction_modeling.types.</span></span><span class="sig-name descname"><span class="pre">TaskType</span></span><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.TaskType" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Available task types.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="aki_predictions.ehr_prediction_modeling.types.TaskType.BINARY_CLASSIFICATION">
-<span class="sig-name descname"><span class="pre">BINARY_CLASSIFICATION</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'BinaryClassification'</span></em><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.TaskType.BINARY_CLASSIFICATION" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">BINARY_CLASSIFICATION</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'BinaryClassification'</span></em><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.TaskType.BINARY_CLASSIFICATION" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="aki_predictions.ehr_prediction_modeling.types.TaskType.REGRESSION">
-<span class="sig-name descname"><span class="pre">REGRESSION</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'Regression'</span></em><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.TaskType.REGRESSION" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">REGRESSION</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'Regression'</span></em><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.TaskType.REGRESSION" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="aki_predictions.ehr_prediction_modeling.types.TaskTypes">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">aki_predictions.ehr_prediction_modeling.types.</span></span><span class="sig-name descname"><span class="pre">TaskTypes</span></span><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.TaskTypes" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">aki_predictions.ehr_prediction_modeling.types.</span></span><span class="sig-name descname"><span class="pre">TaskTypes</span></span><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.TaskTypes" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Type of tasks available for modeling.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="aki_predictions.ehr_prediction_modeling.types.TaskTypes.ADVERSE_OUTCOME_RISK">
-<span class="sig-name descname"><span class="pre">ADVERSE_OUTCOME_RISK</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'ao_risk'</span></em><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.TaskTypes.ADVERSE_OUTCOME_RISK" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">ADVERSE_OUTCOME_RISK</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'ao_risk'</span></em><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.TaskTypes.ADVERSE_OUTCOME_RISK" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="aki_predictions.ehr_prediction_modeling.types.TaskTypes.DIALYSIS_OUTCOME">
-<span class="sig-name descname"><span class="pre">DIALYSIS_OUTCOME</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'dialysis_outcome'</span></em><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.TaskTypes.DIALYSIS_OUTCOME" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">DIALYSIS_OUTCOME</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'dialysis_outcome'</span></em><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.TaskTypes.DIALYSIS_OUTCOME" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="aki_predictions.ehr_prediction_modeling.types.TaskTypes.ITU_OUTCOME">
-<span class="sig-name descname"><span class="pre">ITU_OUTCOME</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'itu_outcome'</span></em><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.TaskTypes.ITU_OUTCOME" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">ITU_OUTCOME</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'itu_outcome'</span></em><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.TaskTypes.ITU_OUTCOME" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="aki_predictions.ehr_prediction_modeling.types.TaskTypes.LAB_REGRESSION">
-<span class="sig-name descname"><span class="pre">LAB_REGRESSION</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'labs_regression'</span></em><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.TaskTypes.LAB_REGRESSION" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">LAB_REGRESSION</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'labs_regression'</span></em><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.TaskTypes.LAB_REGRESSION" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="aki_predictions.ehr_prediction_modeling.types.TaskTypes.LOS">
-<span class="sig-name descname"><span class="pre">LOS</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'length_of_stay'</span></em><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.TaskTypes.LOS" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">LOS</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'length_of_stay'</span></em><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.TaskTypes.LOS" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="aki_predictions.ehr_prediction_modeling.types.TaskTypes.MORTALITY">
-<span class="sig-name descname"><span class="pre">MORTALITY</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'mortality'</span></em><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.TaskTypes.MORTALITY" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">MORTALITY</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'mortality'</span></em><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.TaskTypes.MORTALITY" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="aki_predictions.ehr_prediction_modeling.types.TaskTypes.MORTALITY_OUTCOME">
-<span class="sig-name descname"><span class="pre">MORTALITY_OUTCOME</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'mortality_outcome'</span></em><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.TaskTypes.MORTALITY_OUTCOME" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">MORTALITY_OUTCOME</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'mortality_outcome'</span></em><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.TaskTypes.MORTALITY_OUTCOME" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="aki_predictions.ehr_prediction_modeling.types.TaskTypes.READMISSION">
-<span class="sig-name descname"><span class="pre">READMISSION</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'readmission'</span></em><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.TaskTypes.READMISSION" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">READMISSION</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'readmission'</span></em><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.types.TaskTypes.READMISSION" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -621,85 +687,34 @@
 </section>
 
 
+           </div>
           </div>
-          
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="aki_predictions.ehr_prediction_modeling.mask_manager.html" class="btn btn-neutral float-left" title="aki_predictions.ehr_prediction_modeling.mask_manager module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="aki_predictions.evaluation.html" class="btn btn-neutral float-right" title="aki_predictions.evaluation package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright Crown copyright.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
         </div>
       </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper">
-<h1 class="logo"><a href="index.html">aki-predictions</a></h1>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
 
-
-
-
-
-
-
-
-<h3>Navigation</h3>
-<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
-<ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="readme.html">NHS AI Lab Skunkworks project: Predictive Renal Health</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="aki_predictions.html">aki_predictions package</a><ul class="current">
-<li class="toctree-l2 current"><a class="reference internal" href="aki_predictions.html#subpackages">Subpackages</a></li>
-<li class="toctree-l2"><a class="reference internal" href="aki_predictions.html#submodules">Submodules</a></li>
-</ul>
-</li>
-<li class="toctree-l1 current"><a class="reference internal" href="modules.html">aki_predictions</a><ul class="current">
-<li class="toctree-l2 current"><a class="reference internal" href="aki_predictions.html">aki_predictions package</a></li>
-</ul>
-</li>
-</ul>
-
-<div class="relations">
-<h3>Related Topics</h3>
-<ul>
-  <li><a href="index.html">Documentation overview</a><ul>
-  <li><a href="aki_predictions.html">aki_predictions package</a><ul>
-  <li><a href="aki_predictions.ehr_prediction_modeling.html">aki_predictions.ehr_prediction_modeling package</a><ul>
-      <li>Previous: <a href="aki_predictions.ehr_prediction_modeling.mask_manager.html" title="previous chapter">aki_predictions.ehr_prediction_modeling.mask_manager module</a></li>
-      <li>Next: <a href="aki_predictions.evaluation.html" title="next chapter">aki_predictions.evaluation package</a></li>
-  </ul></li>
-  </ul></li>
-  </ul></li>
-</ul>
-</div>
-<div id="searchbox" style="display: none" role="search">
-  <h3 id="searchlabel">Quick search</h3>
-    <div class="searchformwrapper">
-    <form class="search" action="search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
-      <input type="submit" value="Go" />
-    </form>
-    </div>
-</div>
-<script>document.getElementById('searchbox').style.display = "block"</script>
-
-
-
-
-
-
-
-
-        </div>
-      </div>
-      <div class="clearer"></div>
-    </div>
-    <div class="footer">
-      &copy;Crown copyright.
-      
-      |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 5.1.0</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
-      
-      |
-      <a href="_sources/aki_predictions.ehr_prediction_modeling.types.rst.txt"
-          rel="nofollow">Page source</a>
-    </div>
-
-    
-
-    
-  </body>
+</body>
 </html>

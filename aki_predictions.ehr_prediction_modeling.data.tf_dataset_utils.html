@@ -1,51 +1,118 @@
-
 <!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
-
-    <title>aki_predictions.ehr_prediction_modeling.data.tf_dataset_utils module &#8212; aki-predictions 1.0.0 documentation</title>
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="_static/alabaster.css" />
-    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
-    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="_static/doctools.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>aki_predictions.ehr_prediction_modeling.data.tf_dataset_utils module &mdash; aki-predictions 1.0.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+    <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="aki_predictions.ehr_prediction_modeling.embeddings package" href="aki_predictions.ehr_prediction_modeling.embeddings.html" />
-    <link rel="prev" title="aki_predictions.ehr_prediction_modeling.data.tf_dataset module" href="aki_predictions.ehr_prediction_modeling.data.tf_dataset.html" />
-   
-  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
-  
-  
-  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+    <link rel="prev" title="aki_predictions.ehr_prediction_modeling.data.tf_dataset module" href="aki_predictions.ehr_prediction_modeling.data.tf_dataset.html" /> 
+</head>
 
-  </head><body>
-  
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> aki-predictions
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="readme.html">NHS AI Lab Skunkworks project: Predictive Renal Health</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="aki_predictions.html">aki_predictions package</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="aki_predictions.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="aki_predictions.data_processing.html">aki_predictions.data_processing package</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="aki_predictions.ehr_prediction_modeling.html">aki_predictions.ehr_prediction_modeling package</a><ul class="current">
+<li class="toctree-l4 current"><a class="reference internal" href="aki_predictions.ehr_prediction_modeling.html#subpackages">Subpackages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="aki_predictions.ehr_prediction_modeling.html#submodules">Submodules</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="aki_predictions.evaluation.html">aki_predictions.evaluation package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="aki_predictions.inference.html">aki_predictions.inference package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="aki_predictions.training.html">aki_predictions.training package</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="aki_predictions.html#submodules">Submodules</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">aki_predictions</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="aki_predictions.html">aki_predictions package</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="aki_predictions.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="aki_predictions.data_processing.html">aki_predictions.data_processing package</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="aki_predictions.ehr_prediction_modeling.html">aki_predictions.ehr_prediction_modeling package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="aki_predictions.evaluation.html">aki_predictions.evaluation package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="aki_predictions.inference.html">aki_predictions.inference package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="aki_predictions.training.html">aki_predictions.training package</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="aki_predictions.html#submodules">Submodules</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
 
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
-          
+        </div>
+      </div>
+    </nav>
 
-          <div class="body" role="main">
-            
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">aki-predictions</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="aki_predictions.html">aki_predictions package</a> &raquo;</li>
+          <li><a href="aki_predictions.ehr_prediction_modeling.html">aki_predictions.ehr_prediction_modeling package</a> &raquo;</li>
+          <li><a href="aki_predictions.ehr_prediction_modeling.data.html">aki_predictions.ehr_prediction_modeling.data package</a> &raquo;</li>
+      <li>aki_predictions.ehr_prediction_modeling.data.tf_dataset_utils module</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/aki_predictions.ehr_prediction_modeling.data.tf_dataset_utils.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
   <section id="module-aki_predictions.ehr_prediction_modeling.data.tf_dataset_utils">
-<span id="aki-predictions-ehr-prediction-modeling-data-tf-dataset-utils-module"></span><h1>aki_predictions.ehr_prediction_modeling.data.tf_dataset_utils module<a class="headerlink" href="#module-aki_predictions.ehr_prediction_modeling.data.tf_dataset_utils" title="Permalink to this heading">¶</a></h1>
+<span id="aki-predictions-ehr-prediction-modeling-data-tf-dataset-utils-module"></span><h1>aki_predictions.ehr_prediction_modeling.data.tf_dataset_utils module<a class="headerlink" href="#module-aki_predictions.ehr_prediction_modeling.data.tf_dataset_utils" title="Permalink to this heading"></a></h1>
 <p>TensorFlow utility functions to extract Tensor and batch from tf protos.</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="aki_predictions.ehr_prediction_modeling.data.tf_dataset_utils.add_beginning_of_sequence_mask_and_pad">
-<span class="sig-prename descclassname"><span class="pre">aki_predictions.ehr_prediction_modeling.data.tf_dataset_utils.</span></span><span class="sig-name descname"><span class="pre">add_beginning_of_sequence_mask_and_pad</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">example</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">Tensor</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">Tensor</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">SparseTensor</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">batch_size</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_unroll</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">DatasetV1</span></span></span><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.data.tf_dataset_utils.add_beginning_of_sequence_mask_and_pad" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">aki_predictions.ehr_prediction_modeling.data.tf_dataset_utils.</span></span><span class="sig-name descname"><span class="pre">add_beginning_of_sequence_mask_and_pad</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">example</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">Tensor</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">Tensor</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">SparseTensor</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">batch_size</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_unroll</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">DatasetV1</span></span></span><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.data.tf_dataset_utils.add_beginning_of_sequence_mask_and_pad" title="Permalink to this definition"></a></dt>
 <dd><p>Pad sequence to be divisible by num_unroll and set end of sequence mask.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="aki_predictions.ehr_prediction_modeling.data.tf_dataset_utils.append_nested_dict_of_lists">
-<span class="sig-prename descclassname"><span class="pre">aki_predictions.ehr_prediction_modeling.data.tf_dataset_utils.</span></span><span class="sig-name descname"><span class="pre">append_nested_dict_of_lists</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nested_dict_of_lists</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nested_dict_new_items</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.data.tf_dataset_utils.append_nested_dict_of_lists" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">aki_predictions.ehr_prediction_modeling.data.tf_dataset_utils.</span></span><span class="sig-name descname"><span class="pre">append_nested_dict_of_lists</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nested_dict_of_lists</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nested_dict_new_items</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.data.tf_dataset_utils.append_nested_dict_of_lists" title="Permalink to this definition"></a></dt>
 <dd><p>Appends items in a nested dictionary of items to a nested dict of the same structure of lists</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -65,7 +132,7 @@
 
 <dl class="py function">
 <dt class="sig sig-object py" id="aki_predictions.ehr_prediction_modeling.data.tf_dataset_utils.convert_required_tensors_to_sparse">
-<span class="sig-prename descclassname"><span class="pre">aki_predictions.ehr_prediction_modeling.data.tf_dataset_utils.</span></span><span class="sig-name descname"><span class="pre">convert_required_tensors_to_sparse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">examples</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tensor_to_sparse_keys</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span></span></span><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.data.tf_dataset_utils.convert_required_tensors_to_sparse" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">aki_predictions.ehr_prediction_modeling.data.tf_dataset_utils.</span></span><span class="sig-name descname"><span class="pre">convert_required_tensors_to_sparse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">examples</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tensor_to_sparse_keys</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span></span></span><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.data.tf_dataset_utils.convert_required_tensors_to_sparse" title="Permalink to this definition"></a></dt>
 <dd><p>In a dictionary ‘examples’ with keys ‘context’ and ‘sequences’, within ‘sequences’ convert any items
 that are tf.Tensor objects and whose key appears in tensor_to_sparse_keys into SparseTensor objects</p>
 <dl class="field-list simple">
@@ -87,25 +154,25 @@ that are tf.Tensor objects and whose key appears in tensor_to_sparse_keys into S
 
 <dl class="py function">
 <dt class="sig sig-object py" id="aki_predictions.ehr_prediction_modeling.data.tf_dataset_utils.convert_sparse_context_to_segments">
-<span class="sig-prename descclassname"><span class="pre">aki_predictions.ehr_prediction_modeling.data.tf_dataset_utils.</span></span><span class="sig-name descname"><span class="pre">convert_sparse_context_to_segments</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">examples</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">Tensor</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">Tensor</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">SparseTensor</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">Tensor</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">Tensor</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">SparseTensor</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.data.tf_dataset_utils.convert_sparse_context_to_segments" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">aki_predictions.ehr_prediction_modeling.data.tf_dataset_utils.</span></span><span class="sig-name descname"><span class="pre">convert_sparse_context_to_segments</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">examples</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">Tensor</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">Tensor</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">SparseTensor</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">Tensor</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">Tensor</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">SparseTensor</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.data.tf_dataset_utils.convert_sparse_context_to_segments" title="Permalink to this definition"></a></dt>
 <dd><p>Parses the serialized example into time-major sequence and context.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="aki_predictions.ehr_prediction_modeling.data.tf_dataset_utils.convert_to_segments">
-<span class="sig-prename descclassname"><span class="pre">aki_predictions.ehr_prediction_modeling.data.tf_dataset_utils.</span></span><span class="sig-name descname"><span class="pre">convert_to_segments</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">examples</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">Tensor</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">Tensor</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">SparseTensor</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">segment_len</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">Tensor</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">Tensor</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">SparseTensor</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.data.tf_dataset_utils.convert_to_segments" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">aki_predictions.ehr_prediction_modeling.data.tf_dataset_utils.</span></span><span class="sig-name descname"><span class="pre">convert_to_segments</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">examples</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">Tensor</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">Tensor</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">SparseTensor</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">segment_len</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">Tensor</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">Tensor</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">SparseTensor</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.data.tf_dataset_utils.convert_to_segments" title="Permalink to this definition"></a></dt>
 <dd><p>Parses the serialized example into time-major sequence and context.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="aki_predictions.ehr_prediction_modeling.data.tf_dataset_utils.convert_to_time_major">
-<span class="sig-prename descclassname"><span class="pre">aki_predictions.ehr_prediction_modeling.data.tf_dataset_utils.</span></span><span class="sig-name descname"><span class="pre">convert_to_time_major</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">examples</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">Tensor</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">Tensor</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">SparseTensor</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">Tensor</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">Tensor</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">SparseTensor</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.data.tf_dataset_utils.convert_to_time_major" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">aki_predictions.ehr_prediction_modeling.data.tf_dataset_utils.</span></span><span class="sig-name descname"><span class="pre">convert_to_time_major</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">examples</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">Tensor</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">Tensor</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">SparseTensor</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">Tensor</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">Tensor</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">SparseTensor</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.data.tf_dataset_utils.convert_to_time_major" title="Permalink to this definition"></a></dt>
 <dd><p>Parses the serialized example into time-major sequence and context.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="aki_predictions.ehr_prediction_modeling.data.tf_dataset_utils.extract_ndarray_at_idx_from_nested_dict_of_lists_of_ndarrays">
-<span class="sig-prename descclassname"><span class="pre">aki_predictions.ehr_prediction_modeling.data.tf_dataset_utils.</span></span><span class="sig-name descname"><span class="pre">extract_ndarray_at_idx_from_nested_dict_of_lists_of_ndarrays</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">idx</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.data.tf_dataset_utils.extract_ndarray_at_idx_from_nested_dict_of_lists_of_ndarrays" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">aki_predictions.ehr_prediction_modeling.data.tf_dataset_utils.</span></span><span class="sig-name descname"><span class="pre">extract_ndarray_at_idx_from_nested_dict_of_lists_of_ndarrays</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">idx</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.data.tf_dataset_utils.extract_ndarray_at_idx_from_nested_dict_of_lists_of_ndarrays" title="Permalink to this definition"></a></dt>
 <dd><p>From a nested dictionary of lists of ndarrays, extract the idx element from each list and return in the same
 nested dictionary structure.
 :param input_dict: a nested dictionary of lists of ndarrays
@@ -124,7 +191,7 @@ nested dictionary structure.
 
 <dl class="py function">
 <dt class="sig sig-object py" id="aki_predictions.ehr_prediction_modeling.data.tf_dataset_utils.get_label_dicts">
-<span class="sig-prename descclassname"><span class="pre">aki_predictions.ehr_prediction_modeling.data.tf_dataset_utils.</span></span><span class="sig-name descname"><span class="pre">get_label_dicts</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">task_coordinator</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="aki_predictions.ehr_prediction_modeling.tasks.coordinator.html#aki_predictions.ehr_prediction_modeling.tasks.coordinator.Coordinator" title="aki_predictions.ehr_prediction_modeling.tasks.coordinator.Coordinator"><span class="pre">Coordinator</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">context_features</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sequential_features</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fixed_len_metadata</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">[]</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">FixedLenSequenceFeature</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">FixedLenFeature</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">FixedLenSequenceFeature</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">FixedLenFeature</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.data.tf_dataset_utils.get_label_dicts" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">aki_predictions.ehr_prediction_modeling.data.tf_dataset_utils.</span></span><span class="sig-name descname"><span class="pre">get_label_dicts</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">task_coordinator</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="aki_predictions.ehr_prediction_modeling.tasks.coordinator.html#aki_predictions.ehr_prediction_modeling.tasks.coordinator.Coordinator" title="aki_predictions.ehr_prediction_modeling.tasks.coordinator.Coordinator"><span class="pre">Coordinator</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">context_features</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sequential_features</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fixed_len_metadata</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">[]</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">FixedLenSequenceFeature</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">FixedLenFeature</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">FixedLenSequenceFeature</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">FixedLenFeature</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.data.tf_dataset_utils.get_label_dicts" title="Permalink to this definition"></a></dt>
 <dd><p>Gets the feature dictionaries to parse a tf.SequenceExample.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -147,7 +214,7 @@ sequence_d: Dictionaries of TF features to read in sequence.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="aki_predictions.ehr_prediction_modeling.data.tf_dataset_utils.ndarray_from_sparse_definition">
-<span class="sig-prename descclassname"><span class="pre">aki_predictions.ehr_prediction_modeling.data.tf_dataset_utils.</span></span><span class="sig-name descname"><span class="pre">ndarray_from_sparse_definition</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">indices</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">values</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dense_shape</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">expected_dims</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">expected_shape_1</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.data.tf_dataset_utils.ndarray_from_sparse_definition" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">aki_predictions.ehr_prediction_modeling.data.tf_dataset_utils.</span></span><span class="sig-name descname"><span class="pre">ndarray_from_sparse_definition</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">indices</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">values</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dense_shape</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">expected_dims</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">expected_shape_1</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.data.tf_dataset_utils.ndarray_from_sparse_definition" title="Permalink to this definition"></a></dt>
 <dd><p>Uses the indices, values and dense_shape definitions as used when defining a tf.sparse.SparseTensor to
 create a dense ndarray. ndarrays can be necessary to create a data generator suitable for tf 1.15</p>
 <dl class="field-list simple">
@@ -175,7 +242,7 @@ create a dense ndarray. ndarrays can be necessary to create a data generator sui
 
 <dl class="py function">
 <dt class="sig sig-object py" id="aki_predictions.ehr_prediction_modeling.data.tf_dataset_utils.pad_nested_dict_of_lists_of_ndarray">
-<span class="sig-prename descclassname"><span class="pre">aki_predictions.ehr_prediction_modeling.data.tf_dataset_utils.</span></span><span class="sig-name descname"><span class="pre">pad_nested_dict_of_lists_of_ndarray</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_sequence_lengths</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_zeroth_shape</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.data.tf_dataset_utils.pad_nested_dict_of_lists_of_ndarray" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">aki_predictions.ehr_prediction_modeling.data.tf_dataset_utils.</span></span><span class="sig-name descname"><span class="pre">pad_nested_dict_of_lists_of_ndarray</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_sequence_lengths</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_zeroth_shape</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.data.tf_dataset_utils.pad_nested_dict_of_lists_of_ndarray" title="Permalink to this definition"></a></dt>
 <dd><p>Pads ndarrays in a nested dictionary of lists of ndarrays such that all ndarrays in a single list
 become the same shape</p>
 <dl class="field-list simple">
@@ -198,7 +265,7 @@ become the same shape</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="aki_predictions.ehr_prediction_modeling.data.tf_dataset_utils.prepend_batch_size_to_nested_dict_of_output_shapes">
-<span class="sig-prename descclassname"><span class="pre">aki_predictions.ehr_prediction_modeling.data.tf_dataset_utils.</span></span><span class="sig-name descname"><span class="pre">prepend_batch_size_to_nested_dict_of_output_shapes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">batch_size</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.data.tf_dataset_utils.prepend_batch_size_to_nested_dict_of_output_shapes" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">aki_predictions.ehr_prediction_modeling.data.tf_dataset_utils.</span></span><span class="sig-name descname"><span class="pre">prepend_batch_size_to_nested_dict_of_output_shapes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">batch_size</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.data.tf_dataset_utils.prepend_batch_size_to_nested_dict_of_output_shapes" title="Permalink to this definition"></a></dt>
 <dd><p>Prepend a batch_size to a nested dictionary of tf.TensorShape objects</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -212,13 +279,13 @@ become the same shape</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="aki_predictions.ehr_prediction_modeling.data.tf_dataset_utils.read_seqex_dataset">
-<span class="sig-prename descclassname"><span class="pre">aki_predictions.ehr_prediction_modeling.data.tf_dataset_utils.</span></span><span class="sig-name descname"><span class="pre">read_seqex_dataset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tfrecords_filename</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">TFRecordDatasetV1</span></span></span><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.data.tf_dataset_utils.read_seqex_dataset" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">aki_predictions.ehr_prediction_modeling.data.tf_dataset_utils.</span></span><span class="sig-name descname"><span class="pre">read_seqex_dataset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tfrecords_filename</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">TFRecordDatasetV1</span></span></span><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.data.tf_dataset_utils.read_seqex_dataset" title="Permalink to this definition"></a></dt>
 <dd><p>Return read sequential dataset.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="aki_predictions.ehr_prediction_modeling.data.tf_dataset_utils.sample_segments">
-<span class="sig-prename descclassname"><span class="pre">aki_predictions.ehr_prediction_modeling.data.tf_dataset_utils.</span></span><span class="sig-name descname"><span class="pre">sample_segments</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">seq_lens</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">segment_length</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">random_offset</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tensor</span></span></span><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.data.tf_dataset_utils.sample_segments" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">aki_predictions.ehr_prediction_modeling.data.tf_dataset_utils.</span></span><span class="sig-name descname"><span class="pre">sample_segments</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">seq_lens</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">segment_length</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">random_offset</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tensor</span></span></span><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.data.tf_dataset_utils.sample_segments" title="Permalink to this definition"></a></dt>
 <dd><p>Sample fixed length segments from a list of sequence lengths.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -241,37 +308,37 @@ starting time/index of a segment.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="aki_predictions.ehr_prediction_modeling.data.tf_dataset_utils.seqex_to_dict">
-<span class="sig-prename descclassname"><span class="pre">aki_predictions.ehr_prediction_modeling.data.tf_dataset_utils.</span></span><span class="sig-name descname"><span class="pre">seqex_to_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">serialized_examples</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bytes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">context_d</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sequence_d</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">Tensor</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">Tensor</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">SparseTensor</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.data.tf_dataset_utils.seqex_to_dict" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">aki_predictions.ehr_prediction_modeling.data.tf_dataset_utils.</span></span><span class="sig-name descname"><span class="pre">seqex_to_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">serialized_examples</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bytes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">context_d</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sequence_d</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">Tensor</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">Tensor</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">SparseTensor</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.data.tf_dataset_utils.seqex_to_dict" title="Permalink to this definition"></a></dt>
 <dd><p>Parses the serialized example into time-major sequence and context.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="aki_predictions.ehr_prediction_modeling.data.tf_dataset_utils.slice_sparse_tensor_context">
-<span class="sig-prename descclassname"><span class="pre">aki_predictions.ehr_prediction_modeling.data.tf_dataset_utils.</span></span><span class="sig-name descname"><span class="pre">slice_sparse_tensor_context</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tensor</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">SparseTensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seq_starts</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">SparseTensor</span></span></span><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.data.tf_dataset_utils.slice_sparse_tensor_context" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">aki_predictions.ehr_prediction_modeling.data.tf_dataset_utils.</span></span><span class="sig-name descname"><span class="pre">slice_sparse_tensor_context</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tensor</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">SparseTensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seq_starts</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">SparseTensor</span></span></span><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.data.tf_dataset_utils.slice_sparse_tensor_context" title="Permalink to this definition"></a></dt>
 <dd><p>Slice segments from a sparse tensor [batch x feats].</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="aki_predictions.ehr_prediction_modeling.data.tf_dataset_utils.slice_sparse_tensor_sequences">
-<span class="sig-prename descclassname"><span class="pre">aki_predictions.ehr_prediction_modeling.data.tf_dataset_utils.</span></span><span class="sig-name descname"><span class="pre">slice_sparse_tensor_sequences</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tensor</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">SparseTensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seq_starts</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">segment_length</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">SparseTensor</span></span></span><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.data.tf_dataset_utils.slice_sparse_tensor_sequences" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">aki_predictions.ehr_prediction_modeling.data.tf_dataset_utils.</span></span><span class="sig-name descname"><span class="pre">slice_sparse_tensor_sequences</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tensor</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">SparseTensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seq_starts</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">segment_length</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">SparseTensor</span></span></span><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.data.tf_dataset_utils.slice_sparse_tensor_sequences" title="Permalink to this definition"></a></dt>
 <dd><p>Slice segments from a sparse tensor [batch x num_unrol x feats].</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="aki_predictions.ehr_prediction_modeling.data.tf_dataset_utils.slice_tensor">
-<span class="sig-prename descclassname"><span class="pre">aki_predictions.ehr_prediction_modeling.data.tf_dataset_utils.</span></span><span class="sig-name descname"><span class="pre">slice_tensor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tensor</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seq_starts</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">segment_length</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tensor</span></span></span><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.data.tf_dataset_utils.slice_tensor" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">aki_predictions.ehr_prediction_modeling.data.tf_dataset_utils.</span></span><span class="sig-name descname"><span class="pre">slice_tensor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tensor</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seq_starts</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">segment_length</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tensor</span></span></span><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.data.tf_dataset_utils.slice_tensor" title="Permalink to this definition"></a></dt>
 <dd><p>Slice segments from a tensor [batch x num_unrol x feats].</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="aki_predictions.ehr_prediction_modeling.data.tf_dataset_utils.sparse_tensor_to_time_major">
-<span class="sig-prename descclassname"><span class="pre">aki_predictions.ehr_prediction_modeling.data.tf_dataset_utils.</span></span><span class="sig-name descname"><span class="pre">sparse_tensor_to_time_major</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sparse_tensor</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">SparseTensor</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">SparseTensor</span></span></span><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.data.tf_dataset_utils.sparse_tensor_to_time_major" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">aki_predictions.ehr_prediction_modeling.data.tf_dataset_utils.</span></span><span class="sig-name descname"><span class="pre">sparse_tensor_to_time_major</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sparse_tensor</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">SparseTensor</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">SparseTensor</span></span></span><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.data.tf_dataset_utils.sparse_tensor_to_time_major" title="Permalink to this definition"></a></dt>
 <dd><p>Transposes batch major sparse tensors to time major.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="aki_predictions.ehr_prediction_modeling.data.tf_dataset_utils.stack_nested_dict_of_lists_of_ndarrays">
-<span class="sig-prename descclassname"><span class="pre">aki_predictions.ehr_prediction_modeling.data.tf_dataset_utils.</span></span><span class="sig-name descname"><span class="pre">stack_nested_dict_of_lists_of_ndarrays</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_dict</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.data.tf_dataset_utils.stack_nested_dict_of_lists_of_ndarrays" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">aki_predictions.ehr_prediction_modeling.data.tf_dataset_utils.</span></span><span class="sig-name descname"><span class="pre">stack_nested_dict_of_lists_of_ndarrays</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_dict</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.data.tf_dataset_utils.stack_nested_dict_of_lists_of_ndarrays" title="Permalink to this definition"></a></dt>
 <dd><p>Within a nested dictionary structure of lists of ndarrays, stack the lists into higher dimensional arrays</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -291,100 +358,47 @@ starting time/index of a segment.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="aki_predictions.ehr_prediction_modeling.data.tf_dataset_utils.tile_context">
-<span class="sig-prename descclassname"><span class="pre">aki_predictions.ehr_prediction_modeling.data.tf_dataset_utils.</span></span><span class="sig-name descname"><span class="pre">tile_context</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ctx</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Tensor</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seq_len</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">batch_padding</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Tensor</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.data.tf_dataset_utils.tile_context" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">aki_predictions.ehr_prediction_modeling.data.tf_dataset_utils.</span></span><span class="sig-name descname"><span class="pre">tile_context</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ctx</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Tensor</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seq_len</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">batch_padding</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Tensor</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.data.tf_dataset_utils.tile_context" title="Permalink to this definition"></a></dt>
 <dd><p>Tiles the context along the time dimension seq_len times and pads batch.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="aki_predictions.ehr_prediction_modeling.data.tf_dataset_utils.to_time_major">
-<span class="sig-prename descclassname"><span class="pre">aki_predictions.ehr_prediction_modeling.data.tf_dataset_utils.</span></span><span class="sig-name descname"><span class="pre">to_time_major</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tensor</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tensor</span></span></span><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.data.tf_dataset_utils.to_time_major" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">aki_predictions.ehr_prediction_modeling.data.tf_dataset_utils.</span></span><span class="sig-name descname"><span class="pre">to_time_major</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tensor</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tensor</span></span></span><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.data.tf_dataset_utils.to_time_major" title="Permalink to this definition"></a></dt>
 <dd><p>Transposes batch majored tensors to time major.</p>
 </dd></dl>
 
 </section>
 
 
+           </div>
           </div>
-          
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="aki_predictions.ehr_prediction_modeling.data.tf_dataset.html" class="btn btn-neutral float-left" title="aki_predictions.ehr_prediction_modeling.data.tf_dataset module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="aki_predictions.ehr_prediction_modeling.embeddings.html" class="btn btn-neutral float-right" title="aki_predictions.ehr_prediction_modeling.embeddings package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright Crown copyright.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
         </div>
       </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper">
-<h1 class="logo"><a href="index.html">aki-predictions</a></h1>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
 
-
-
-
-
-
-
-
-<h3>Navigation</h3>
-<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
-<ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="readme.html">NHS AI Lab Skunkworks project: Predictive Renal Health</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="aki_predictions.html">aki_predictions package</a><ul class="current">
-<li class="toctree-l2 current"><a class="reference internal" href="aki_predictions.html#subpackages">Subpackages</a></li>
-<li class="toctree-l2"><a class="reference internal" href="aki_predictions.html#submodules">Submodules</a></li>
-</ul>
-</li>
-<li class="toctree-l1 current"><a class="reference internal" href="modules.html">aki_predictions</a><ul class="current">
-<li class="toctree-l2 current"><a class="reference internal" href="aki_predictions.html">aki_predictions package</a></li>
-</ul>
-</li>
-</ul>
-
-<div class="relations">
-<h3>Related Topics</h3>
-<ul>
-  <li><a href="index.html">Documentation overview</a><ul>
-  <li><a href="aki_predictions.html">aki_predictions package</a><ul>
-  <li><a href="aki_predictions.ehr_prediction_modeling.html">aki_predictions.ehr_prediction_modeling package</a><ul>
-  <li><a href="aki_predictions.ehr_prediction_modeling.data.html">aki_predictions.ehr_prediction_modeling.data package</a><ul>
-      <li>Previous: <a href="aki_predictions.ehr_prediction_modeling.data.tf_dataset.html" title="previous chapter">aki_predictions.ehr_prediction_modeling.data.tf_dataset module</a></li>
-      <li>Next: <a href="aki_predictions.ehr_prediction_modeling.embeddings.html" title="next chapter">aki_predictions.ehr_prediction_modeling.embeddings package</a></li>
-  </ul></li>
-  </ul></li>
-  </ul></li>
-  </ul></li>
-</ul>
-</div>
-<div id="searchbox" style="display: none" role="search">
-  <h3 id="searchlabel">Quick search</h3>
-    <div class="searchformwrapper">
-    <form class="search" action="search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
-      <input type="submit" value="Go" />
-    </form>
-    </div>
-</div>
-<script>document.getElementById('searchbox').style.display = "block"</script>
-
-
-
-
-
-
-
-
-        </div>
-      </div>
-      <div class="clearer"></div>
-    </div>
-    <div class="footer">
-      &copy;Crown copyright.
-      
-      |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 5.1.0</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
-      
-      |
-      <a href="_sources/aki_predictions.ehr_prediction_modeling.data.tf_dataset_utils.rst.txt"
-          rel="nofollow">Page source</a>
-    </div>
-
-    
-
-    
-  </body>
+</body>
 </html>

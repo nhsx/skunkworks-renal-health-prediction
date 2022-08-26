@@ -1,63 +1,137 @@
-
 <!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
-
-    <title>NHS AI Lab Skunkworks project: Predictive Renal Health &#8212; aki-predictions 1.0.0 documentation</title>
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="_static/alabaster.css" />
-    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
-    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="_static/doctools.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NHS AI Lab Skunkworks project: Predictive Renal Health &mdash; aki-predictions 1.0.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+    <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="aki_predictions package" href="aki_predictions.html" />
-    <link rel="prev" title="C308 NHS AI Predictive Renal Health PoC" href="index.html" />
-   
-  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
-  
-  
-  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+    <link rel="prev" title="Predictive Renal Health" href="index.html" /> 
+</head>
 
-  </head><body>
-  
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> aki-predictions
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">NHS AI Lab Skunkworks project: Predictive Renal Health</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#intended-use">Intended Use</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#data-protection">Data Protection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#background">Background</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#model-selection">Model selection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#known-limitations">Known limitations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#data-pipeline">Data pipeline</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#processing-pipeline">Processing pipeline</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#raw-data-structure">RAW Data Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ingested-data-structure">Ingested data structure</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#getting-started">Getting Started</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#environment">Environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#automated-tests">Automated tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#building-docs">Building docs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#cli-tool">CLI Tool</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#data-ingest-normalisation-and-splitting">Data Ingest, Normalisation, and Splitting</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#ingest-configuration">Ingest Configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#model-training">Model Training</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#data-exploration">Data Exploration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#model-evaluation">Model Evaluation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#inference-mode">Inference Mode</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#example-pipeline">Example pipeline</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#ingest">Ingest</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#survey">Survey</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#training">Training</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#occlusion-analysis">Occlusion analysis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#evaluation">Evaluation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#threshold-sweep">Threshold Sweep</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#inference">Inference</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#nhs-ai-lab-skunkworks">NHS AI Lab Skunkworks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#licence">Licence</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="aki_predictions.html">aki_predictions package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">aki_predictions</a></li>
+</ul>
 
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
-          
+        </div>
+      </div>
+    </nav>
 
-          <div class="body" role="main">
-            
-  <a class="reference internal image-reference" href="_images/banner.png"><img alt="_images/banner.png" src="_images/banner.png" style="width: 75%;" /></a>
-<a class="reference external image-reference" href="LICENSE"><img alt="MIT License" src="https://img.shields.io/badge/License-MIT-lightgray.svg" /></a>
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">aki-predictions</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>NHS AI Lab Skunkworks project: Predictive Renal Health</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/readme.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <a class="reference external image-reference" href="LICENSE"><img alt="MIT License" src="https://img.shields.io/badge/License-MIT-lightgray.svg" /></a>
 <a class="reference external image-reference" href="https://www.python.org/downloads/release/python-3713/"><img alt="Python Version" src="https://img.shields.io/badge/Python-3.7.13-blue.svg" /></a>
 <p><span class="raw-html-m2r"><!-- Add in additional badges as appropriate --></span></p>
 <a class="reference external image-reference" href="docs/banner.png"><img alt="Banner of NHS AI Lab Skunkworks" src="docs/banner.png" /></a>
 <section id="nhs-ai-lab-skunkworks-project-predictive-renal-health">
-<h1>NHS AI Lab Skunkworks project: Predictive Renal Health<a class="headerlink" href="#nhs-ai-lab-skunkworks-project-predictive-renal-health" title="Permalink to this heading">¶</a></h1>
+<h1>NHS AI Lab Skunkworks project: Predictive Renal Health<a class="headerlink" href="#nhs-ai-lab-skunkworks-project-predictive-renal-health" title="Permalink to this heading"></a></h1>
 <blockquote>
 <div><p>A pilot project for the NHS AI (Artificial Intelligence) Lab Skunkworks team, Predictive Renal Health seeks to build a machine learning model to assist in identifying those acute kidney injury (AKI) patients at higher risk of requiring ITU, needing renal support (dialysis), or likely to have a higher potential for mortality.</p>
 </div></blockquote>
 <p>Predictive Renal Health was selected as a project in Spring 2022 following a succesful pitch to the AI Skunkworks problem-sourcing programme.</p>
 <p>This project is based upon work by Google’s DeepMind as “Modeling for Electronic Health Records Predictions” available publically under the Apache-2.0 licence <a class="reference external" href="https://github.com/google/ehr-predictions/modeling">here</a></p>
 <section id="intended-use">
-<h2>Intended Use<a class="headerlink" href="#intended-use" title="Permalink to this heading">¶</a></h2>
+<h2>Intended Use<a class="headerlink" href="#intended-use" title="Permalink to this heading"></a></h2>
 <p>This proof of concept (<a class="reference external" href="https://en.wikipedia.org/wiki/Technology_readiness_level">TRL 4</a>) is intended to demonstrate the technical validity of applying the deep recurrent network approach defined by the DeepMind group <a class="footnote-reference brackets" href="#fn-1" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a> with modifications, against a dataset of electronic healthcare records, blood test results, and medication data, in order to predict downstream events of acute kidney injuries including the need for intensive care, dialysis or death with 24h or more notice.</p>
 <p>It is not intended for deployment in a clinical or non-clinical setting without further development and compliance with the <a class="reference external" href="https://www.legislation.gov.uk/uksi/2002/618/contents/made">UK Medical Device Regulations 2002</a> where the product qualifies as a medical device.</p>
 </section>
 <section id="data-protection">
-<h2>Data Protection<a class="headerlink" href="#data-protection" title="Permalink to this heading">¶</a></h2>
+<h2>Data Protection<a class="headerlink" href="#data-protection" title="Permalink to this heading"></a></h2>
 <p>This project was subject to a Data Protection Impact Assessment (DPIA), ensuring the protection of the data used in line with the <a class="reference external" href="https://www.legislation.gov.uk/ukpga/2018/12/contents/enacted">UK Data Protection Act 2018</a> and <a class="reference external" href="https://ico.org.uk/for-organisations/dp-at-the-end-of-the-transition-period/data-protection-and-the-eu-in-detail/the-uk-gdpr/">UK GDPR</a>. No real world data or trained models are shared in this repository.</p>
 <p>A minimal selection of testing data is included on an example basis, with only minimal examples of the types of fields required and/or available at the time of development. See example instructions below on how to evaluate the tool with these placeholder examples.</p>
 </section>
 <section id="background">
-<h2>Background<a class="headerlink" href="#background" title="Permalink to this heading">¶</a></h2>
+<h2>Background<a class="headerlink" href="#background" title="Permalink to this heading"></a></h2>
 <p>Deterioration of AKI patients is hard to predict, leading to outcomes such as the need for emergency admission to ITU and need for organ support such as dialysis.
 The aim of this commission is to understand the likelihood/risk of AKI patients who will need ITU admission, dialysis or die.</p>
 <p>Currently available tools include AKI alerts, which identify patients who have developed kidney disease based on serial blood tests, and the Early Warning Score (EWS) that collates multiple
@@ -67,11 +141,11 @@ therefore the opportunity to reduce severity of deterioration is limited.</p>
 <p>A Proof-of-Concept tool is needed that can help identify (more than 24hrs in advance) those AKI patients at higher risk of the aformentioned outcomes. This projects seeks to develop such a tool.</p>
 </section>
 <section id="model-selection">
-<h2>Model selection<a class="headerlink" href="#model-selection" title="Permalink to this heading">¶</a></h2>
+<h2>Model selection<a class="headerlink" href="#model-selection" title="Permalink to this heading"></a></h2>
 <p>The approach is based around extending a highly-cited method from DeepMind in 2019 [^1], which predicted incidences of AKI from data which is expected to have partial overlap in structure with this commission’s dataset. Though the prediction task here is a step beyond predicting AKIs, the challenge is closely related and similar models are expected to be viable after some modification.</p>
 </section>
 <section id="known-limitations">
-<h2>Known limitations<a class="headerlink" href="#known-limitations" title="Permalink to this heading">¶</a></h2>
+<h2>Known limitations<a class="headerlink" href="#known-limitations" title="Permalink to this heading"></a></h2>
 <p>The following limitations are known regarding the current implementation of the tool and the experiments available.</p>
 <p>CLI Tool:</p>
 <ul class="simple">
@@ -90,21 +164,21 @@ therefore the opportunity to reduce severity of deterioration is limited.</p>
 </ul>
 </section>
 <section id="data-pipeline">
-<h2>Data pipeline<a class="headerlink" href="#data-pipeline" title="Permalink to this heading">¶</a></h2>
+<h2>Data pipeline<a class="headerlink" href="#data-pipeline" title="Permalink to this heading"></a></h2>
 <a class="reference external image-reference" href="docs/data_diagram.png"><img alt="Initial data flow diagram" src="docs/data_diagram.png" /></a>
 </section>
 <section id="processing-pipeline">
-<h2>Processing pipeline<a class="headerlink" href="#processing-pipeline" title="Permalink to this heading">¶</a></h2>
+<h2>Processing pipeline<a class="headerlink" href="#processing-pipeline" title="Permalink to this heading"></a></h2>
 <p>The diagram below shows the series of stages available within the CLI tool pipeline. These include ingest, survey, training, and evaluation.</p>
 <a class="reference external image-reference" href="docs/data_flow.png"><img alt="Data pipeline" src="docs/data_flow.png" /></a>
 <section id="raw-data-structure">
-<h3>RAW Data Structure<a class="headerlink" href="#raw-data-structure" title="Permalink to this heading">¶</a></h3>
+<h3>RAW Data Structure<a class="headerlink" href="#raw-data-structure" title="Permalink to this heading"></a></h3>
 <p>The RAW data is expected to be in the structure of CSV or Excel workbook data tables.
 Excel workbook files may have extra header lines above the table, which can be skipped through a data configuration option on ingest.
 CSV files may not have any additional non-header rows above table headers.</p>
 </section>
 <section id="ingested-data-structure">
-<h3>Ingested data structure<a class="headerlink" href="#ingested-data-structure" title="Permalink to this heading">¶</a></h3>
+<h3>Ingested data structure<a class="headerlink" href="#ingested-data-structure" title="Permalink to this heading"></a></h3>
 <p>An example of the structure for ingested data records is shown below in indented form.
 When ingested this structure is represented as a single JSON line within a JSONL data file (examples in <code class="docutils literal notranslate"><span class="pre">tests/fixtures/test_data_ingest_output/</span></code>)</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
@@ -168,7 +242,7 @@ When ingested this structure is represented as a single JSON line within a JSONL
 </section>
 </section>
 <section id="getting-started">
-<h2>Getting Started<a class="headerlink" href="#getting-started" title="Permalink to this heading">¶</a></h2>
+<h2>Getting Started<a class="headerlink" href="#getting-started" title="Permalink to this heading"></a></h2>
 <ol class="arabic simple">
 <li><p>Clone this repository.</p></li>
 <li><p>Switch to the required branch (default is <code class="docutils literal notranslate"><span class="pre">main</span></code> branch: <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">checkout</span> <span class="pre">main</span></code>)</p></li>
@@ -182,7 +256,7 @@ For experimental work, <code class="docutils literal notranslate"><span class="p
 The pre-commit configuration will apply linting and general formatting checks and adjustments (using flake8 and black formatting).</p>
 </section>
 <section id="environment">
-<h2>Environment<a class="headerlink" href="#environment" title="Permalink to this heading">¶</a></h2>
+<h2>Environment<a class="headerlink" href="#environment" title="Permalink to this heading"></a></h2>
 <p>The software tools included in this repository were developed and tested using the following environment:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">*</span> <span class="n">Ubuntu</span> <span class="mf">18.04</span> <span class="n">LTS</span>
 <span class="o">*</span> <span class="n">Python</span> <span class="mf">3.7</span>
@@ -193,7 +267,7 @@ The pre-commit configuration will apply linting and general formatting checks an
 <p>A requirements file is included detailing the test environment used. The <code class="docutils literal notranslate"><span class="pre">setup.py</span></code> file contains the relevant package dependencies required for this codebase.</p>
 </section>
 <section id="automated-tests">
-<h2>Automated tests<a class="headerlink" href="#automated-tests" title="Permalink to this heading">¶</a></h2>
+<h2>Automated tests<a class="headerlink" href="#automated-tests" title="Permalink to this heading"></a></h2>
 <p>This project uses PyTest to run automated testing across the tools developed.</p>
 <p>To run these tests from within the installed environment:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">e</span> <span class="o">.</span><span class="p">[</span><span class="n">tests</span><span class="p">]</span>
@@ -210,8 +284,8 @@ The pre-commit configuration will apply linting and general formatting checks an
 </div>
 </section>
 <section id="building-docs">
-<h2>Building docs<a class="headerlink" href="#building-docs" title="Permalink to this heading">¶</a></h2>
-<p>Documentation is automatically deployed to [X] by a <a class="reference external" href=".github/workflows/build-docs.yml">Github action</a>.</p>
+<h2>Building docs<a class="headerlink" href="#building-docs" title="Permalink to this heading"></a></h2>
+<p>Documentation is automatically deployed to <a class="reference external" href="https://nhsx.github.io/skunkworks-renal-health-prediction/">https://nhsx.github.io/skunkworks-renal-health-prediction/</a> by a <a class="reference external" href=".github/workflows/build-docs.yml">Github action</a>.</p>
 <p>To build the docs manually, in your environment, run:</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pip install -e <span class="s2">&quot;.[cpu]&quot;</span>
 pip install -e <span class="s2">&quot;.[docs]&quot;</span>
@@ -223,7 +297,7 @@ sphinx-build -b html docs/source/ docs/build/html
 <p>These will be available in the <code class="docutils literal notranslate"><span class="pre">docs/build/html</span></code> folder.</p>
 </section>
 <section id="cli-tool">
-<h2>CLI Tool<a class="headerlink" href="#cli-tool" title="Permalink to this heading">¶</a></h2>
+<h2>CLI Tool<a class="headerlink" href="#cli-tool" title="Permalink to this heading"></a></h2>
 <p>A CLI tool has been developed to allow access to the key elements of the primary data ingest and training pipeline (additional scripting is included).</p>
 <p>The tool includes options to trigger each key step in the pipeline:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">usage</span><span class="p">:</span> <span class="n">aki_predictions_tool</span> <span class="p">[</span><span class="o">-</span><span class="n">h</span><span class="p">]</span> <span class="p">[</span><span class="o">-</span><span class="n">o</span> <span class="n">OUTPUT_DIR</span><span class="p">]</span>
@@ -243,7 +317,7 @@ sphinx-build -b html docs/source/ docs/build/html
 </div>
 <p>The CLI tool provides minimal logging information which is saved in the appropriate <code class="docutils literal notranslate"><span class="pre">output_dir</span></code> directory as a timestamped log file for reference and/or debugging.</p>
 <section id="data-ingest-normalisation-and-splitting">
-<h3>Data Ingest, Normalisation, and Splitting<a class="headerlink" href="#data-ingest-normalisation-and-splitting" title="Permalink to this heading">¶</a></h3>
+<h3>Data Ingest, Normalisation, and Splitting<a class="headerlink" href="#data-ingest-normalisation-and-splitting" title="Permalink to this heading"></a></h3>
 <p>To ingest and prepare a dataset for training the steps are as follows:</p>
 <ol class="arabic simple">
 <li><p>Gather data files.</p></li>
@@ -294,7 +368,7 @@ sphinx-build -b html docs/source/ docs/build/html
 <li><p><code class="docutils literal notranslate"><span class="pre">sequence_giveaways.json</span></code> - dictionary containing a list of feature fields to mask out during training. This can be obtained from selecting values from the feature and metadata mapping files. This prevents unfairly biasing the model with values present in the dataset (which are relevant to labelling) but would not normally be available at inference time.</p></li>
 </ul>
 <section id="ingest-configuration">
-<h4>Ingest Configuration<a class="headerlink" href="#ingest-configuration" title="Permalink to this heading">¶</a></h4>
+<h4>Ingest Configuration<a class="headerlink" href="#ingest-configuration" title="Permalink to this heading"></a></h4>
 <p>The data ingest features within this codebase requires a configuration JSON to specify the data formats, locations, and pre-processing settings.
 These allow the user to specify which features to extract from the raw data fields.
 The user may format their data in the JSON records format, in which case they may wish to utilise the standalone entrypoints to the normalisation and data splitting scriptss prior to training.</p>
@@ -438,7 +512,7 @@ The user may format their data in the JSON records format, in which case they ma
 </section>
 </section>
 <section id="model-training">
-<h3>Model Training<a class="headerlink" href="#model-training" title="Permalink to this heading">¶</a></h3>
+<h3>Model Training<a class="headerlink" href="#model-training" title="Permalink to this heading"></a></h3>
 <p>The following steps are available to run the default training pipeline:</p>
 <ol class="arabic">
 <li><p>Set configuration values within specific training experiment:</p>
@@ -495,7 +569,7 @@ The user may format their data in the JSON records format, in which case they ma
 </ul>
 </section>
 <section id="data-exploration">
-<h3>Data Exploration<a class="headerlink" href="#data-exploration" title="Permalink to this heading">¶</a></h3>
+<h3>Data Exploration<a class="headerlink" href="#data-exploration" title="Permalink to this heading"></a></h3>
 <p>Steps to trigger data exploration tooling:</p>
 <p>To trigger metrics extraction through the CLI tool:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>```
@@ -517,7 +591,7 @@ optional arguments:
 </dl>
 </section>
 <section id="model-evaluation">
-<h3>Model Evaluation<a class="headerlink" href="#model-evaluation" title="Permalink to this heading">¶</a></h3>
+<h3>Model Evaluation<a class="headerlink" href="#model-evaluation" title="Permalink to this heading"></a></h3>
 <p>The model evaluation tools available include options for plotting performance metrics, running occlusion analysis, and comparing scoring metrics across models.</p>
 <p>Model evaluation steps can be triggered through the CLI tool:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>```
@@ -659,7 +733,7 @@ optional arguments:
 </ul>
 </section>
 <section id="inference-mode">
-<h3>Inference Mode<a class="headerlink" href="#inference-mode" title="Permalink to this heading">¶</a></h3>
+<h3>Inference Mode<a class="headerlink" href="#inference-mode" title="Permalink to this heading"></a></h3>
 <p>Inference mode allows the user to input an alternate set or subset of data to process through a given model.
 Whilst this does rely on the training infrastructure (use of model checkpoints and the monitored training session for processing), it does allow ingestion of alternative data through the model.
 This could be alternative data files or sets of data.</p>
@@ -691,7 +765,7 @@ This could be alternative data files or sets of data.</p>
 </section>
 </section>
 <section id="example-pipeline">
-<h2>Example pipeline<a class="headerlink" href="#example-pipeline" title="Permalink to this heading">¶</a></h2>
+<h2>Example pipeline<a class="headerlink" href="#example-pipeline" title="Permalink to this heading"></a></h2>
 <p>Use the following steps to run the example pipeline using fake test data.
 This test data is included in <code class="docutils literal notranslate"><span class="pre">tests/fixtures/</span></code></p>
 <p>An integrated example is available in the <code class="docutils literal notranslate"><span class="pre">tests/test_end_to_end_pipeline/test_end_to_end_pipline.py</span></code>.</p>
@@ -703,7 +777,7 @@ This test data is included in <code class="docutils literal notranslate"><span c
 <li><p>Modify the <code class="docutils literal notranslate"><span class="pre">checkpoints.txt</span></code> file within the training directory to reference the chosen checkpoint step, and remove later checkpoint entries.</p></li>
 </ul>
 <section id="ingest">
-<h3>Ingest<a class="headerlink" href="#ingest" title="Permalink to this heading">¶</a></h3>
+<h3>Ingest<a class="headerlink" href="#ingest" title="Permalink to this heading"></a></h3>
 <p>Create directory for data pipeline (adjust as desired):</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mkdir</span> <span class="n">demonstration</span>
 </pre></div>
@@ -716,21 +790,21 @@ This test data is included in <code class="docutils literal notranslate"><span c
 And example of this is shown in <code class="docutils literal notranslate"><span class="pre">tests/fixtures/test_data_ingest_output/missing_metadata_mapping.json</span></code>.</p>
 </section>
 <section id="survey">
-<h3>Survey<a class="headerlink" href="#survey" title="Permalink to this heading">¶</a></h3>
+<h3>Survey<a class="headerlink" href="#survey" title="Permalink to this heading"></a></h3>
 <p>Triggering the metric extraction survey:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">aki_predictions_tool</span> <span class="n">survey</span> <span class="o">--</span><span class="n">output_dir</span> <span class="n">demonstration</span> <span class="o">--</span><span class="n">data</span> <span class="n">demonstration</span><span class="o">/</span><span class="n">mock_config_</span><span class="o">&lt;</span><span class="n">relevant</span> <span class="n">timestamped</span> <span class="n">directory</span><span class="o">&gt;</span>
 </pre></div>
 </div>
 </section>
 <section id="training">
-<h3>Training<a class="headerlink" href="#training" title="Permalink to this heading">¶</a></h3>
+<h3>Training<a class="headerlink" href="#training" title="Permalink to this heading"></a></h3>
 <p>Running a default training experiment:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">aki_predictions_tool</span> <span class="n">training</span> <span class="n">default</span> <span class="o">--</span><span class="n">output_dir</span> <span class="n">demonstration</span> <span class="o">--</span><span class="n">data</span> <span class="n">demonstration</span><span class="o">/</span><span class="n">mock_config_</span><span class="o">&lt;</span><span class="n">relevant</span> <span class="n">timestamped</span> <span class="n">directory</span><span class="o">&gt;</span> <span class="o">--</span><span class="n">steps</span> <span class="mi">100</span> <span class="o">--</span><span class="n">checkpoint_every</span> <span class="mi">100</span> <span class="o">--</span><span class="n">eval_every</span> <span class="mi">100</span> <span class="o">--</span><span class="n">summary_every</span> <span class="mi">10</span> <span class="o">--</span><span class="n">context</span> <span class="kc">True</span>
 </pre></div>
 </div>
 </section>
 <section id="occlusion-analysis">
-<h3>Occlusion analysis<a class="headerlink" href="#occlusion-analysis" title="Permalink to this heading">¶</a></h3>
+<h3>Occlusion analysis<a class="headerlink" href="#occlusion-analysis" title="Permalink to this heading"></a></h3>
 <p>Running occlusion analysis using a trained model:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">aki_predictions_tool</span> <span class="n">evaluation</span> <span class="n">occlusion_processing</span> <span class="o">--</span><span class="n">output_dir</span> <span class="n">demonstration</span> <span class="o">--</span><span class="n">data</span> <span class="n">demonstration</span><span class="o">/</span><span class="n">mock_config_</span><span class="o">&lt;</span><span class="n">relevant</span> <span class="n">timestamped</span> <span class="n">directory</span><span class="o">&gt;</span> <span class="o">--</span><span class="n">steps</span> <span class="mi">100</span> <span class="o">--</span><span class="n">context</span> <span class="kc">True</span>
 </pre></div>
@@ -738,7 +812,7 @@ And example of this is shown in <code class="docutils literal notranslate"><span
 <p>This will generate a json file in the output directory containing the occlusion analysis feature scores.</p>
 </section>
 <section id="evaluation">
-<h3>Evaluation<a class="headerlink" href="#evaluation" title="Permalink to this heading">¶</a></h3>
+<h3>Evaluation<a class="headerlink" href="#evaluation" title="Permalink to this heading"></a></h3>
 <p>Running model selection (use <code class="docutils literal notranslate"><span class="pre">-a</span></code> option to specify outcome) for all metrics files within the training output directory:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">aki_predictions_tool</span> <span class="n">evaluation</span> <span class="n">performance_comparison</span> <span class="o">--</span><span class="n">output_dir</span> <span class="n">demonstration</span> <span class="o">--</span><span class="n">data</span> <span class="n">demonstration</span><span class="o">/</span><span class="n">mock_confic_</span><span class="o">&lt;</span><span class="n">relevant</span> <span class="n">timestamped</span> <span class="n">directory</span><span class="o">&gt;</span> <span class="o">-</span><span class="n">a</span> <span class="s2">&quot;mortality&quot;</span> <span class="o">-</span><span class="n">m</span> <span class="n">demonstration</span><span class="o">/</span><span class="n">checkpoints</span><span class="o">/</span><span class="n">ttl</span><span class="o">=</span><span class="mi">120</span><span class="n">d</span><span class="o">/</span><span class="n">train</span><span class="o">/</span><span class="n">metrics</span><span class="o">-*-</span><span class="mf">0.5</span><span class="o">.</span><span class="n">json</span>
 </pre></div>
@@ -749,7 +823,7 @@ And example of this is shown in <code class="docutils literal notranslate"><span
 </div>
 </section>
 <section id="threshold-sweep">
-<h3>Threshold Sweep<a class="headerlink" href="#threshold-sweep" title="Permalink to this heading">¶</a></h3>
+<h3>Threshold Sweep<a class="headerlink" href="#threshold-sweep" title="Permalink to this heading"></a></h3>
 <p>For a chosen model, the threshold sweep can be run to generate metrics files for a range of class prediction levels.</p>
 <p>Assuming the latest model is the best model:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">aki_predictions_tool</span> <span class="n">evaluation</span> <span class="n">threshold_sweep</span> <span class="o">--</span><span class="n">output_dir</span> <span class="n">demonstration</span> <span class="o">--</span><span class="n">data</span> <span class="n">demonstration</span><span class="o">/</span><span class="n">mock_confic_</span><span class="o">&lt;</span><span class="n">relevant</span> <span class="n">timestamped</span> <span class="n">directory</span><span class="o">&gt;</span> <span class="o">--</span><span class="n">steps</span> <span class="mi">100</span> <span class="o">--</span><span class="n">context</span>
@@ -758,7 +832,7 @@ And example of this is shown in <code class="docutils literal notranslate"><span
 <p>The evaluation steps above can now be run on the metrics files generated at different class prediction thresholds.</p>
 </section>
 <section id="inference">
-<h3>Inference<a class="headerlink" href="#inference" title="Permalink to this heading">¶</a></h3>
+<h3>Inference<a class="headerlink" href="#inference" title="Permalink to this heading"></a></h3>
 <p>To run inference with a trained model, first run the above steps to ingest data, train a model.</p>
 <p>Inference mode requires the data to be provided within the ingest directory as a JSONL records file: <code class="docutils literal notranslate"><span class="pre">ingest_records_output_lines_inference_uncapped.jsonl</span></code>.</p>
 <p>Then trigger an inference run:</p>
@@ -768,7 +842,7 @@ And example of this is shown in <code class="docutils literal notranslate"><span
 </section>
 </section>
 <section id="nhs-ai-lab-skunkworks">
-<h2>NHS AI Lab Skunkworks<a class="headerlink" href="#nhs-ai-lab-skunkworks" title="Permalink to this heading">¶</a></h2>
+<h2>NHS AI Lab Skunkworks<a class="headerlink" href="#nhs-ai-lab-skunkworks" title="Permalink to this heading"></a></h2>
 <p>The project is supported by the NHS AI Lab Skunkworks, which exists within the NHS AI Lab at the NHS Transformation Directorate to support the health and care community to rapidly progress ideas from the conceptual stage to a proof of concept.</p>
 <ul class="simple">
 <li><p>Find out more about the <a class="reference external" href="https://transform.england.nhs.uk/ai-lab/ai-lab-programmes/skunkworks/">NHS AI Lab Skunkworks</a>.</p></li>
@@ -777,7 +851,7 @@ And example of this is shown in <code class="docutils literal notranslate"><span
 </ul>
 </section>
 <section id="licence">
-<h2>Licence<a class="headerlink" href="#licence" title="Permalink to this heading">¶</a></h2>
+<h2>Licence<a class="headerlink" href="#licence" title="Permalink to this heading"></a></h2>
 <p>Unless stated otherwise, the codebase is released under <a class="reference external" href="LICENCE">the MIT Licence</a>.
 This covers both the codebase and any sample code in the documentation.</p>
 <p>The documentation is <a class="reference external" href="http://www.nationalarchives.gov.uk/information-management/re-using-public-sector-information/uk-government-licensing-framework/crown-copyright/">© Crown copyright</a> and available under the terms
@@ -792,91 +866,34 @@ of the <a class="reference external" href="http://www.nationalarchives.gov.uk/do
 </section>
 
 
+           </div>
           </div>
-          
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Predictive Renal Health" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="aki_predictions.html" class="btn btn-neutral float-right" title="aki_predictions package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright Crown copyright.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
         </div>
       </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper">
-<h1 class="logo"><a href="index.html">aki-predictions</a></h1>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
 
-
-
-
-
-
-
-
-<h3>Navigation</h3>
-<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
-<ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">NHS AI Lab Skunkworks project: Predictive Renal Health</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#intended-use">Intended Use</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#data-protection">Data Protection</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#background">Background</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#model-selection">Model selection</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#known-limitations">Known limitations</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#data-pipeline">Data pipeline</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#processing-pipeline">Processing pipeline</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#getting-started">Getting Started</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#environment">Environment</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#automated-tests">Automated tests</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#building-docs">Building docs</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#cli-tool">CLI Tool</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#example-pipeline">Example pipeline</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#nhs-ai-lab-skunkworks">NHS AI Lab Skunkworks</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#licence">Licence</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="aki_predictions.html">aki_predictions package</a></li>
-<li class="toctree-l1"><a class="reference internal" href="modules.html">aki_predictions</a></li>
-</ul>
-
-<div class="relations">
-<h3>Related Topics</h3>
-<ul>
-  <li><a href="index.html">Documentation overview</a><ul>
-      <li>Previous: <a href="index.html" title="previous chapter">C308 NHS AI Predictive Renal Health PoC</a></li>
-      <li>Next: <a href="aki_predictions.html" title="next chapter">aki_predictions package</a></li>
-  </ul></li>
-</ul>
-</div>
-<div id="searchbox" style="display: none" role="search">
-  <h3 id="searchlabel">Quick search</h3>
-    <div class="searchformwrapper">
-    <form class="search" action="search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
-      <input type="submit" value="Go" />
-    </form>
-    </div>
-</div>
-<script>document.getElementById('searchbox').style.display = "block"</script>
-
-
-
-
-
-
-
-
-        </div>
-      </div>
-      <div class="clearer"></div>
-    </div>
-    <div class="footer">
-      &copy;Crown copyright.
-      
-      |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 5.1.0</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
-      
-      |
-      <a href="_sources/readme.rst.txt"
-          rel="nofollow">Page source</a>
-    </div>
-
-    
-
-    
-  </body>
+</body>
 </html>

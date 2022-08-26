@@ -1,11 +1,11 @@
-C308 NHS AI Predictive Renal Health PoC
+Predictive Renal Health
 ==========================================
 
 .. note::
 
    This project is under development.
 
-This documentation covers work towards delivery of the C308: NHS AI Predictive Renal Health PoC commision, completed by Roke Manor Research Ltd.
+This documentation covers work towards delivery of the Predictive Renal Health commission, completed by Roke Manor Research Ltd.
 
 .. toctree::
    :maxdepth: 2
