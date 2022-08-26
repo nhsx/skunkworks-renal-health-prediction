@@ -1,0 +1,163 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>aki_predictions.ehr_prediction_modeling.models.snr_cell_wrapper module &#8212; aki-predictions 1.0.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="aki_predictions.ehr_prediction_modeling.models.snrnn_model module" href="aki_predictions.ehr_prediction_modeling.models.snrnn_model.html" />
+    <link rel="prev" title="aki_predictions.ehr_prediction_modeling.models.sequence_model module" href="aki_predictions.ehr_prediction_modeling.models.sequence_model.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="module-aki_predictions.ehr_prediction_modeling.models.snr_cell_wrapper">
+<span id="aki-predictions-ehr-prediction-modeling-models-snr-cell-wrapper-module"></span><h1>aki_predictions.ehr_prediction_modeling.models.snr_cell_wrapper module<a class="headerlink" href="#module-aki_predictions.ehr_prediction_modeling.models.snr_cell_wrapper" title="Permalink to this heading">¶</a></h1>
+<p>Definition of SNR wrapper for RNN cells.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="aki_predictions.ehr_prediction_modeling.models.snr_cell_wrapper.SNRWrapper">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">aki_predictions.ehr_prediction_modeling.models.snr_cell_wrapper.</span></span><span class="sig-name descname"><span class="pre">SNRWrapper</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cell</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cell_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="aki_predictions.ehr_prediction_modeling.types.html#aki_predictions.ehr_prediction_modeling.types.RNNCellType" title="aki_predictions.ehr_prediction_modeling.types.RNNCellType"><span class="pre">RNNCellType</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">tasks</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dropout_is_training</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">snr_config</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="aki_predictions.ehr_prediction_modeling.configdict.html#aki_predictions.ehr_prediction_modeling.configdict.ConfigDict" title="aki_predictions.ehr_prediction_modeling.configdict.ConfigDict"><span class="pre">ConfigDict</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">parallel_iterations</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">should_route</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_task_specific_routing</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">connection_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'routing'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.models.snr_cell_wrapper.SNRWrapper" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">AbstractModule</span></code></p>
+<p>A wrapper around a ResetCore, part of a subnetwork routing architecture.</p>
+<p>This wrapper takes care of creating SNRConnections from each input in a list
+of inputs and feeding the combined result into the cell it wraps. In this
+architecture the cell will typically be a ResetCore.</p>
+<p>If the inputs passed are not a list, but a single tensor, then it will keep
+those as they are and pass them on.</p>
+<p>Initialise SNRWrapper object.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="aki_predictions.ehr_prediction_modeling.models.snr_cell_wrapper.SNRWrapper.get_connection_penalty">
+<span class="sig-name descname"><span class="pre">get_connection_penalty</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tensor</span></span></span><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.models.snr_cell_wrapper.SNRWrapper.get_connection_penalty" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the combined penalty for all SNR connections in this wrapper.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="aki_predictions.ehr_prediction_modeling.models.snr_cell_wrapper.SNRWrapper.get_snr_connections">
+<span class="sig-name descname"><span class="pre">get_snr_connections</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">VariableV1</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.models.snr_cell_wrapper.SNRWrapper.get_snr_connections" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get snr connections list.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="aki_predictions.ehr_prediction_modeling.models.snr_cell_wrapper.SNRWrapper.initial_state">
+<span class="sig-name descname"><span class="pre">initial_state</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Tensor</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.models.snr_cell_wrapper.SNRWrapper.initial_state" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates the initial state for the cell.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="aki_predictions.ehr_prediction_modeling.models.snr_cell_wrapper.SNRWrapper.trainable_weights">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">trainable_weights</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Tensor</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.models.snr_cell_wrapper.SNRWrapper.trainable_weights" title="Permalink to this definition">¶</a></dt>
+<dd><p>Trainable weights of the SNR cell.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">aki-predictions</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="readme.html">NHS AI Lab Skunkworks project: Predictive Renal Health</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="aki_predictions.html">aki_predictions package</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="aki_predictions.html#subpackages">Subpackages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="aki_predictions.html#submodules">Submodules</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">aki_predictions</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="aki_predictions.html">aki_predictions package</a></li>
+</ul>
+</li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  <li><a href="aki_predictions.html">aki_predictions package</a><ul>
+  <li><a href="aki_predictions.ehr_prediction_modeling.html">aki_predictions.ehr_prediction_modeling package</a><ul>
+  <li><a href="aki_predictions.ehr_prediction_modeling.models.html">aki_predictions.ehr_prediction_modeling.models package</a><ul>
+      <li>Previous: <a href="aki_predictions.ehr_prediction_modeling.models.sequence_model.html" title="previous chapter">aki_predictions.ehr_prediction_modeling.models.sequence_model module</a></li>
+      <li>Next: <a href="aki_predictions.ehr_prediction_modeling.models.snrnn_model.html" title="next chapter">aki_predictions.ehr_prediction_modeling.models.snrnn_model module</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;Crown copyright.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 5.1.0</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/aki_predictions.ehr_prediction_modeling.models.snr_cell_wrapper.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

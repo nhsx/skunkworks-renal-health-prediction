@@ -1,0 +1,252 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>aki_predictions.ehr_prediction_modeling.tasks.los_task module &#8212; aki-predictions 1.0.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="aki_predictions.ehr_prediction_modeling.tasks.mlp_task_layer module" href="aki_predictions.ehr_prediction_modeling.tasks.mlp_task_layer.html" />
+    <link rel="prev" title="aki_predictions.ehr_prediction_modeling.tasks.labs_task module" href="aki_predictions.ehr_prediction_modeling.tasks.labs_task.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="module-aki_predictions.ehr_prediction_modeling.tasks.los_task">
+<span id="aki-predictions-ehr-prediction-modeling-tasks-los-task-module"></span><h1>aki_predictions.ehr_prediction_modeling.tasks.los_task module<a class="headerlink" href="#module-aki_predictions.ehr_prediction_modeling.tasks.los_task" title="Permalink to this heading">¶</a></h1>
+<p>LOS task implementation to be used in experiments.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="aki_predictions.ehr_prediction_modeling.tasks.los_task.LengthOfStay">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">aki_predictions.ehr_prediction_modeling.tasks.los_task.</span></span><span class="sig-name descname"><span class="pre">LengthOfStay</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="aki_predictions.ehr_prediction_modeling.configdict.html#aki_predictions.ehr_prediction_modeling.configdict.ConfigDict" title="aki_predictions.ehr_prediction_modeling.configdict.ConfigDict"><span class="pre">ConfigDict</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.tasks.los_task.LengthOfStay" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="aki_predictions.ehr_prediction_modeling.tasks.base_task.html#aki_predictions.ehr_prediction_modeling.tasks.base_task.Task" title="aki_predictions.ehr_prediction_modeling.tasks.base_task.Task"><code class="xref py py-class docutils literal notranslate"><span class="pre">Task</span></code></a></p>
+<p>Task implementation for length of stay prediction (LOS).</p>
+<p>If a list of binarize_days are specified, this task predicts if the length of
+stay is &lt;= n for each n in the list binarize_days.</p>
+<p>If binarize_days are not specified, this is a regression task to
+predict the exact length of stay.</p>
+<p>Intitialise LengthOfStay task object.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="aki_predictions.ehr_prediction_modeling.tasks.los_task.LengthOfStay.config">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">config</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">eval_masks</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">train_mask</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loss_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_buckets_per_day</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">4</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loss_weight</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">binarize_days</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">accumulate_logits</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_since_event_hours_list</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale_pos_weight</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">task_layer_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'MLP'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">task_layer_sizes</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">regularization_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'None'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">regularization_weight</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'LengthOfStay'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">snr_config</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="aki_predictions.ehr_prediction_modeling.configdict.html#aki_predictions.ehr_prediction_modeling.configdict.ConfigDict" title="aki_predictions.ehr_prediction_modeling.configdict.ConfigDict"><span class="pre">ConfigDict</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.tasks.los_task.LengthOfStay.config" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generates a config object for LengthOfStay.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>eval_masks</strong> – list of str, names of the masks to be used in eval. The names
+should be in LengthOfStay._supported_eval_masks.</p></li>
+<li><p><strong>train_mask</strong> – str, name of the mask used for training. One of
+LengthOfStay._supported_train_masks.</p></li>
+<li><p><strong>loss_type</strong> – str, type of loss to be used.</p></li>
+<li><p><strong>time_buckets_per_day</strong> – Number of time buckets within a day. It is only
+needed for time since event masks.</p></li>
+<li><p><strong>loss_weight</strong> – float, weight of this task loss.</p></li>
+<li><p><strong>binarize_days</strong> – list of int, time periods for which to predict
+length_of_stay &lt;= time window. Optional; if None, this is a regression
+task to predict the exact length of stay.</p></li>
+<li><p><strong>accumulate_logits</strong> – bool, whether to create a CDF over the logits of
+increasing time_windows to encourage monotonicity.</p></li>
+<li><p><strong>time_since_event_hours_list</strong> – If time since event mask is present in either
+train or eval, this is a list specifying the number of hours after
+event at which the model predicts LOS e.g. [0, 12] would predict LOS
+at event and 12 hours after event. If masking during training,
+these are combined i.e. the loss is comprised of the prediction at
+event and the prediction 12 hours after event. If masking during
+eval, these are returned as separate masks to get metrics for predicting
+length of stay at event, and separately for predicting length of
+stay at 12 hours after event.</p></li>
+<li><p><strong>scale_pos_weight</strong> – float, weight of positive samples in the loss.</p></li>
+<li><p><strong>task_layer_type</strong> – one of types.TaskLayerTypes - the type of layer to use.</p></li>
+<li><p><strong>task_layer_sizes</strong> – array of int, the size of the task-specific layers to
+pass the model output through before a final logistic layer. If None,
+there is just the final logistic layer.</p></li>
+<li><p><strong>regularization_type</strong> – one of types.RegularizationType, the regularization
+to be applied to the task layer(s).</p></li>
+<li><p><strong>regularization_weight</strong> – float, the weight of the regularization penalty to
+apply to logistic layers associated with this task.</p></li>
+<li><p><strong>name</strong> – str, name of this task for visualization and debugging.</p></li>
+<li><p><strong>snr_config</strong> – configdict.ConfigDict, containing task layer sub-network
+routing parameters.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A ConfigDict to be used to instantiate a LOS task.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="aki_predictions.ehr_prediction_modeling.tasks.los_task.LengthOfStay.default_configs">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">default_configs</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="aki_predictions.ehr_prediction_modeling.configdict.html#aki_predictions.ehr_prediction_modeling.configdict.ConfigDict" title="aki_predictions.ehr_prediction_modeling.configdict.ConfigDict"><span class="pre">ConfigDict</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.tasks.los_task.LengthOfStay.default_configs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generates a default config objects for binarized and regression LoS.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="aki_predictions.ehr_prediction_modeling.tasks.los_task.LengthOfStay.default_masks">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">default_masks</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.tasks.los_task.LengthOfStay.default_masks" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return default masks.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="aki_predictions.ehr_prediction_modeling.tasks.los_task.LengthOfStay.get_label_dicts">
+<span class="sig-name descname"><span class="pre">get_label_dicts</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">FixedLenSequenceFeature</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">FixedLenFeature</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">FixedLenSequenceFeature</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">FixedLenFeature</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.tasks.los_task.LengthOfStay.get_label_dicts" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the feature dictionaries to parse a tf.SequenceExample.</p>
+<p>These dicts are used in the parse op (either batched or non-batched):
+<a class="reference external" href="https://www.tensorflow.org/api_docs/python/tf/io/parse_single_sequence_example#args">https://www.tensorflow.org/api_docs/python/tf/io/parse_single_sequence_example#args</a>
+They should include any label that is used by this task.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Dictionaries of TF features to read in context.
+sequence_d: Dictionaries of TF features to read in sequence.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>context_d</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="aki_predictions.ehr_prediction_modeling.tasks.los_task.LengthOfStay.get_targets">
+<span class="sig-name descname"><span class="pre">get_targets</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">batch</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Batch</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tensor</span></span></span><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.tasks.los_task.LengthOfStay.get_targets" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return los task targets.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="aki_predictions.ehr_prediction_modeling.tasks.los_task.LengthOfStay.num_targets">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">num_targets</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.tasks.los_task.LengthOfStay.num_targets" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return number of targets.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="aki_predictions.ehr_prediction_modeling.tasks.los_task.LengthOfStay.prediction_task_type">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">prediction_task_type</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.tasks.los_task.LengthOfStay.prediction_task_type" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return prediction task type.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="aki_predictions.ehr_prediction_modeling.tasks.los_task.LengthOfStay.target_names">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">target_names</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.tasks.los_task.LengthOfStay.target_names" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return target names.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="aki_predictions.ehr_prediction_modeling.tasks.los_task.LengthOfStay.task_type">
+<span class="sig-name descname"><span class="pre">task_type</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'length_of_stay'</span></em><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.tasks.los_task.LengthOfStay.task_type" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="aki_predictions.ehr_prediction_modeling.tasks.los_task.LengthOfStay.window_hours">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">window_hours</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.tasks.los_task.LengthOfStay.window_hours" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return window hours list.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">aki-predictions</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="readme.html">NHS AI Lab Skunkworks project: Predictive Renal Health</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="aki_predictions.html">aki_predictions package</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="aki_predictions.html#subpackages">Subpackages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="aki_predictions.html#submodules">Submodules</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">aki_predictions</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="aki_predictions.html">aki_predictions package</a></li>
+</ul>
+</li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  <li><a href="aki_predictions.html">aki_predictions package</a><ul>
+  <li><a href="aki_predictions.ehr_prediction_modeling.html">aki_predictions.ehr_prediction_modeling package</a><ul>
+  <li><a href="aki_predictions.ehr_prediction_modeling.tasks.html">aki_predictions.ehr_prediction_modeling.tasks package</a><ul>
+      <li>Previous: <a href="aki_predictions.ehr_prediction_modeling.tasks.labs_task.html" title="previous chapter">aki_predictions.ehr_prediction_modeling.tasks.labs_task module</a></li>
+      <li>Next: <a href="aki_predictions.ehr_prediction_modeling.tasks.mlp_task_layer.html" title="next chapter">aki_predictions.ehr_prediction_modeling.tasks.mlp_task_layer module</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;Crown copyright.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 5.1.0</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/aki_predictions.ehr_prediction_modeling.tasks.los_task.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

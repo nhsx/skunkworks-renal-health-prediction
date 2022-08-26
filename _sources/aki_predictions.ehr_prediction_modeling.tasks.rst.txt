@@ -1,0 +1,29 @@
+aki\_predictions.ehr\_prediction\_modeling.tasks package
+========================================================
+
+.. automodule:: aki_predictions.ehr_prediction_modeling.tasks
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Submodules
+----------
+
+.. toctree::
+   :maxdepth: 4
+
+   aki_predictions.ehr_prediction_modeling.tasks.adverse_outcome_task
+   aki_predictions.ehr_prediction_modeling.tasks.base_task
+   aki_predictions.ehr_prediction_modeling.tasks.base_task_layer
+   aki_predictions.ehr_prediction_modeling.tasks.coordinator
+   aki_predictions.ehr_prediction_modeling.tasks.dialysis_outcome_task
+   aki_predictions.ehr_prediction_modeling.tasks.itu_outcome_task
+   aki_predictions.ehr_prediction_modeling.tasks.labs_task
+   aki_predictions.ehr_prediction_modeling.tasks.los_task
+   aki_predictions.ehr_prediction_modeling.tasks.mlp_task_layer
+   aki_predictions.ehr_prediction_modeling.tasks.mortality_outcome_task
+   aki_predictions.ehr_prediction_modeling.tasks.mortality_task
+   aki_predictions.ehr_prediction_modeling.tasks.readmission_task
+   aki_predictions.ehr_prediction_modeling.tasks.task_data
+   aki_predictions.ehr_prediction_modeling.tasks.task_layers
+   aki_predictions.ehr_prediction_modeling.tasks.task_masks

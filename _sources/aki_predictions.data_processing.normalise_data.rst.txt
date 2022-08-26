@@ -1,0 +1,7 @@
+aki\_predictions.data\_processing.normalise\_data module
+========================================================
+
+.. automodule:: aki_predictions.data_processing.normalise_data
+   :members:
+   :undoc-members:
+   :show-inheritance:

@@ -1,0 +1,882 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>NHS AI Lab Skunkworks project: Predictive Renal Health &#8212; aki-predictions 1.0.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="aki_predictions package" href="aki_predictions.html" />
+    <link rel="prev" title="C308 NHS AI Predictive Renal Health PoC" href="index.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <a class="reference internal image-reference" href="_images/banner.png"><img alt="_images/banner.png" src="_images/banner.png" style="width: 75%;" /></a>
+<a class="reference external image-reference" href="LICENSE"><img alt="MIT License" src="https://img.shields.io/badge/License-MIT-lightgray.svg" /></a>
+<a class="reference external image-reference" href="https://www.python.org/downloads/release/python-3713/"><img alt="Python Version" src="https://img.shields.io/badge/Python-3.7.13-blue.svg" /></a>
+<p><span class="raw-html-m2r"><!-- Add in additional badges as appropriate --></span></p>
+<a class="reference external image-reference" href="docs/banner.png"><img alt="Banner of NHS AI Lab Skunkworks" src="docs/banner.png" /></a>
+<section id="nhs-ai-lab-skunkworks-project-predictive-renal-health">
+<h1>NHS AI Lab Skunkworks project: Predictive Renal Health<a class="headerlink" href="#nhs-ai-lab-skunkworks-project-predictive-renal-health" title="Permalink to this heading">¶</a></h1>
+<blockquote>
+<div><p>A pilot project for the NHS AI (Artificial Intelligence) Lab Skunkworks team, Predictive Renal Health seeks to build a machine learning model to assist in identifying those acute kidney injury (AKI) patients at higher risk of requiring ITU, needing renal support (dialysis), or likely to have a higher potential for mortality.</p>
+</div></blockquote>
+<p>Predictive Renal Health was selected as a project in Spring 2022 following a succesful pitch to the AI Skunkworks problem-sourcing programme.</p>
+<p>This project is based upon work by Google’s DeepMind as “Modeling for Electronic Health Records Predictions” available publically under the Apache-2.0 licence <a class="reference external" href="https://github.com/google/ehr-predictions/modeling">here</a></p>
+<section id="intended-use">
+<h2>Intended Use<a class="headerlink" href="#intended-use" title="Permalink to this heading">¶</a></h2>
+<p>This proof of concept (<a class="reference external" href="https://en.wikipedia.org/wiki/Technology_readiness_level">TRL 4</a>) is intended to demonstrate the technical validity of applying the deep recurrent network approach defined by the DeepMind group <a class="footnote-reference brackets" href="#fn-1" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a> with modifications, against a dataset of electronic healthcare records, blood test results, and medication data, in order to predict downstream events of acute kidney injuries including the need for intensive care, dialysis or death with 24h or more notice.</p>
+<p>It is not intended for deployment in a clinical or non-clinical setting without further development and compliance with the <a class="reference external" href="https://www.legislation.gov.uk/uksi/2002/618/contents/made">UK Medical Device Regulations 2002</a> where the product qualifies as a medical device.</p>
+</section>
+<section id="data-protection">
+<h2>Data Protection<a class="headerlink" href="#data-protection" title="Permalink to this heading">¶</a></h2>
+<p>This project was subject to a Data Protection Impact Assessment (DPIA), ensuring the protection of the data used in line with the <a class="reference external" href="https://www.legislation.gov.uk/ukpga/2018/12/contents/enacted">UK Data Protection Act 2018</a> and <a class="reference external" href="https://ico.org.uk/for-organisations/dp-at-the-end-of-the-transition-period/data-protection-and-the-eu-in-detail/the-uk-gdpr/">UK GDPR</a>. No real world data or trained models are shared in this repository.</p>
+<p>A minimal selection of testing data is included on an example basis, with only minimal examples of the types of fields required and/or available at the time of development. See example instructions below on how to evaluate the tool with these placeholder examples.</p>
+</section>
+<section id="background">
+<h2>Background<a class="headerlink" href="#background" title="Permalink to this heading">¶</a></h2>
+<p>Deterioration of AKI patients is hard to predict, leading to outcomes such as the need for emergency admission to ITU and need for organ support such as dialysis.
+The aim of this commission is to understand the likelihood/risk of AKI patients who will need ITU admission, dialysis or die.</p>
+<p>Currently available tools include AKI alerts, which identify patients who have developed kidney disease based on serial blood tests, and the Early Warning Score (EWS) that collates multiple
+observations such as blood pressure, pulse and heart rate based on predefined parameters at a single time point.
+Though these do allow for alerting of potentially unwell patients, often these arrive too late to change the course of clinical treatment as the patient’s situation has already deteriorated, and
+therefore the opportunity to reduce severity of deterioration is limited.</p>
+<p>A Proof-of-Concept tool is needed that can help identify (more than 24hrs in advance) those AKI patients at higher risk of the aformentioned outcomes. This projects seeks to develop such a tool.</p>
+</section>
+<section id="model-selection">
+<h2>Model selection<a class="headerlink" href="#model-selection" title="Permalink to this heading">¶</a></h2>
+<p>The approach is based around extending a highly-cited method from DeepMind in 2019 [^1], which predicted incidences of AKI from data which is expected to have partial overlap in structure with this commission’s dataset. Though the prediction task here is a step beyond predicting AKIs, the challenge is closely related and similar models are expected to be viable after some modification.</p>
+</section>
+<section id="known-limitations">
+<h2>Known limitations<a class="headerlink" href="#known-limitations" title="Permalink to this heading">¶</a></h2>
+<p>The following limitations are known regarding the current implementation of the tool and the experiments available.</p>
+<p>CLI Tool:</p>
+<ul class="simple">
+<li><p>The CLI tool currently does not support running any curriculum learning experiments.</p></li>
+<li><p>Only minimal configuration parameters are available at runtime through the CLI tool (such as data and output directories, flags for types of processing, training step count). Any further adjustment must be done through the individual task script and/or through the <code class="docutils literal notranslate"><span class="pre">config.py</span></code> file within the <code class="docutils literal notranslate"><span class="pre">aki_predictions/ehr_prediction_modeling</span></code> directory.</p></li>
+</ul>
+<p>Data Ingest:</p>
+<ul class="simple">
+<li><p>The current data ingest tool does not automatically populate numerical labels (such as lab result prediction labels).</p></li>
+</ul>
+<p>Model training:</p>
+<ul class="simple">
+<li><p>Curriculum learning has been implemented within the standalone training script (<code class="docutils literal notranslate"><span class="pre">aki_predictions/training/multiple_adverse_outcomes_w_curriculum.py</span></code>). This is a work in progress, as development was directed elsewhere during the project, and training performance was seen to be suitable without inclusion in the main pipeline. Performance was decreased with curriculum learning in place. This has been theorized to be potentially due to the severe class imbalance negatively impacting the ‘hard example mining’ technique for ‘difficult’ case discovery.</p></li>
+<li><p>The lab result prediction labels are not implemented within the data loader and therefore not included in the model training pipeline.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">missing_metadata_mapping.json</span></code> and <code class="docutils literal notranslate"><span class="pre">sequence_giveaways.json</span></code> files are not automatically generated by the tool and need to be manually populated with the appropriate information (see pipeline guide below).</p></li>
+</ul>
+</section>
+<section id="data-pipeline">
+<h2>Data pipeline<a class="headerlink" href="#data-pipeline" title="Permalink to this heading">¶</a></h2>
+<a class="reference external image-reference" href="docs/data_diagram.png"><img alt="Initial data flow diagram" src="docs/data_diagram.png" /></a>
+</section>
+<section id="processing-pipeline">
+<h2>Processing pipeline<a class="headerlink" href="#processing-pipeline" title="Permalink to this heading">¶</a></h2>
+<p>The diagram below shows the series of stages available within the CLI tool pipeline. These include ingest, survey, training, and evaluation.</p>
+<a class="reference external image-reference" href="docs/data_flow.png"><img alt="Data pipeline" src="docs/data_flow.png" /></a>
+<section id="raw-data-structure">
+<h3>RAW Data Structure<a class="headerlink" href="#raw-data-structure" title="Permalink to this heading">¶</a></h3>
+<p>The RAW data is expected to be in the structure of CSV or Excel workbook data tables.
+Excel workbook files may have extra header lines above the table, which can be skipped through a data configuration option on ingest.
+CSV files may not have any additional non-header rows above table headers.</p>
+</section>
+<section id="ingested-data-structure">
+<h3>Ingested data structure<a class="headerlink" href="#ingested-data-structure" title="Permalink to this heading">¶</a></h3>
+<p>An example of the structure for ingested data records is shown below in indented form.
+When ingested this structure is represented as a single JSON line within a JSONL data file (examples in <code class="docutils literal notranslate"><span class="pre">tests/fixtures/test_data_ingest_output/</span></code>)</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="s2">&quot;record_number&quot;</span><span class="p">:</span> <span class="s2">&quot;1&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;metadata_1&quot;</span><span class="p">:</span> <span class="s2">&quot;VALUE_3&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;year_of_birth&quot;</span><span class="p">:</span> <span class="s2">&quot;1200&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;episodes&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+            <span class="s2">&quot;events&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">&quot;patient_age&quot;</span><span class="p">:</span> <span class="s2">&quot;345678&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;time_of_day&quot;</span><span class="p">:</span> <span class="s2">&quot;1&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;entries&quot;</span><span class="p">:</span> <span class="p">[</span>
+                    <span class="p">{</span>
+                        <span class="s2">&quot;feature_category_idx&quot;</span><span class="p">:</span> <span class="s2">&quot;2&quot;</span><span class="p">,</span>
+                        <span class="s2">&quot;feature_idx&quot;</span><span class="p">:</span> <span class="s2">&quot;1&quot;</span><span class="p">,</span>
+                        <span class="s2">&quot;feature_value&quot;</span><span class="p">:</span> <span class="s2">&quot;4&quot;</span>
+                    <span class="p">},</span>
+                    <span class="p">{</span>
+                        <span class="s2">&quot;feature_category_idx&quot;</span><span class="p">:</span> <span class="s2">&quot;2&quot;</span><span class="p">,</span>
+                        <span class="s2">&quot;feature_idx&quot;</span><span class="p">:</span> <span class="s2">&quot;1&quot;</span><span class="p">,</span>
+                        <span class="s2">&quot;feature_value&quot;</span><span class="p">:</span> <span class="s2">&quot;4&quot;</span>
+                    <span class="p">}</span>
+                <span class="p">],</span>
+            <span class="p">}</span>
+            <span class="s2">&quot;labels&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">&quot;adverse_outcome&quot;</span><span class="p">:</span> <span class="s2">&quot;0&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;adverse_outcome_dialysis_within_12h&quot;</span><span class="p">:</span> <span class="s2">&quot;0&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;adverse_outcome_dialysis_within_18h&quot;</span><span class="p">:</span> <span class="s2">&quot;0&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;adverse_outcome_dialysis_within_24h&quot;</span><span class="p">:</span> <span class="s2">&quot;0&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;adverse_outcome_dialysis_within_30h&quot;</span><span class="p">:</span> <span class="s2">&quot;0&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;adverse_outcome_dialysis_within_36h&quot;</span><span class="p">:</span> <span class="s2">&quot;0&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;adverse_outcome_dialysis_within_42h&quot;</span><span class="p">:</span> <span class="s2">&quot;0&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;adverse_outcome_dialysis_within_48h&quot;</span><span class="p">:</span> <span class="s2">&quot;0&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;adverse_outcome_dialysis_within_6h&quot;</span><span class="p">:</span> <span class="s2">&quot;0&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;adverse_outcome_in_spell&quot;</span><span class="p">:</span> <span class="s2">&quot;0&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;adverse_outcome_itu_within_12h&quot;</span><span class="p">:</span> <span class="s2">&quot;0&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;adverse_outcome_itu_within_18h&quot;</span><span class="p">:</span> <span class="s2">&quot;0&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;adverse_outcome_itu_within_24h&quot;</span><span class="p">:</span> <span class="s2">&quot;0&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;adverse_outcome_itu_within_30h&quot;</span><span class="p">:</span> <span class="s2">&quot;0&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;adverse_outcome_itu_within_36h&quot;</span><span class="p">:</span> <span class="s2">&quot;0&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;adverse_outcome_itu_within_42h&quot;</span><span class="p">:</span> <span class="s2">&quot;0&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;adverse_outcome_itu_within_48h&quot;</span><span class="p">:</span> <span class="s2">&quot;0&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;adverse_outcome_itu_within_6h&quot;</span><span class="p">:</span> <span class="s2">&quot;0&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;adverse_outcome_mortality_within_12h&quot;</span><span class="p">:</span> <span class="s2">&quot;0&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;adverse_outcome_mortality_within_18h&quot;</span><span class="p">:</span> <span class="s2">&quot;0&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;adverse_outcome_mortality_within_24h&quot;</span><span class="p">:</span> <span class="s2">&quot;0&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;adverse_outcome_mortality_within_30h&quot;</span><span class="p">:</span> <span class="s2">&quot;0&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;adverse_outcome_mortality_within_36h&quot;</span><span class="p">:</span> <span class="s2">&quot;0&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;adverse_outcome_mortality_within_42h&quot;</span><span class="p">:</span> <span class="s2">&quot;0&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;adverse_outcome_mortality_within_48h&quot;</span><span class="p">:</span> <span class="s2">&quot;0&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;adverse_outcome_mortality_within_6h&quot;</span><span class="p">:</span> <span class="s2">&quot;0&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;segment_mask&quot;</span><span class="p">:</span> <span class="s2">&quot;0&quot;</span>
+            <span class="p">}</span>
+            <span class="s2">&quot;numerical_labels&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="getting-started">
+<h2>Getting Started<a class="headerlink" href="#getting-started" title="Permalink to this heading">¶</a></h2>
+<ol class="arabic simple">
+<li><p>Clone this repository.</p></li>
+<li><p>Switch to the required branch (default is <code class="docutils literal notranslate"><span class="pre">main</span></code> branch: <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">checkout</span> <span class="pre">main</span></code>)</p></li>
+<li><p>Create a new virtual environment (Ideally Python 3.7 for compatibility with DeepMind codebase): <code class="docutils literal notranslate"><span class="pre">python3</span> <span class="pre">-m</span> <span class="pre">virtualenv</span> <span class="pre">venv</span></code></p></li>
+<li><p>Activate virtual environment (on linux environment): <code class="docutils literal notranslate"><span class="pre">source</span> <span class="pre">venv/bin/activate</span></code> or on Windows <code class="docutils literal notranslate"><span class="pre">.\venv\Scripts\activate.bat</span></code></p></li>
+<li><p>Install the requirements of this template: <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">-e</span> <span class="pre">&quot;.[cpu]&quot;</span></code> or <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">-e</span> <span class="pre">&quot;.[gpu]&quot;</span></code> depending on the installation environment.</p></li>
+</ol>
+<p>To install requirements for testing and documentation, run <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">-e</span> <span class="pre">&quot;.[tests]&quot;</span></code> and <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">-e</span> <span class="pre">&quot;.[docs]&quot;</span></code> respectively.
+For experimental work, <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">-e</span> <span class="pre">&quot;.[experiments]&quot;</span></code> will install the nessesary components for any standalone experiments or jupyter notebooks (which would not be required for normal running of the tool).</p>
+<p>When developing it is advised to use the <code class="docutils literal notranslate"><span class="pre">pre-commit</span></code> tooling available. Either install the test requirements, or <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">pre-commit</span></code>, and then enable pre-commits: <code class="docutils literal notranslate"><span class="pre">pre-commit</span> <span class="pre">install</span></code>.
+The pre-commit configuration will apply linting and general formatting checks and adjustments (using flake8 and black formatting).</p>
+</section>
+<section id="environment">
+<h2>Environment<a class="headerlink" href="#environment" title="Permalink to this heading">¶</a></h2>
+<p>The software tools included in this repository were developed and tested using the following environment:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">*</span> <span class="n">Ubuntu</span> <span class="mf">18.04</span> <span class="n">LTS</span>
+<span class="o">*</span> <span class="n">Python</span> <span class="mf">3.7</span>
+<span class="o">*</span> <span class="n">CUDA</span> <span class="mf">10.0</span>
+<span class="o">*</span> <span class="n">cudnn</span> <span class="mf">7.6.5</span>
+</pre></div>
+</div>
+<p>A requirements file is included detailing the test environment used. The <code class="docutils literal notranslate"><span class="pre">setup.py</span></code> file contains the relevant package dependencies required for this codebase.</p>
+</section>
+<section id="automated-tests">
+<h2>Automated tests<a class="headerlink" href="#automated-tests" title="Permalink to this heading">¶</a></h2>
+<p>This project uses PyTest to run automated testing across the tools developed.</p>
+<p>To run these tests from within the installed environment:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">e</span> <span class="o">.</span><span class="p">[</span><span class="n">tests</span><span class="p">]</span>
+<span class="n">pytest</span> <span class="o">--</span><span class="n">cov</span><span class="o">-</span><span class="n">report</span> <span class="n">term</span><span class="o">-</span><span class="n">missing</span> <span class="o">--</span><span class="n">cov</span><span class="o">=</span><span class="n">aki_predictions</span> <span class="o">--</span><span class="n">junitxml</span><span class="o">=</span><span class="n">report</span><span class="o">.</span><span class="n">xml</span> <span class="n">tests</span><span class="o">/</span>
+</pre></div>
+</div>
+<p>To run code linting and checking:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">flake8</span> <span class="n">aki_predictions</span> <span class="n">tests</span> <span class="o">--</span><span class="n">count</span> <span class="o">--</span><span class="n">config</span> <span class="o">.</span><span class="n">flake8</span>
+</pre></div>
+</div>
+<p>To run pre-commit code checks globally:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pre</span><span class="o">-</span><span class="n">commit</span> <span class="n">run</span> <span class="o">--</span><span class="nb">all</span><span class="o">-</span><span class="n">files</span>
+</pre></div>
+</div>
+</section>
+<section id="building-docs">
+<h2>Building docs<a class="headerlink" href="#building-docs" title="Permalink to this heading">¶</a></h2>
+<p>Documentation is automatically deployed to [X] by a <a class="reference external" href=".github/workflows/build-docs.yml">Github action</a>.</p>
+<p>To build the docs manually, in your environment, run:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pip install -e <span class="s2">&quot;.[cpu]&quot;</span>
+pip install -e <span class="s2">&quot;.[docs]&quot;</span>
+pip install --upgrade m2r2
+sphinx-apidoc -f -M -e -o docs/source aki_predictions
+sphinx-build -b html docs/source/ docs/build/html
+</pre></div>
+</div>
+<p>These will be available in the <code class="docutils literal notranslate"><span class="pre">docs/build/html</span></code> folder.</p>
+</section>
+<section id="cli-tool">
+<h2>CLI Tool<a class="headerlink" href="#cli-tool" title="Permalink to this heading">¶</a></h2>
+<p>A CLI tool has been developed to allow access to the key elements of the primary data ingest and training pipeline (additional scripting is included).</p>
+<p>The tool includes options to trigger each key step in the pipeline:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">usage</span><span class="p">:</span> <span class="n">aki_predictions_tool</span> <span class="p">[</span><span class="o">-</span><span class="n">h</span><span class="p">]</span> <span class="p">[</span><span class="o">-</span><span class="n">o</span> <span class="n">OUTPUT_DIR</span><span class="p">]</span>
+                            <span class="p">{</span><span class="n">ingest</span><span class="p">,</span><span class="n">survey</span><span class="p">,</span><span class="n">training</span><span class="p">,</span><span class="n">evaluation</span><span class="p">,</span><span class="n">inference</span><span class="p">}</span> <span class="o">...</span>
+
+<span class="n">CLI</span> <span class="n">Tool</span> <span class="k">for</span> <span class="n">C308</span> <span class="n">Predictive</span> <span class="n">Renal</span> <span class="n">Health</span> <span class="n">Proof</span> <span class="n">of</span> <span class="n">Concept</span> <span class="n">v0</span><span class="mf">.0.1</span>
+
+<span class="n">positional</span> <span class="n">arguments</span><span class="p">:</span>
+  <span class="p">{</span><span class="n">ingest</span><span class="p">,</span><span class="n">survey</span><span class="p">,</span><span class="n">training</span><span class="p">,</span><span class="n">evaluation</span><span class="p">,</span><span class="n">inference</span><span class="p">}</span>
+                        <span class="n">pipeline</span> <span class="n">commands</span>
+
+<span class="n">optional</span> <span class="n">arguments</span><span class="p">:</span>
+  <span class="o">-</span><span class="n">h</span><span class="p">,</span> <span class="o">--</span><span class="n">help</span>            <span class="n">show</span> <span class="n">this</span> <span class="n">help</span> <span class="n">message</span> <span class="ow">and</span> <span class="n">exit</span>
+  <span class="o">-</span><span class="n">o</span> <span class="n">OUTPUT_DIR</span><span class="p">,</span> <span class="o">--</span><span class="n">output_dir</span> <span class="n">OUTPUT_DIR</span>
+                        <span class="n">Output</span> <span class="n">directory</span> <span class="k">for</span> <span class="n">logging</span><span class="o">.</span>
+</pre></div>
+</div>
+<p>The CLI tool provides minimal logging information which is saved in the appropriate <code class="docutils literal notranslate"><span class="pre">output_dir</span></code> directory as a timestamped log file for reference and/or debugging.</p>
+<section id="data-ingest-normalisation-and-splitting">
+<h3>Data Ingest, Normalisation, and Splitting<a class="headerlink" href="#data-ingest-normalisation-and-splitting" title="Permalink to this heading">¶</a></h3>
+<p>To ingest and prepare a dataset for training the steps are as follows:</p>
+<ol class="arabic simple">
+<li><p>Gather data files.</p></li>
+<li><p>Setup configuration (a minimal example is included as a test fixture <code class="docutils literal notranslate"><span class="pre">tests/fixtures/mock_config.json</span></code>) this includes:</p>
+<ul class="simple">
+<li><p>Data sources</p></li>
+<li><p>Key mapping</p></li>
+<li><p>Features (metadata, numerical, categorical)</p></li>
+<li><p>Numerical feature exclude list</p></li>
+<li><p>Event feature definitions</p></li>
+<li><p>Labelling conditions</p></li>
+</ul>
+</li>
+</ol>
+<p>#. For normalisation of numerical features select data capping/no capping in <code class="docutils literal notranslate"><span class="pre">aki-predictions/data_processing/__init__.py</span></code> (for 1st and 99th centile capping)
+#.</p>
+<blockquote>
+<div><p>Run data ingest through the CLI tool (this ingests the data, normalises numerical features, and splits data for training/testing):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">usage</span><span class="p">:</span> <span class="n">aki_predictions_tool</span> <span class="n">ingest</span> <span class="p">[</span><span class="o">-</span><span class="n">h</span><span class="p">]</span> <span class="p">[</span><span class="o">-</span><span class="n">o</span> <span class="n">OUTPUT_DIR</span><span class="p">]</span> <span class="p">[</span><span class="o">-</span><span class="n">c</span> <span class="n">CONFIG</span><span class="p">]</span>
+
+<span class="n">optional</span> <span class="n">arguments</span><span class="p">:</span>
+<span class="o">-</span><span class="n">h</span><span class="p">,</span> <span class="o">--</span><span class="n">help</span>            <span class="n">show</span> <span class="n">this</span> <span class="n">help</span> <span class="n">message</span> <span class="ow">and</span> <span class="n">exit</span>
+<span class="o">-</span><span class="n">o</span> <span class="n">OUTPUT_DIR</span><span class="p">,</span> <span class="o">--</span><span class="n">output_dir</span> <span class="n">OUTPUT_DIR</span>
+                        <span class="n">Output</span> <span class="n">directory</span> <span class="k">for</span> <span class="n">logging</span> <span class="ow">and</span> <span class="n">artifacts</span><span class="o">.</span>
+<span class="o">-</span><span class="n">c</span> <span class="n">CONFIG</span><span class="p">,</span> <span class="o">--</span><span class="n">config</span> <span class="n">CONFIG</span>
+                        <span class="n">Data</span> <span class="n">ingest</span> <span class="n">config</span> <span class="n">file</span> <span class="n">location</span><span class="o">.</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>Alternatively this can be done standalone using the ingest and normalisation scripts:</p>
+<ul class="simple">
+<li><p>Ingest: <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">aki_predictions/data_processing/data_ingest.py</span> <span class="pre">&lt;path</span> <span class="pre">to</span> <span class="pre">ingest</span> <span class="pre">config&gt;</span></code></p></li>
+<li><p>Normalisation: <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">aki_predictions/data_processing/normalise_data.py</span> <span class="pre">&lt;path</span> <span class="pre">to</span> <span class="pre">ingested</span> <span class="pre">data</span> <span class="pre">directory&gt;</span></code></p></li>
+<li><p>Split data: <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">aki_predictions/data_processing/split_data.py</span> <span class="pre">&lt;path</span> <span class="pre">to</span> <span class="pre">ingested</span> <span class="pre">data</span> <span class="pre">directory&gt;</span></code></p></li>
+</ul>
+<p>The key output files at this point of the processing are:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">ingest_records_output_lines.jsonl</span></code> - main output file containing a json line for each record.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">feature_mapping.json</span></code> - feature (sequence element) index mapping.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">numerical_feature_mapping.json</span></code> - feature index mapping for numerical features.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">category_mapping.json</span></code> - category index mapping.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">metadata_mapping.json</span></code> - metadata (context) feature mapping.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">feature_statistics.json</span></code> - statistics regarding numerical features (relevant to data survey and normalisation of numerical values).</p></li>
+</ul>
+<p>At this point the user must provide the following manually generated files:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">missing_metadata_mapping.json</span></code> - mapping file containing the default values for when metadata fields are missing from a record.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sequence_giveaways.json</span></code> - dictionary containing a list of feature fields to mask out during training. This can be obtained from selecting values from the feature and metadata mapping files. This prevents unfairly biasing the model with values present in the dataset (which are relevant to labelling) but would not normally be available at inference time.</p></li>
+</ul>
+<section id="ingest-configuration">
+<h4>Ingest Configuration<a class="headerlink" href="#ingest-configuration" title="Permalink to this heading">¶</a></h4>
+<p>The data ingest features within this codebase requires a configuration JSON to specify the data formats, locations, and pre-processing settings.
+These allow the user to specify which features to extract from the raw data fields.
+The user may format their data in the JSON records format, in which case they may wish to utilise the standalone entrypoints to the normalisation and data splitting scriptss prior to training.</p>
+<p>Guidance on the configration file format is as follows (example in <code class="docutils literal notranslate"><span class="pre">tests/fixtures/mock_config.json</span></code>):</p>
+<p>Example guidance on ingest configurations:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="s2">&quot;sources&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+            <span class="s2">&quot;filepath&quot;</span><span class="p">:</span> <span class="s2">&quot;&lt;data path&gt;&quot;</span> <span class="p">(</span><span class="n">can</span> <span class="n">be</span> <span class="nb">list</span> <span class="n">of</span> <span class="n">file</span> <span class="n">paths</span> <span class="n">to</span> <span class="n">concatenate</span><span class="o">-</span> <span class="k">for</span> <span class="n">files</span> <span class="k">with</span> <span class="n">matching</span> <span class="n">schemas</span><span class="p">),</span>
+            <span class="s2">&quot;skiprows&quot;</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">number</span> <span class="n">of</span> <span class="n">rows</span> <span class="n">to</span> <span class="n">skip</span><span class="o">&gt;</span><span class="p">,</span> <span class="p">(</span><span class="n">excel</span> <span class="n">only</span><span class="p">)</span>
+            <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;&lt;short name for data file, used as data key&gt;&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;master_key&quot;</span><span class="p">:</span> <span class="s2">&quot;&lt;field to use as master key field&gt;&quot;</span>
+            <span class="s2">&quot;secondary_key&quot;</span><span class="p">:</span> <span class="s2">&quot;&lt;used to state that the secondary key should be used for this source&gt;&quot;</span>
+            <span class="s2">&quot;concatenate_columns&quot;</span><span class="p">:</span> <span class="p">[{</span> <span class="p">(</span><span class="n">used</span> <span class="n">to</span> <span class="n">concatenate</span> <span class="n">a</span> <span class="n">combination</span> <span class="n">of</span> <span class="n">columns</span> <span class="n">on</span> <span class="n">data</span> <span class="n">load</span> <span class="o">-</span> <span class="n">assumes</span> <span class="n">strings</span><span class="p">)</span>
+                <span class="s2">&quot;field&quot;</span><span class="p">:</span> <span class="s2">&quot;&lt;new field name&gt;&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;values&quot;</span><span class="p">:</span> <span class="p">[</span> <span class="p">(</span><span class="n">assumes</span> <span class="n">concatenating</span> <span class="ow">in</span> <span class="n">order</span> <span class="n">of</span> <span class="nb">list</span><span class="p">)</span>
+                    <span class="o">...</span> <span class="p">(</span><span class="n">column</span> <span class="n">names</span> <span class="n">to</span> <span class="n">concatenate</span><span class="p">)</span>
+                <span class="p">],</span>
+                <span class="s2">&quot;seperator&quot;</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">seperator</span> <span class="n">to</span> <span class="n">add</span> <span class="n">between</span> <span class="n">string</span> <span class="n">columns</span><span class="o">&gt;</span>
+            <span class="p">},</span> <span class="o">...</span> <span class="p">(</span><span class="n">can</span> <span class="n">be</span> <span class="nb">list</span> <span class="n">of</span> <span class="n">column</span> <span class="n">pairs</span> <span class="n">to</span> <span class="n">combine</span> <span class="k">with</span> <span class="n">concatenate_columns</span><span class="p">)</span> <span class="p">],</span>
+            <span class="s2">&quot;drop_columns&quot;</span><span class="p">:</span> <span class="p">[]</span> <span class="p">(</span><span class="nb">list</span> <span class="n">of</span> <span class="n">column</span> <span class="n">names</span> <span class="kn">from</span> <span class="nn">source</span> <span class="n">to</span> <span class="n">drop</span> <span class="n">on</span> <span class="n">load</span> <span class="o">-</span> <span class="k">for</span> <span class="n">efficiency</span> <span class="n">of</span> <span class="n">indexing</span><span class="p">)</span>
+            <span class="s2">&quot;split_columns&quot;</span><span class="p">:</span> <span class="p">[</span> <span class="p">{</span>
+                <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;&lt;column name&gt;&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;fields&quot;</span><span class="p">:</span> <span class="p">[</span>
+                    <span class="o">...</span> <span class="p">(</span><span class="nb">list</span> <span class="n">of</span> <span class="n">fields</span> <span class="ow">in</span> <span class="n">order</span> <span class="n">to</span> <span class="n">split</span><span class="p">)</span>
+                <span class="p">],</span>
+                <span class="s2">&quot;delimiter&quot;</span><span class="p">:</span> <span class="s2">&quot;-&quot;</span>
+                <span class="p">},</span> <span class="o">...</span> <span class="p">(</span><span class="n">can</span> <span class="n">be</span> <span class="nb">list</span> <span class="n">of</span> <span class="n">columns</span> <span class="n">to</span> <span class="n">split</span> <span class="k">with</span> <span class="n">split_columns</span><span class="p">)</span>
+            <span class="p">],</span>
+            <span class="s2">&quot;str_lookup&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;metadata&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;filepath&quot;</span><span class="p">:</span> <span class="s2">&quot;&lt;filepath&gt;&quot;</span><span class="p">,</span> <span class="p">(</span><span class="n">lookup</span> <span class="n">table</span><span class="p">)</span>
+                <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;&lt;name of table&gt;&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;primary_key&quot;</span><span class="p">:</span> <span class="s2">&quot;&lt;primary lookup column&gt;&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;secondary_key&quot;</span><span class="p">:</span> <span class="s2">&quot;&lt;secondary lookp column&gt;&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;&lt;column to look up values from&gt;&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;field&quot;</span><span class="p">:</span> <span class="s2">&quot;&lt;column name&gt;&quot;</span><span class="p">,</span> <span class="p">(</span><span class="n">new</span> <span class="n">column</span> <span class="n">to</span> <span class="n">populate</span> <span class="k">with</span> <span class="n">detected</span> <span class="n">primary</span> <span class="n">keys</span><span class="p">)</span>
+                <span class="s2">&quot;delimiter&quot;</span><span class="p">:</span> <span class="s2">&quot;,&quot;</span> <span class="p">(</span><span class="n">delimiter</span> <span class="n">to</span> <span class="n">use</span> <span class="n">when</span> <span class="n">detecting</span> <span class="n">more</span> <span class="n">than</span> <span class="n">one</span> <span class="n">value</span> <span class="kn">from</span> <span class="nn">lookup</span> <span class="nb">list</span> <span class="ow">in</span> <span class="n">value</span> <span class="n">column</span><span class="p">)</span>
+            <span class="p">},</span>
+            <span class="s2">&quot;remove_duplicates&quot;</span><span class="p">:</span> <span class="p">[</span><span class="n">column</span> <span class="n">name</span><span class="p">,</span> <span class="n">column</span> <span class="n">name</span><span class="p">]</span>
+        <span class="p">}</span>
+        <span class="o">...</span> <span class="p">(</span><span class="n">can</span> <span class="n">be</span> <span class="nb">list</span> <span class="n">of</span> <span class="n">files</span><span class="p">)</span>
+    <span class="p">],</span>
+    <span class="s2">&quot;mapping&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;master_key&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;source&quot;</span><span class="p">:</span> <span class="s2">&quot;&lt;source for master key&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;field&quot;</span><span class="p">:</span> <span class="s2">&quot;&lt;master key for unique data record&quot;</span><span class="p">,</span> <span class="p">(</span><span class="n">master</span> <span class="n">key</span> <span class="n">to</span> <span class="n">use</span> <span class="n">to</span> <span class="n">select</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">source</span> <span class="n">table</span><span class="p">)</span>
+            <span class="s2">&quot;filter_rules&quot;</span><span class="p">:</span> <span class="p">[</span> <span class="p">(</span><span class="n">rules</span> <span class="n">on</span> <span class="n">leaving</span> <span class="n">out</span> <span class="n">records</span> <span class="n">relating</span> <span class="n">to</span> <span class="n">specific</span> <span class="n">master</span> <span class="n">keys</span><span class="p">)</span>
+                <span class="p">{</span>
+                    <span class="s2">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;&lt;description&gt;&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;source&quot;</span><span class="p">:</span> <span class="s2">&quot;&lt;source name&gt;&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;field&quot;</span><span class="p">:</span> <span class="s2">&quot;&lt;master key field&gt;&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;query_field&quot;</span><span class="p">:</span> <span class="s2">&quot;&lt;query field to look in&gt;&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;drop_values&quot;</span><span class="p">:</span> <span class="p">[</span>
+                        <span class="o">...</span> <span class="p">(</span><span class="nb">list</span> <span class="n">of</span> <span class="n">values</span> <span class="n">to</span> <span class="n">detect</span><span class="p">)</span>
+                    <span class="p">]</span>
+                <span class="p">},</span>
+                <span class="p">{</span>
+                    <span class="s2">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;&lt;description&gt;&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;source&quot;</span><span class="p">:</span> <span class="s2">&quot;&lt;source name&gt;&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;field&quot;</span><span class="p">:</span> <span class="s2">&quot;&lt;master key field&gt;&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;query_field&quot;</span><span class="p">:</span> <span class="s2">&quot;&lt;query column name&gt;&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;remove_if_populated&quot;</span><span class="p">:</span> <span class="s2">&quot;True&quot;</span>
+                <span class="p">}</span>
+            <span class="p">]</span>
+        <span class="p">}</span>
+        <span class="s2">&quot;secondary_key&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;source&quot;</span><span class="p">:</span> <span class="s2">&quot;&lt;source for secondary key - must be same as master key&gt;&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;field&quot;</span><span class="p">:</span> <span class="s2">&quot;&lt;secondary key for unique data record&gt;&quot;</span><span class="p">,</span> <span class="p">(</span><span class="n">must</span> <span class="n">be</span> <span class="kn">from</span> <span class="nn">same</span> <span class="n">source</span> <span class="k">as</span> <span class="n">master</span> <span class="n">key</span><span class="p">,</span> <span class="n">mapped</span> <span class="n">together</span><span class="p">)</span>
+        <span class="p">}</span>
+        <span class="s2">&quot;numerical_features&quot;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="o">&lt;</span><span class="nb">list</span> <span class="n">of</span> <span class="n">numerical</span> <span class="n">output</span> <span class="n">feature</span> <span class="n">names</span> <span class="ow">in</span> <span class="nb">any</span> <span class="n">order</span><span class="p">,</span>
+            <span class="n">these</span> <span class="n">will</span> <span class="nb">map</span> <span class="n">to</span> <span class="n">feature</span> <span class="n">indexes</span> <span class="n">depending</span> <span class="n">on</span> <span class="n">the</span> <span class="n">order</span><span class="o">&gt;</span>
+        <span class="p">],</span>
+        <span class="s2">&quot;numerical_feature_exclude_list&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;&lt;feature_name&gt;&quot;</span><span class="p">:</span> <span class="p">[</span>
+                <span class="p">(</span><span class="nb">list</span> <span class="n">of</span> <span class="n">string</span> <span class="n">values</span> <span class="n">to</span> <span class="n">ignore</span> <span class="n">when</span> <span class="n">finding</span> <span class="n">feature</span> <span class="n">entries</span><span class="p">)</span>
+            <span class="p">],</span>
+            <span class="o">...</span> <span class="p">(</span><span class="n">allows</span> <span class="n">multiple</span> <span class="n">features</span><span class="p">)</span>
+        <span class="p">}</span>
+        <span class="s2">&quot;categorical_features&quot;</span><span class="p">:</span> <span class="p">[</span> <span class="p">(</span><span class="n">these</span> <span class="n">features</span> <span class="n">will</span> <span class="n">have</span> <span class="n">name</span> <span class="ow">and</span> <span class="n">value</span>
+                                    <span class="n">used</span> <span class="n">to</span> <span class="n">assign</span> <span class="n">an</span> <span class="n">index</span> <span class="k">for</span> <span class="n">the</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">categorical</span> <span class="n">feature</span>
+                                    <span class="n">value</span> <span class="n">mapping</span> <span class="n">table</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;&lt;feature name&gt;&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;source&quot;</span><span class="p">:</span> <span class="s2">&quot;&lt;source sheet&gt;&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;field&quot;</span><span class="p">:</span> <span class="s2">&quot;&lt;field in source&gt;&quot;</span>
+            <span class="p">},</span>
+        <span class="p">]</span>
+        <span class="s2">&quot;metadata&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;&lt;field name in new data record&gt;&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">&quot;source&quot;</span><span class="p">:</span> <span class="s2">&quot;&lt;short name of data file (see above)&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;field&quot;</span><span class="p">:</span> <span class="s2">&quot;&lt;name of field to extract&gt;&quot;</span>
+            <span class="p">},</span>
+            <span class="o">...</span> <span class="p">(</span><span class="n">can</span> <span class="n">have</span> <span class="n">multiple</span> <span class="n">metadata</span> <span class="n">keys</span><span class="p">)</span>
+        <span class="p">}</span>
+        <span class="s2">&quot;events&quot;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="p">{</span>
+                <span class="s2">&quot;category&quot;</span><span class="p">:</span> <span class="s2">&quot;&lt;category of event&gt;&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;source&quot;</span><span class="p">:</span> <span class="s2">&quot;&lt;short name of data file (see above)&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;datetime&quot;</span><span class="p">:</span> <span class="s2">&quot;&lt;field in source to use as timestamp&gt;&quot;</span>
+                <span class="s2">&quot;features&quot;</span><span class="p">:</span> <span class="p">[</span>
+                    <span class="p">{</span>
+                        <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;&lt;feature name&gt;&quot;</span><span class="p">,</span>
+                        <span class="s2">&quot;field&quot;</span><span class="p">:</span> <span class="s2">&quot;&lt;field to access in data&gt;&quot;</span><span class="p">,</span>
+                        <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;&lt;numerical or categorical, this will determine how to handle one hot encoding&gt;&quot;</span>
+
+                    <span class="p">},</span>
+                    <span class="o">...</span> <span class="p">(</span><span class="n">multiple</span> <span class="n">allowed</span><span class="p">)</span>
+                <span class="p">]</span>
+            <span class="p">},</span>
+            <span class="o">...</span> <span class="p">(</span><span class="n">multiple</span> <span class="n">allowed</span><span class="p">)</span>
+        <span class="p">],</span>
+        <span class="s2">&quot;labelling&quot;</span><span class="p">:</span> <span class="p">{</span> <span class="p">(</span><span class="n">labelling</span> <span class="ow">is</span> <span class="n">largely</span> <span class="n">based</span> <span class="n">on</span> <span class="n">categorical</span> <span class="n">feature</span> <span class="n">values</span><span class="p">)</span>
+            <span class="s2">&quot;labels&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">&quot;of_interest&quot;</span><span class="p">:</span> <span class="s2">&quot;&lt;adverse outcome of interest&gt;&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;output_of_interest&quot;</span><span class="p">:</span> <span class="s2">&quot;&lt;Source data to export for keys of interest&gt;&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;master_key_of_interest&quot;</span><span class="p">:</span> <span class="s2">&quot;&lt;Master key column for specific source&gt;&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;adverse_outcome&quot;</span><span class="p">:</span> <span class="p">{</span>
+                    <span class="s2">&quot;time_step&quot;</span><span class="p">:</span> <span class="s2">&quot;6&quot;</span><span class="p">,</span> <span class="p">(</span><span class="n">gap</span> <span class="ow">in</span> <span class="n">hours</span> <span class="n">between</span> <span class="n">outcome</span> <span class="n">labels</span><span class="p">)</span>
+                    <span class="s2">&quot;max_look_ahead&quot;</span><span class="p">:</span> <span class="s2">&quot;8&quot;</span><span class="p">,</span> <span class="p">(</span><span class="n">number</span> <span class="n">of</span> <span class="n">periods</span> <span class="n">to</span> <span class="n">look</span> <span class="n">ahead</span> <span class="k">for</span> <span class="n">labelling</span><span class="p">)</span>
+                    <span class="s2">&quot;labels&quot;</span><span class="p">:</span> <span class="p">{</span>
+                        <span class="s2">&quot;&lt;adverse outcome name&gt;&quot;</span><span class="p">:</span> <span class="p">{</span>
+                            <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;&lt;feature name to look at&gt;&quot;</span><span class="p">,</span>
+                            <span class="s2">&quot;values&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;&lt;value of categorical feature&gt;&quot;</span><span class="p">],</span>
+                            <span class="s2">&quot;metadata&quot;</span><span class="p">:</span> <span class="p">[</span>
+                                <span class="o">&lt;</span><span class="nb">list</span> <span class="n">of</span> <span class="n">metadata</span> <span class="n">feature</span> <span class="n">names</span> <span class="n">to</span> <span class="n">presence</span> <span class="n">check</span> <span class="k">as</span> <span class="n">secondary</span> <span class="n">rule</span><span class="o">&gt;</span>
+                            <span class="p">]</span>
+                        <span class="p">},</span>
+                        <span class="o">...</span> <span class="p">(</span><span class="n">multiple</span> <span class="n">adverse</span> <span class="n">outcomes</span> <span class="n">allowed</span><span class="p">)</span>
+                    <span class="p">}</span>
+                <span class="p">}</span>
+            <span class="p">},</span>
+            <span class="s2">&quot;numerical_labels&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="model-training">
+<h3>Model Training<a class="headerlink" href="#model-training" title="Permalink to this heading">¶</a></h3>
+<p>The following steps are available to run the default training pipeline:</p>
+<ol class="arabic">
+<li><p>Set configuration values within specific training experiment:</p>
+<ul class="simple">
+<li><p>Paths to data directory</p></li>
+<li><p>Hyperparameters</p></li>
+</ul>
+</li>
+<li><p>Trigger a training pipeline through the CLI tool:</p>
+<ul>
+<li><p>Choose a training pipeline:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">usage</span><span class="p">:</span> <span class="n">aki_predictions_tool</span> <span class="n">training</span> <span class="p">[</span><span class="o">-</span><span class="n">h</span><span class="p">]</span> <span class="p">{</span><span class="n">default</span><span class="p">,</span><span class="n">hyperp</span><span class="p">,</span><span class="n">recurrent_cell</span><span class="p">}</span> <span class="o">...</span>
+
+<span class="n">positional</span> <span class="n">arguments</span><span class="p">:</span>
+<span class="p">{</span><span class="n">default</span><span class="p">,</span><span class="n">hyperp</span><span class="p">,</span><span class="n">recurrent_cell</span><span class="p">}</span>
+                      <span class="n">training</span> <span class="n">commands</span>
+
+<span class="n">optional</span> <span class="n">arguments</span><span class="p">:</span>
+<span class="o">-</span><span class="n">h</span><span class="p">,</span> <span class="o">--</span><span class="n">help</span>            <span class="n">show</span> <span class="n">this</span> <span class="n">help</span> <span class="n">message</span> <span class="ow">and</span> <span class="n">exit</span>
+</pre></div>
+</div>
+</li>
+<li><p>Choose specific options for training:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">usage</span><span class="p">:</span> <span class="n">aki_predictions_tool</span> <span class="n">training</span> <span class="n">default</span> <span class="p">[</span><span class="o">-</span><span class="n">h</span><span class="p">]</span> <span class="p">[</span><span class="o">-</span><span class="n">o</span> <span class="n">OUTPUT_DIR</span><span class="p">]</span> <span class="p">[</span><span class="o">-</span><span class="n">d</span> <span class="n">DATA</span><span class="p">]</span>
+                                          <span class="p">[</span><span class="o">-</span><span class="n">s</span> <span class="n">STEPS</span><span class="p">]</span> <span class="p">[</span><span class="o">-</span><span class="n">c</span> <span class="n">CONTEXT</span><span class="p">]</span>
+                                          <span class="p">[</span><span class="o">--</span><span class="n">checkpoint_every</span> <span class="n">CHECKPOINT_EVERY</span><span class="p">]</span>
+                                          <span class="p">[</span><span class="o">--</span><span class="n">eval_every</span> <span class="n">EVAL_EVERY</span><span class="p">]</span>
+                                          <span class="p">[</span><span class="o">--</span><span class="n">summary_every</span> <span class="n">SUMMARY_EVERY</span><span class="p">]</span>
+
+<span class="n">optional</span> <span class="n">arguments</span><span class="p">:</span>
+<span class="o">-</span><span class="n">h</span><span class="p">,</span> <span class="o">--</span><span class="n">help</span>            <span class="n">show</span> <span class="n">this</span> <span class="n">help</span> <span class="n">message</span> <span class="ow">and</span> <span class="n">exit</span>
+<span class="o">-</span><span class="n">o</span> <span class="n">OUTPUT_DIR</span><span class="p">,</span> <span class="o">--</span><span class="n">output_dir</span> <span class="n">OUTPUT_DIR</span>
+                      <span class="n">Output</span> <span class="n">directory</span> <span class="k">for</span> <span class="n">logging</span> <span class="ow">and</span> <span class="n">artifacts</span><span class="o">.</span>
+<span class="o">-</span><span class="n">d</span> <span class="n">DATA</span><span class="p">,</span> <span class="o">--</span><span class="n">data</span> <span class="n">DATA</span>  <span class="n">Data</span> <span class="n">location</span> <span class="p">(</span><span class="n">training</span> <span class="n">data</span> <span class="n">location</span><span class="p">)</span><span class="o">.</span>
+<span class="o">-</span><span class="n">s</span> <span class="n">STEPS</span><span class="p">,</span> <span class="o">--</span><span class="n">steps</span> <span class="n">STEPS</span>
+                      <span class="n">Training</span> <span class="n">steps</span><span class="o">.</span>
+<span class="o">-</span><span class="n">c</span> <span class="n">CONTEXT</span><span class="p">,</span> <span class="o">--</span><span class="n">context</span> <span class="n">CONTEXT</span>
+                      <span class="n">Include</span> <span class="n">context</span> <span class="n">features</span> <span class="ow">in</span> <span class="n">training</span> <span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span><span class="o">.</span>
+<span class="o">--</span><span class="n">checkpoint_every</span> <span class="n">CHECKPOINT_EVERY</span>
+                      <span class="n">Save</span> <span class="n">checkpoint</span> <span class="n">every</span> <span class="s1">&#39;x&#39;</span> <span class="n">training</span> <span class="n">steps</span><span class="o">.</span>
+<span class="o">--</span><span class="n">eval_every</span> <span class="n">EVAL_EVERY</span>
+                      <span class="n">Evaluate</span> <span class="n">model</span> <span class="n">performance</span> <span class="n">every</span> <span class="s1">&#39;x&#39;</span> <span class="n">training</span> <span class="n">steps</span><span class="o">.</span>
+<span class="o">--</span><span class="n">summary_every</span> <span class="n">SUMMARY_EVERY</span>
+                      <span class="n">Save</span> <span class="n">summary</span> <span class="n">events</span> <span class="n">every</span> <span class="s1">&#39;x&#39;</span> <span class="n">training</span> <span class="n">steps</span><span class="o">.</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</li>
+</ol>
+<p>Alternatively it is possible to trigger a standalone training run:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">aki_predictions/training/&lt;training</span> <span class="pre">experiment&gt;.py</span></code></p></li>
+</ul>
+</section>
+<section id="data-exploration">
+<h3>Data Exploration<a class="headerlink" href="#data-exploration" title="Permalink to this heading">¶</a></h3>
+<p>Steps to trigger data exploration tooling:</p>
+<p>To trigger metrics extraction through the CLI tool:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>```
+usage: aki_predictions_tool survey [-h] [-o OUTPUT_DIR] [-d DATA]
+
+optional arguments:
+-h, --help            show this help message and exit
+-o OUTPUT_DIR, --output_dir OUTPUT_DIR
+                        Output directory for logging and artifacts.
+-d DATA, --data DATA  Data location (ingest output).
+```
+</pre></div>
+</div>
+<dl class="simple">
+<dt>Note: If numerical feature distribution plots are desired:</dt><dd><p><code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">aki_predictions/data_processing/extract_plotting_data.py</span> <span class="pre">--plot_dir=&lt;output</span> <span class="pre">dir</span> <span class="pre">for</span> <span class="pre">plots&gt;</span> <span class="pre">--raw_data=&lt;path</span> <span class="pre">to</span> <span class="pre">data</span> <span class="pre">file&gt;</span> <span class="pre">--wcap=True</span> <span class="pre">(optional</span> <span class="pre">argument</span> <span class="pre">for</span> <span class="pre">applying</span> <span class="pre">capping</span> <span class="pre">to</span> <span class="pre">numerical</span> <span class="pre">values)</span> <span class="pre">--feature_map=&lt;path</span> <span class="pre">to</span> <span class="pre">numerical</span> <span class="pre">feature</span> <span class="pre">mapping</span> <span class="pre">file&gt;</span></code></p>
+</dd>
+<dt>Note: The metrics extraction can be run standalone:</dt><dd><p><code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">aki_predictiona/data_processing/extract_metrics.py</span> <span class="pre">&lt;output_dir&gt;</span> <span class="pre">&lt;path</span> <span class="pre">to</span> <span class="pre">ingested</span> <span class="pre">data</span> <span class="pre">directory&gt;</span></code></p>
+</dd>
+</dl>
+</section>
+<section id="model-evaluation">
+<h3>Model Evaluation<a class="headerlink" href="#model-evaluation" title="Permalink to this heading">¶</a></h3>
+<p>The model evaluation tools available include options for plotting performance metrics, running occlusion analysis, and comparing scoring metrics across models.</p>
+<p>Model evaluation steps can be triggered through the CLI tool:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>```
+usage: aki_predictions_tool evaluation [-h]
+                                   {performance_evaluation,occlusion_processing,occlusion_reporting,performance_comparison}
+                                   ...
+
+positional arguments:
+{performance_evaluation,occlusion_processing,occlusion_reporting,performance_comparison}
+                        evaluation commands
+
+optional arguments:
+-h, --help            show this help message and exit
+```
+</pre></div>
+</div>
+<p>To run occlusion analysis processing (includes generation of reporting):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>```
+usage: aki_predictions_tool evaluation occlusion_processing
+    [-h] [-o OUTPUT_DIR] [-d DATA] [-s STEPS] [-c CONTEXT]
+
+optional arguments:
+-h, --help            show this help message and exit
+-o OUTPUT_DIR, --output_dir OUTPUT_DIR
+                        Output directory for logging and artifacts.
+-d DATA, --data DATA  Data location (training data location).
+-s STEPS, --steps STEPS
+                        Training steps for occlusion processing (must equal
+                        original training steps.).
+-c CONTEXT, --context CONTEXT
+                        Include context features in occlusion analysis (True,
+                        False).
+```
+</pre></div>
+</div>
+<p>To run occlusion analysis reporting (if standalone occlusion analysis has already been performed. Normalises, sorts and maps the feature names to friendly names.):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>```
+usage: aki_predictions_tool evaluation occlusion_reporting [-h]
+                                                        [-o OUTPUT_DIR]
+                                                        [-f FEATURE]
+                                                        [-d METADATA]
+                                                        [-m METRICS]
+                                                        [-c CONTEXT]
+
+optional arguments:
+-h, --help            show this help message and exit
+-o OUTPUT_DIR, --output_dir OUTPUT_DIR
+                        Output directory for logging and artifacts.
+-f FEATURE, --feature FEATURE
+                        Feature mapping file.
+-d METADATA, --metadata METADATA
+                        Metadata mapping file.
+-m METRICS, --metrics METRICS
+                        Occlusion analysis metrics file.
+-c CONTEXT, --context CONTEXT
+                        Include context features in occlusion analysis (True,
+                        False).
+```
+</pre></div>
+</div>
+<p>Standalone occlusion analysis operation:</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt>The occlusion analysis can be run standalone if required:</dt><dd><p><code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">aki_predictions/training/multiple_adverse_outcomes_occlusion_analysis.py</span> <span class="pre">&lt;output_dir&gt;</span> <span class="pre">&lt;data_dir&gt;</span> <span class="pre">&lt;steps&gt;</span></code></p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Along with the reporting step:</dt><dd><p><code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">aki_predictions/evaluation/occlusion_analysis.py</span> <span class="pre">&lt;output_dir&gt;</span> <span class="pre">&lt;feature</span> <span class="pre">mapping</span> <span class="pre">file&gt;</span> <span class="pre">&lt;occlusion</span> <span class="pre">output</span> <span class="pre">file&gt;</span></code></p>
+</dd>
+</dl>
+</li>
+</ul>
+<p>To run threshold sweep (for different class prediction thresholds):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>```
+usage: aki_predictions_tool evaluation threshold_sweep [-h] [-o OUTPUT_DIR]
+                                                    [-d DATA] [-s STEPS]
+                                                    [-c CONTEXT]
+
+optional arguments:
+-h, --help            show this help message and exit
+-o OUTPUT_DIR, --output_dir OUTPUT_DIR
+                        Output directory for logging and artifacts.
+-d DATA, --data DATA  Data location (training data location).
+-s STEPS, --steps STEPS
+                        Training steps for threshold sweep (must equal
+                        original training steps.).
+-c CONTEXT, --context CONTEXT
+                        Include context features in threshold sweep. Must
+                        match original training. (True, False).
+```
+</pre></div>
+</div>
+<p>Generation of performance plots:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>```
+usage: aki_predictions_tool evaluation performance_evaluation
+   [-h] [-o OUTPUT_DIR] [-m METRICS]
+
+optional arguments:
+-h, --help            show this help message and exit
+-o OUTPUT_DIR, --output_dir OUTPUT_DIR
+                        Output directory for logging and artifacts.
+-m METRICS, --metrics METRICS
+                        Metrics file.
+```
+</pre></div>
+</div>
+<p>To generate performance plots standalone:</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt>Generate performance plots for a given model/metrics file:</dt><dd><p><code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">aki_predictions/evaluation/performance_metrics.py</span> <span class="pre">&lt;path</span> <span class="pre">to</span> <span class="pre">metrics</span> <span class="pre">file&gt;</span></code></p>
+</dd>
+</dl>
+</li>
+</ul>
+<p>To compare models:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>```
+usage: aki_predictions_tool evaluation performance_comparison
+   [-h] [-o OUTPUT_DIR] [-a ADVERSE_OUTCOME] [-m METRICS [METRICS ...]]
+
+optional arguments:
+-h, --help            show this help message and exit
+-o OUTPUT_DIR, --output_dir OUTPUT_DIR
+                        Output directory for logging and artifacts.
+-a ADVERSE_OUTCOME, --adverse_outcome ADVERSE_OUTCOME
+                        Type of adverse outcome to compare.
+-m METRICS [METRICS ...], --metrics METRICS [METRICS ...]
+                        List of metric file arguments.
+```
+</pre></div>
+</div>
+<p>To compare models using the defined scoring metrics standalone:</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt>Compare performance of model using metrics file:</dt><dd><p><code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">aki_predictions/evaluation/evaluate_models.py</span> <span class="pre">-o</span> <span class="pre">&lt;output_dir&gt;</span> <span class="pre">-m</span> <span class="pre">&lt;paths</span> <span class="pre">to</span> <span class="pre">individual</span> <span class="pre">metrics</span> <span class="pre">files,</span> <span class="pre">does</span> <span class="pre">support</span> <span class="pre">wildcards&gt;</span></code></p>
+</dd>
+</dl>
+</li>
+</ul>
+</section>
+<section id="inference-mode">
+<h3>Inference Mode<a class="headerlink" href="#inference-mode" title="Permalink to this heading">¶</a></h3>
+<p>Inference mode allows the user to input an alternate set or subset of data to process through a given model.
+Whilst this does rely on the training infrastructure (use of model checkpoints and the monitored training session for processing), it does allow ingestion of alternative data through the model.
+This could be alternative data files or sets of data.</p>
+<p>To run inference:</p>
+<ul>
+<li><p>The CLI tool allows running of inference tasks, outputting a raw file of predictions for each record and desired outcome.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">usage</span><span class="p">:</span> <span class="n">aki_predictions_tool</span> <span class="n">inference</span> <span class="p">[</span><span class="o">-</span><span class="n">h</span><span class="p">]</span> <span class="p">[</span><span class="o">-</span><span class="n">o</span> <span class="n">OUTPUT_DIR</span><span class="p">]</span> <span class="p">[</span><span class="o">-</span><span class="n">m</span> <span class="n">MODEL</span><span class="p">]</span>
+                                    <span class="p">[</span><span class="o">-</span><span class="n">d</span> <span class="n">DATA</span><span class="p">]</span> <span class="p">[</span><span class="o">-</span><span class="n">s</span> <span class="n">STEPS</span><span class="p">]</span> <span class="p">[</span><span class="o">-</span><span class="n">c</span> <span class="n">CONTEXT</span><span class="p">]</span>
+
+<span class="n">optional</span> <span class="n">arguments</span><span class="p">:</span>
+<span class="o">-</span><span class="n">h</span><span class="p">,</span> <span class="o">--</span><span class="n">help</span>            <span class="n">show</span> <span class="n">this</span> <span class="n">help</span> <span class="n">message</span> <span class="ow">and</span> <span class="n">exit</span>
+<span class="o">-</span><span class="n">o</span> <span class="n">OUTPUT_DIR</span><span class="p">,</span> <span class="o">--</span><span class="n">output_dir</span> <span class="n">OUTPUT_DIR</span>
+                        <span class="n">Output</span> <span class="n">directory</span> <span class="k">for</span> <span class="n">logging</span> <span class="ow">and</span> <span class="n">artifacts</span><span class="o">.</span>
+<span class="o">-</span><span class="n">m</span> <span class="n">MODEL</span><span class="p">,</span> <span class="o">--</span><span class="n">model</span> <span class="n">MODEL</span>
+                        <span class="n">Model</span> <span class="n">directory</span> <span class="p">(</span><span class="n">containing</span> <span class="n">relevant</span> <span class="n">model</span> <span class="n">checkpoint</span>
+                        <span class="n">to</span> <span class="n">use</span> <span class="k">for</span> <span class="n">inference</span>
+<span class="o">-</span><span class="n">d</span> <span class="n">DATA</span><span class="p">,</span> <span class="o">--</span><span class="n">data</span> <span class="n">DATA</span>  <span class="n">Data</span> <span class="n">location</span> <span class="p">(</span><span class="n">path</span> <span class="n">to</span> <span class="n">directory</span> <span class="n">which</span> <span class="n">should</span> <span class="n">also</span>
+                        <span class="n">contain</span> <span class="n">mapping</span> <span class="n">files</span> <span class="n">required</span><span class="p">)</span><span class="o">.</span>
+<span class="o">-</span><span class="n">s</span> <span class="n">STEPS</span><span class="p">,</span> <span class="o">--</span><span class="n">steps</span> <span class="n">STEPS</span>
+                        <span class="n">Step</span> <span class="n">count</span> <span class="p">(</span><span class="n">match</span> <span class="n">model</span> <span class="n">training</span> <span class="n">step</span> <span class="n">count</span><span class="p">)</span><span class="o">.</span>
+<span class="o">-</span><span class="n">c</span> <span class="n">CONTEXT</span><span class="p">,</span> <span class="o">--</span><span class="n">context</span> <span class="n">CONTEXT</span>
+                        <span class="n">Include</span> <span class="n">context</span> <span class="n">features</span> <span class="ow">in</span> <span class="n">inference</span><span class="o">.</span> <span class="n">Must</span> <span class="n">match</span>
+                        <span class="n">original</span> <span class="n">training</span><span class="o">.</span> <span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span><span class="o">.</span>
+</pre></div>
+</div>
+</li>
+<li><p>The tool will output the file named: <code class="docutils literal notranslate"><span class="pre">inference_predictions.json</span></code> within the model directory.</p></li>
+</ul>
+</section>
+</section>
+<section id="example-pipeline">
+<h2>Example pipeline<a class="headerlink" href="#example-pipeline" title="Permalink to this heading">¶</a></h2>
+<p>Use the following steps to run the example pipeline using fake test data.
+This test data is included in <code class="docutils literal notranslate"><span class="pre">tests/fixtures/</span></code></p>
+<p>An integrated example is available in the <code class="docutils literal notranslate"><span class="pre">tests/test_end_to_end_pipeline/test_end_to_end_pipline.py</span></code>.</p>
+<p><strong>NOTE</strong>: to use an alternative model for downstream processing (different to the final step checkpoint) the following steps are required prior:</p>
+<ul class="simple">
+<li><p>Train model as normal</p></li>
+<li><p>Select model using evaluation methods</p></li>
+<li><p>Move/remove model checkpoints from the training output directory later than the chosen step.</p></li>
+<li><p>Modify the <code class="docutils literal notranslate"><span class="pre">checkpoints.txt</span></code> file within the training directory to reference the chosen checkpoint step, and remove later checkpoint entries.</p></li>
+</ul>
+<section id="ingest">
+<h3>Ingest<a class="headerlink" href="#ingest" title="Permalink to this heading">¶</a></h3>
+<p>Create directory for data pipeline (adjust as desired):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mkdir</span> <span class="n">demonstration</span>
+</pre></div>
+</div>
+<p>Triggering a data ingest:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">aki_predictions_tool</span> <span class="n">ingest</span> <span class="o">--</span><span class="n">output_dir</span> <span class="n">demonstration</span> <span class="o">--</span><span class="n">config</span> <span class="n">tests</span><span class="o">/</span><span class="n">fixtures</span><span class="o">/</span><span class="n">mock_config</span><span class="o">.</span><span class="n">json</span>
+</pre></div>
+</div>
+<p>After triggering a data ingest, if training with context features is desired, then a <code class="docutils literal notranslate"><span class="pre">missing_metadata_mapping.json</span></code> is required to be present in the ingest output directory.
+And example of this is shown in <code class="docutils literal notranslate"><span class="pre">tests/fixtures/test_data_ingest_output/missing_metadata_mapping.json</span></code>.</p>
+</section>
+<section id="survey">
+<h3>Survey<a class="headerlink" href="#survey" title="Permalink to this heading">¶</a></h3>
+<p>Triggering the metric extraction survey:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">aki_predictions_tool</span> <span class="n">survey</span> <span class="o">--</span><span class="n">output_dir</span> <span class="n">demonstration</span> <span class="o">--</span><span class="n">data</span> <span class="n">demonstration</span><span class="o">/</span><span class="n">mock_config_</span><span class="o">&lt;</span><span class="n">relevant</span> <span class="n">timestamped</span> <span class="n">directory</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+</section>
+<section id="training">
+<h3>Training<a class="headerlink" href="#training" title="Permalink to this heading">¶</a></h3>
+<p>Running a default training experiment:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">aki_predictions_tool</span> <span class="n">training</span> <span class="n">default</span> <span class="o">--</span><span class="n">output_dir</span> <span class="n">demonstration</span> <span class="o">--</span><span class="n">data</span> <span class="n">demonstration</span><span class="o">/</span><span class="n">mock_config_</span><span class="o">&lt;</span><span class="n">relevant</span> <span class="n">timestamped</span> <span class="n">directory</span><span class="o">&gt;</span> <span class="o">--</span><span class="n">steps</span> <span class="mi">100</span> <span class="o">--</span><span class="n">checkpoint_every</span> <span class="mi">100</span> <span class="o">--</span><span class="n">eval_every</span> <span class="mi">100</span> <span class="o">--</span><span class="n">summary_every</span> <span class="mi">10</span> <span class="o">--</span><span class="n">context</span> <span class="kc">True</span>
+</pre></div>
+</div>
+</section>
+<section id="occlusion-analysis">
+<h3>Occlusion analysis<a class="headerlink" href="#occlusion-analysis" title="Permalink to this heading">¶</a></h3>
+<p>Running occlusion analysis using a trained model:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">aki_predictions_tool</span> <span class="n">evaluation</span> <span class="n">occlusion_processing</span> <span class="o">--</span><span class="n">output_dir</span> <span class="n">demonstration</span> <span class="o">--</span><span class="n">data</span> <span class="n">demonstration</span><span class="o">/</span><span class="n">mock_config_</span><span class="o">&lt;</span><span class="n">relevant</span> <span class="n">timestamped</span> <span class="n">directory</span><span class="o">&gt;</span> <span class="o">--</span><span class="n">steps</span> <span class="mi">100</span> <span class="o">--</span><span class="n">context</span> <span class="kc">True</span>
+</pre></div>
+</div>
+<p>This will generate a json file in the output directory containing the occlusion analysis feature scores.</p>
+</section>
+<section id="evaluation">
+<h3>Evaluation<a class="headerlink" href="#evaluation" title="Permalink to this heading">¶</a></h3>
+<p>Running model selection (use <code class="docutils literal notranslate"><span class="pre">-a</span></code> option to specify outcome) for all metrics files within the training output directory:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">aki_predictions_tool</span> <span class="n">evaluation</span> <span class="n">performance_comparison</span> <span class="o">--</span><span class="n">output_dir</span> <span class="n">demonstration</span> <span class="o">--</span><span class="n">data</span> <span class="n">demonstration</span><span class="o">/</span><span class="n">mock_confic_</span><span class="o">&lt;</span><span class="n">relevant</span> <span class="n">timestamped</span> <span class="n">directory</span><span class="o">&gt;</span> <span class="o">-</span><span class="n">a</span> <span class="s2">&quot;mortality&quot;</span> <span class="o">-</span><span class="n">m</span> <span class="n">demonstration</span><span class="o">/</span><span class="n">checkpoints</span><span class="o">/</span><span class="n">ttl</span><span class="o">=</span><span class="mi">120</span><span class="n">d</span><span class="o">/</span><span class="n">train</span><span class="o">/</span><span class="n">metrics</span><span class="o">-*-</span><span class="mf">0.5</span><span class="o">.</span><span class="n">json</span>
+</pre></div>
+</div>
+<p>Once a step has been chosen, the confusion, ROC, and PR plots can be generated:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">aki_predictions_tool</span> <span class="n">evaluation</span> <span class="n">performance_evaluation</span> <span class="o">--</span><span class="n">output_dir</span> <span class="n">demonstration</span> <span class="o">--</span><span class="n">data</span> <span class="n">demonstration</span><span class="o">/</span><span class="n">mock_confic_</span><span class="o">&lt;</span><span class="n">relevant</span> <span class="n">timestamped</span> <span class="n">directory</span><span class="o">&gt;</span> <span class="o">-</span><span class="n">m</span> <span class="n">demonstration</span><span class="o">/</span><span class="n">checkpoints</span><span class="o">/</span><span class="n">ttl</span><span class="o">=</span><span class="mi">120</span><span class="n">d</span><span class="o">/</span><span class="n">train</span><span class="o">/</span><span class="n">metrics</span><span class="o">-</span><span class="mi">100</span><span class="o">-</span><span class="mf">0.5</span><span class="o">.</span><span class="n">json</span>
+</pre></div>
+</div>
+</section>
+<section id="threshold-sweep">
+<h3>Threshold Sweep<a class="headerlink" href="#threshold-sweep" title="Permalink to this heading">¶</a></h3>
+<p>For a chosen model, the threshold sweep can be run to generate metrics files for a range of class prediction levels.</p>
+<p>Assuming the latest model is the best model:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">aki_predictions_tool</span> <span class="n">evaluation</span> <span class="n">threshold_sweep</span> <span class="o">--</span><span class="n">output_dir</span> <span class="n">demonstration</span> <span class="o">--</span><span class="n">data</span> <span class="n">demonstration</span><span class="o">/</span><span class="n">mock_confic_</span><span class="o">&lt;</span><span class="n">relevant</span> <span class="n">timestamped</span> <span class="n">directory</span><span class="o">&gt;</span> <span class="o">--</span><span class="n">steps</span> <span class="mi">100</span> <span class="o">--</span><span class="n">context</span>
+</pre></div>
+</div>
+<p>The evaluation steps above can now be run on the metrics files generated at different class prediction thresholds.</p>
+</section>
+<section id="inference">
+<h3>Inference<a class="headerlink" href="#inference" title="Permalink to this heading">¶</a></h3>
+<p>To run inference with a trained model, first run the above steps to ingest data, train a model.</p>
+<p>Inference mode requires the data to be provided within the ingest directory as a JSONL records file: <code class="docutils literal notranslate"><span class="pre">ingest_records_output_lines_inference_uncapped.jsonl</span></code>.</p>
+<p>Then trigger an inference run:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">aki_predictions_tool</span> <span class="o">--</span><span class="n">output_dir</span> <span class="n">demonstration</span> <span class="o">--</span><span class="n">data</span> <span class="n">demonstration</span><span class="o">/</span><span class="n">mock_confic_</span><span class="o">&lt;</span><span class="n">relevant</span> <span class="n">timestamped</span> <span class="n">directory</span><span class="o">&gt;</span> <span class="o">--</span><span class="n">model</span> <span class="n">demonstration</span><span class="o">/</span><span class="n">checkpoints</span><span class="o">/</span><span class="n">ttl</span><span class="o">=</span><span class="mi">120</span><span class="n">d</span><span class="o">/</span><span class="n">train</span><span class="o">/</span> <span class="o">--</span><span class="n">steps</span> <span class="mi">100</span> <span class="o">--</span><span class="n">context</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="nhs-ai-lab-skunkworks">
+<h2>NHS AI Lab Skunkworks<a class="headerlink" href="#nhs-ai-lab-skunkworks" title="Permalink to this heading">¶</a></h2>
+<p>The project is supported by the NHS AI Lab Skunkworks, which exists within the NHS AI Lab at the NHS Transformation Directorate to support the health and care community to rapidly progress ideas from the conceptual stage to a proof of concept.</p>
+<ul class="simple">
+<li><p>Find out more about the <a class="reference external" href="https://transform.england.nhs.uk/ai-lab/ai-lab-programmes/skunkworks/">NHS AI Lab Skunkworks</a>.</p></li>
+<li><p>Join our <a class="reference external" href="https://future.nhs.uk/connect.ti/system/text/register">Virtual Hub</a> to hear more about future problem-sourcing event opportunities.</p></li>
+<li><p>Get in touch with the Skunkworks team at <a class="reference external" href="mailto:england&#46;aiskunkworks&#37;&#52;&#48;nhs&#46;net">england<span>&#46;</span>aiskunkworks<span>&#64;</span>nhs<span>&#46;</span>net</a>.</p></li>
+</ul>
+</section>
+<section id="licence">
+<h2>Licence<a class="headerlink" href="#licence" title="Permalink to this heading">¶</a></h2>
+<p>Unless stated otherwise, the codebase is released under <a class="reference external" href="LICENCE">the MIT Licence</a>.
+This covers both the codebase and any sample code in the documentation.</p>
+<p>The documentation is <a class="reference external" href="http://www.nationalarchives.gov.uk/information-management/re-using-public-sector-information/uk-government-licensing-framework/crown-copyright/">© Crown copyright</a> and available under the terms
+of the <a class="reference external" href="http://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/">Open Government 3.0</a> licence.</p>
+<aside class="footnote-list brackets">
+<aside class="footnote brackets" id="fn-1" role="note">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">1</a><span class="fn-bracket">]</span></span>
+<p><a class="reference external" href="https://doi.org/10.1038/s41586-019-1390-1">https://doi.org/10.1038/s41586-019-1390-1</a></p>
+</aside>
+</aside>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">aki-predictions</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">NHS AI Lab Skunkworks project: Predictive Renal Health</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#intended-use">Intended Use</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#data-protection">Data Protection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#background">Background</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#model-selection">Model selection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#known-limitations">Known limitations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#data-pipeline">Data pipeline</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#processing-pipeline">Processing pipeline</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#getting-started">Getting Started</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#environment">Environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#automated-tests">Automated tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#building-docs">Building docs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#cli-tool">CLI Tool</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#example-pipeline">Example pipeline</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#nhs-ai-lab-skunkworks">NHS AI Lab Skunkworks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#licence">Licence</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="aki_predictions.html">aki_predictions package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">aki_predictions</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="index.html" title="previous chapter">C308 NHS AI Predictive Renal Health PoC</a></li>
+      <li>Next: <a href="aki_predictions.html" title="next chapter">aki_predictions package</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;Crown copyright.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 5.1.0</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/readme.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

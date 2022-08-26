@@ -1,0 +1,7 @@
+aki\_predictions.ehr\_prediction\_modeling.embeddings.input\_embedding\_base module
+===================================================================================
+
+.. automodule:: aki_predictions.ehr_prediction_modeling.embeddings.input_embedding_base
+   :members:
+   :undoc-members:
+   :show-inheritance:

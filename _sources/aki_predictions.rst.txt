@@ -1,0 +1,29 @@
+aki\_predictions package
+========================
+
+.. automodule:: aki_predictions
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Subpackages
+-----------
+
+.. toctree::
+   :maxdepth: 4
+
+   aki_predictions.data_processing
+   aki_predictions.ehr_prediction_modeling
+   aki_predictions.evaluation
+   aki_predictions.inference
+   aki_predictions.training
+
+Submodules
+----------
+
+.. toctree::
+   :maxdepth: 4
+
+   aki_predictions.data_loading
+   aki_predictions.data_utils
+   aki_predictions.file_operations

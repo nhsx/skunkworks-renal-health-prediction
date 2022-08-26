@@ -1,0 +1,7 @@
+aki\_predictions.training.multiple\_adverse\_outcomes\_w\_curriculum module
+===========================================================================
+
+.. automodule:: aki_predictions.training.multiple_adverse_outcomes_w_curriculum
+   :members:
+   :undoc-members:
+   :show-inheritance:

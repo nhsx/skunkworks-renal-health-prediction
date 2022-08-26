@@ -1,0 +1,252 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>aki_predictions.ehr_prediction_modeling.eval.metrics_coordinator module &#8212; aki-predictions 1.0.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="aki_predictions.ehr_prediction_modeling.eval.metrics_data module" href="aki_predictions.ehr_prediction_modeling.eval.metrics_data.html" />
+    <link rel="prev" title="aki_predictions.ehr_prediction_modeling.eval package" href="aki_predictions.ehr_prediction_modeling.eval.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="module-aki_predictions.ehr_prediction_modeling.eval.metrics_coordinator">
+<span id="aki-predictions-ehr-prediction-modeling-eval-metrics-coordinator-module"></span><h1>aki_predictions.ehr_prediction_modeling.eval.metrics_coordinator module<a class="headerlink" href="#module-aki_predictions.ehr_prediction_modeling.eval.metrics_coordinator" title="Permalink to this heading">¶</a></h1>
+<p>Coordinator for metrics of various targets in evaluation.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="aki_predictions.ehr_prediction_modeling.eval.metrics_coordinator.MetricsCoordinator">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">aki_predictions.ehr_prediction_modeling.eval.metrics_coordinator.</span></span><span class="sig-name descname"><span class="pre">MetricsCoordinator</span></span><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.eval.metrics_coordinator.MetricsCoordinator" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Base class for accumulating data used to calculate metrics.</p>
+<p>Initializes metrics coordinator.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="aki_predictions.ehr_prediction_modeling.eval.metrics_coordinator.MetricsCoordinator.add_data">
+<span class="sig-name descname"><span class="pre">add_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">metrics_data_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Type</span><span class="p"><span class="pre">[</span></span><span class="pre">MetricsTypes</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">split_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mask_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.eval.metrics_coordinator.MetricsCoordinator.add_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Extends object’s lists of data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>metrics_data_type</strong> – The subclass of MetricsData that will be used to store
+this data.</p></li>
+<li><p><strong>data</strong> – A batch of data to add. Tuple should contain data listed in the
+order required by the relevant MetricsData add_data method. For example,
+For RegressionMetricsData, data should be (predictions, targets,
+weights).</p></li>
+<li><p><strong>target_name</strong> – Name of the target the data descibes.</p></li>
+<li><p><strong>split_name</strong> – Name of the split the data is from.</p></li>
+<li><p><strong>mask_name</strong> – Name of the mask used with the data given.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError if the data given is found invalid by the MetricsData class.</strong> – </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="aki_predictions.ehr_prediction_modeling.eval.metrics_coordinator.MetricsCoordinator.log_metrics">
+<span class="sig-name descname"><span class="pre">log_metrics</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">current_step</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">clear_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">silence</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">class_threshold</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.eval.metrics_coordinator.MetricsCoordinator.log_metrics" title="Permalink to this definition">¶</a></dt>
+<dd><p>Logs all metrics, then may clear stored metrics data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>current_step</strong> – Current step we are evaluating.</p></li>
+<li><p><strong>clear_data</strong> – If true, all stored data will be cleared.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Dictionary of each metrics target and current values for current state.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>(dict)</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="aki_predictions.ehr_prediction_modeling.eval.metrics_coordinator.MetricsTarget">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">aki_predictions.ehr_prediction_modeling.eval.metrics_coordinator.</span></span><span class="sig-name descname"><span class="pre">MetricsTarget</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">target_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">split_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mask_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.eval.metrics_coordinator.MetricsTarget" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Describes a target metrics will be computed for.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="aki_predictions.ehr_prediction_modeling.eval.metrics_coordinator.MetricsTarget.mask_name">
+<span class="sig-name descname"><span class="pre">mask_name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.eval.metrics_coordinator.MetricsTarget.mask_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="aki_predictions.ehr_prediction_modeling.eval.metrics_coordinator.MetricsTarget.split_name">
+<span class="sig-name descname"><span class="pre">split_name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.eval.metrics_coordinator.MetricsTarget.split_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="aki_predictions.ehr_prediction_modeling.eval.metrics_coordinator.MetricsTarget.target_name">
+<span class="sig-name descname"><span class="pre">target_name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.eval.metrics_coordinator.MetricsTarget.target_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="aki_predictions.ehr_prediction_modeling.eval.metrics_coordinator.MetricsTarget.to_string">
+<span class="sig-name descname"><span class="pre">to_string</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.eval.metrics_coordinator.MetricsTarget.to_string" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a string description of this target.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="aki_predictions.ehr_prediction_modeling.eval.metrics_coordinator.add_batch_to_binary_metrics_data">
+<span class="sig-prename descclassname"><span class="pre">aki_predictions.ehr_prediction_modeling.eval.metrics_coordinator.</span></span><span class="sig-name descname"><span class="pre">add_batch_to_binary_metrics_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">metrics_coordinator</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target_names</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">predictions</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">binary_targets</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eval_mask_dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">split_name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.eval.metrics_coordinator.add_batch_to_binary_metrics_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds binary tasks predictions to BinaryMetricsData objects.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>metrics_coordinator</strong> – MetricsCoordinator, used to accumulate metrics for each
+target.</p></li>
+<li><p><strong>target_names</strong> – list of str, the names of the targets in the task.</p></li>
+<li><p><strong>predictions</strong> – array of predictions in time-major shape wnct [num_unroll,
+batch_size, channels, num_targets].</p></li>
+<li><p><strong>binary_targets</strong> – array of binary targets in time-major shape wnct [
+num_unroll, batch_size, channels, num_targets].</p></li>
+<li><p><strong>eval_mask_dict</strong> – dict of string mask name to array, the loss masks to be used
+in evaluation, in time-major shape wnct [num_unroll, batch_size, channels,
+num_targets].</p></li>
+<li><p><strong>split_name</strong> – str, name of the data split this batch is from.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="aki_predictions.ehr_prediction_modeling.eval.metrics_coordinator.add_batch_to_regression_metrics_data">
+<span class="sig-prename descclassname"><span class="pre">aki_predictions.ehr_prediction_modeling.eval.metrics_coordinator.</span></span><span class="sig-name descname"><span class="pre">add_batch_to_regression_metrics_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">metrics_coordinator</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target_names</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">predictions</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">targets</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eval_mask_dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">split_name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.eval.metrics_coordinator.add_batch_to_regression_metrics_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds regression tasks predictions to RegressionMetricsData objects.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>metrics_coordinator</strong> – MetricsCoordinator, used to accumulate metrics for each
+target.</p></li>
+<li><p><strong>target_names</strong> – list of str, the names of the targets in the task.</p></li>
+<li><p><strong>predictions</strong> – array of predictions in time-major shape wnct [num_unroll,
+batch_size, channels, num_targets].</p></li>
+<li><p><strong>targets</strong> – array of float targets in time-major shape wnct [ num_unroll,
+batch_size, channels, num_targets].</p></li>
+<li><p><strong>eval_mask_dict</strong> – dict of string mask name to array, the loss masks to be used
+in evaluation, in time-major shape wnct [num_unroll, batch_size, channels,
+num_targets].</p></li>
+<li><p><strong>split_name</strong> – str, name of the data split this batch is from.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">aki-predictions</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="readme.html">NHS AI Lab Skunkworks project: Predictive Renal Health</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="aki_predictions.html">aki_predictions package</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="aki_predictions.html#subpackages">Subpackages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="aki_predictions.html#submodules">Submodules</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">aki_predictions</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="aki_predictions.html">aki_predictions package</a></li>
+</ul>
+</li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  <li><a href="aki_predictions.html">aki_predictions package</a><ul>
+  <li><a href="aki_predictions.ehr_prediction_modeling.html">aki_predictions.ehr_prediction_modeling package</a><ul>
+  <li><a href="aki_predictions.ehr_prediction_modeling.eval.html">aki_predictions.ehr_prediction_modeling.eval package</a><ul>
+      <li>Previous: <a href="aki_predictions.ehr_prediction_modeling.eval.html" title="previous chapter">aki_predictions.ehr_prediction_modeling.eval package</a></li>
+      <li>Next: <a href="aki_predictions.ehr_prediction_modeling.eval.metrics_data.html" title="next chapter">aki_predictions.ehr_prediction_modeling.eval.metrics_data module</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;Crown copyright.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 5.1.0</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/aki_predictions.ehr_prediction_modeling.eval.metrics_coordinator.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

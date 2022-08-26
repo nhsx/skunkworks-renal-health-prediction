@@ -1,0 +1,320 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>aki_predictions.ehr_prediction_modeling.utils.occlusion_utils module &#8212; aki-predictions 1.0.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="aki_predictions.ehr_prediction_modeling.config module" href="aki_predictions.ehr_prediction_modeling.config.html" />
+    <link rel="prev" title="aki_predictions.ehr_prediction_modeling.utils.mask_utils module" href="aki_predictions.ehr_prediction_modeling.utils.mask_utils.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="module-aki_predictions.ehr_prediction_modeling.utils.occlusion_utils">
+<span id="aki-predictions-ehr-prediction-modeling-utils-occlusion-utils-module"></span><h1>aki_predictions.ehr_prediction_modeling.utils.occlusion_utils module<a class="headerlink" href="#module-aki_predictions.ehr_prediction_modeling.utils.occlusion_utils" title="Permalink to this heading">¶</a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="aki_predictions.ehr_prediction_modeling.utils.occlusion_utils.build_batch_placeholder">
+<span class="sig-prename descclassname"><span class="pre">aki_predictions.ehr_prediction_modeling.utils.occlusion_utils.</span></span><span class="sig-name descname"><span class="pre">build_batch_placeholder</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">real_batch</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.utils.occlusion_utils.build_batch_placeholder" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a set of tensor placeholders according to the structure of a real batch of tensors, in order
+to create nodes in a graph that can have new values fed via feed dict, enabling new data ingestion after training
+completes
+:param real_batch: A batch of tensors and sparse tensors, held
+:type real_batch: ehr_prediction_modeling.utils.batches.TFBatch
+:param in dictionaries in a named-tuple structure:</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>(The batch of placeholder tensors, a dictionary defining the tensors’ names in the graph)</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>(TFBatch, dict)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="aki_predictions.ehr_prediction_modeling.utils.occlusion_utils.build_batch_tensor_name_dict">
+<span class="sig-prename descclassname"><span class="pre">aki_predictions.ehr_prediction_modeling.utils.occlusion_utils.</span></span><span class="sig-name descname"><span class="pre">build_batch_tensor_name_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">batch</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.utils.occlusion_utils.build_batch_tensor_name_dict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Build a nested dictionary with ‘context’, ‘sequences’, ‘is_beginning_sequence’ keys, whose bottom level
+values define tensors from a batch. These may be either normal or sparse tensors, and where sparse tensors occur
+a ‘is_sparse’: True key-val will exist at the bottom level to flag that various tensors needed to define a sparse
+tensor are included
+:param batch: A batch (named tuple with .context, .sequence, .is_beginning_sequence properties)
+:type batch: TFBatch</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Dictionary defining the names of relevant tensors from the batch as defined in the tf graph</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>(dict)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="aki_predictions.ehr_prediction_modeling.utils.occlusion_utils.build_nested_feed_dict">
+<span class="sig-prename descclassname"><span class="pre">aki_predictions.ehr_prediction_modeling.utils.occlusion_utils.</span></span><span class="sig-name descname"><span class="pre">build_nested_feed_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tensor_dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">values_dict</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.utils.occlusion_utils.build_nested_feed_dict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Take nested dictionaries with the same key structure defining both normal and sparse tensors (with ‘is_sparse’
+signifying a sparse definition at the bottom nested level of tensor_dict), and build a feed dict as required
+by tf.Session-like objects for ingesting new data.
+:param tensor_dict: Dictionary defining expected tensors, and whether the tensors defined
+:type tensor_dict: nested dict of tensors
+:param at the bottom level are sparse:
+:param values_dict: Dictionary defining feedable arrays to the corresponding tensors in
+:type values_dict: nested dict of arrays
+:param tensor_dict:
+:type tensor_dict: where values, indices, dense_shape must be defined separately for sparse tensors</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A nested dictionary where keys are tensors and values are arrays</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>(dict)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="aki_predictions.ehr_prediction_modeling.utils.occlusion_utils.flatten_feed_dict">
+<span class="sig-prename descclassname"><span class="pre">aki_predictions.ehr_prediction_modeling.utils.occlusion_utils.</span></span><span class="sig-name descname"><span class="pre">flatten_feed_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nested_feed_dict</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.utils.occlusion_utils.flatten_feed_dict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Flatten a nested dictionary structure, bringing nested keys and items up to top level. Intended for
+flattening ‘feed dicts’ used by tensorflow, which in our models case will have a nested structure at generation
+but need to be flat for tf to ingest
+:param nested_feed_dict: Dictionary with potentially nested dictionaries
+:type nested_feed_dict: dict</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A flat dictionary</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>(dict)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="aki_predictions.ehr_prediction_modeling.utils.occlusion_utils.measure_occlusion_difference">
+<span class="sig-prename descclassname"><span class="pre">aki_predictions.ehr_prediction_modeling.utils.occlusion_utils.</span></span><span class="sig-name descname"><span class="pre">measure_occlusion_difference</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">unoccluded_predictions</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">occlusion_predictions</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">unoccluded_timestamps</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">current_timestamps</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.utils.occlusion_utils.measure_occlusion_difference" title="Permalink to this definition">¶</a></dt>
+<dd><p>Measure the difference introduced by occluding a field on predictions from the model compared to unoccluded
+predictions. Timestamps are passed as well as the prediction sequences entirely to assure that no time series
+shift has been introduced by any given occlusion (not expected to be possible but would ruin the comparison if it
+occurred)
+:param unoccluded_predictions: The predictions when no field is occluded, held in
+:type unoccluded_predictions: list of dictionaries of ndarrays
+:param a list of outputs per batch:
+:param where the outputs per batch are separated by adverse outcome keys. The ndarrays:
+:param defining each adverse outcome prediction are then shaped:
+:param by [time:
+:param batch element:
+:param unsqueezed dimension:
+:param time window dimension]:
+:param occlusion_predictions: Similar to unoccluded_predictions, but produced
+:type occlusion_predictions: list of dictionaries of ndarrays
+:param via the model when a field has been occluded from the data loading:
+:param unoccluded_timestamps: The timestamps (time axis, batch axis) of data from the
+:type unoccluded_timestamps: list of ndarrays
+:param unoccluded data loading:
+:param current_timestamps: The timestamps (time axis, batch axis) of data from occluded data
+:type current_timestamps: list of ndarrays
+:param loading:</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A measure of how different the occlusion predictions are from unoccluded predictions</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>(float)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="aki_predictions.ehr_prediction_modeling.utils.occlusion_utils.normalise_cross_entropies">
+<span class="sig-prename descclassname"><span class="pre">aki_predictions.ehr_prediction_modeling.utils.occlusion_utils.</span></span><span class="sig-name descname"><span class="pre">normalise_cross_entropies</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cross_entropy_dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">round_decimals</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.utils.occlusion_utils.normalise_cross_entropies" title="Permalink to this definition">¶</a></dt>
+<dd><p>Normalise the cross entropy values within the provided dictionary output.</p>
+<p>Assumed to utilise saved output from run_occlusion_analysis_all_fields</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>cross_entropy_dict</strong> (<em>dict</em>) – dictionary of feature indexes vs cross entropy values (including <cite>unoccluded</cite> entry)</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>dictionary of cross entropy values, normalised using the unoccluded value (for easier plotting)</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>(dict)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="aki_predictions.ehr_prediction_modeling.utils.occlusion_utils.recover_tensor_dicts">
+<span class="sig-prename descclassname"><span class="pre">aki_predictions.ehr_prediction_modeling.utils.occlusion_utils.</span></span><span class="sig-name descname"><span class="pre">recover_tensor_dicts</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">graph</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eval_tensor_names_json_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eval_predictions_tensor_names_json_path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.utils.occlusion_utils.recover_tensor_dicts" title="Permalink to this definition">¶</a></dt>
+<dd><p>Build two tensor dictionaries that define the input and output nodes needed for ingesting new
+data and recovering predictions, with values
+corresponding to tensors recovered from a tf.Graph
+:param graph: A graph defining all tensors and operation nodes in a tensorflow training pipeline
+:type graph: tf.Graph
+:param eval_tensor_names_json_path: A nested dictionary with ‘context’, ‘sequence’ and ‘is_beginning_sequence’
+:type eval_tensor_names_json_path: dict
+:param keys at top level:
+:param defining tensors in a graph required to reach a prediction output without running any:
+:param model weight-altering operations:
+:type model weight-altering operations: e.g. backprop
+:param a similar path through the graph as evaluation tensors:
+:param eval_predictions_tensor_names_json_path: A flat dictionary of tensors that define predictions coming
+:type eval_predictions_tensor_names_json_path: dict
+:param out of the model:
+:param typically for each of the set of outcomes required during training:</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>(dictionary defining input tensors, dictionary defining prediction tensors)</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>(dict, dict)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="aki_predictions.ehr_prediction_modeling.utils.occlusion_utils.run_occlusion_analysis_all_fields">
+<span class="sig-prename descclassname"><span class="pre">aki_predictions.ehr_prediction_modeling.utils.occlusion_utils.</span></span><span class="sig-name descname"><span class="pre">run_occlusion_analysis_all_fields</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">session</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">batch_generator</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">batch</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tensor_name_json_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">predictions_tensors_json_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.utils.occlusion_utils.run_occlusion_analysis_all_fields" title="Permalink to this definition">¶</a></dt>
+<dd><p>Iterate through full passes of a batch generator a number of times equal to the number of fields in a batch
+generator’s presence_map, occluding a different field each time,
+and comparing a model’s output predictions to the unoccluded case each time. Save a jsonl of output comparisons
+:param session: A tensorflow MonitoredTrainingSession which has ingested a checkpoint
+:type session: tf.MonitoredTrainingSession
+:param directory containing a trained model with graph structure as defined:
+:param in aki_predictions.training.multiple_adverse_outcomes_training.py:
+:param batch_generator: A batch generator with a batch property, a named-tuple and dictionary
+:type batch_generator: JsonlBatchGenerator
+:param structure containing tensors as defined in aki_predictions.training.multiple_adverse_outcomes_training.py:
+:param batch: A batch pre-drawn from batch_generator
+:type batch: ehr_prediction_modeling.utils.batches.TFBatch
+:param tensor_name_json_path: Path to a json file defining a dictionary of placeholder tensor names
+:type tensor_name_json_path: pathlib Path
+:param defined in the model’s graph that can be used to define a feed dict for the predictions tensors:
+:param predictions_tensors_json_path: Path to a json file defining a dictionary of tensor names that
+:type predictions_tensors_json_path: pathlib Path
+:param represent the output predictions of the model without any optimization steps:
+:param output_path: Path to a json location to append occlusion measurements as they are made
+:type output_path: pathlib Path</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The occlusion measurements, un-normalized. An ‘unoccluded’ key corresponds to the unoccluded-unoccluded
+measurement (which will not be zero when using cross-entropy)</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>(dict)</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">aki-predictions</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="readme.html">NHS AI Lab Skunkworks project: Predictive Renal Health</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="aki_predictions.html">aki_predictions package</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="aki_predictions.html#subpackages">Subpackages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="aki_predictions.html#submodules">Submodules</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">aki_predictions</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="aki_predictions.html">aki_predictions package</a></li>
+</ul>
+</li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  <li><a href="aki_predictions.html">aki_predictions package</a><ul>
+  <li><a href="aki_predictions.ehr_prediction_modeling.html">aki_predictions.ehr_prediction_modeling package</a><ul>
+  <li><a href="aki_predictions.ehr_prediction_modeling.utils.html">aki_predictions.ehr_prediction_modeling.utils package</a><ul>
+      <li>Previous: <a href="aki_predictions.ehr_prediction_modeling.utils.mask_utils.html" title="previous chapter">aki_predictions.ehr_prediction_modeling.utils.mask_utils module</a></li>
+      <li>Next: <a href="aki_predictions.ehr_prediction_modeling.config.html" title="next chapter">aki_predictions.ehr_prediction_modeling.config module</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;Crown copyright.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 5.1.0</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/aki_predictions.ehr_prediction_modeling.utils.occlusion_utils.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

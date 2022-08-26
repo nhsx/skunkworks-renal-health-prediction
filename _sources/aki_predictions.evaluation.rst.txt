@@ -1,0 +1,17 @@
+aki\_predictions.evaluation package
+===================================
+
+.. automodule:: aki_predictions.evaluation
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Submodules
+----------
+
+.. toctree::
+   :maxdepth: 4
+
+   aki_predictions.evaluation.evaluate_models
+   aki_predictions.evaluation.occlusion_analysis
+   aki_predictions.evaluation.performance_metrics

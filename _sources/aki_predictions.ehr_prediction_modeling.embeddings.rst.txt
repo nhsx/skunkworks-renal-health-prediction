@@ -1,0 +1,17 @@
+aki\_predictions.ehr\_prediction\_modeling.embeddings package
+=============================================================
+
+.. automodule:: aki_predictions.ehr_prediction_modeling.embeddings
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Submodules
+----------
+
+.. toctree::
+   :maxdepth: 4
+
+   aki_predictions.ehr_prediction_modeling.embeddings.basic_embedding_lookup
+   aki_predictions.ehr_prediction_modeling.embeddings.deep_embedding
+   aki_predictions.ehr_prediction_modeling.embeddings.input_embedding_base

@@ -1,0 +1,7 @@
+aki\_predictions.ehr\_prediction\_modeling.embeddings.basic\_embedding\_lookup module
+=====================================================================================
+
+.. automodule:: aki_predictions.ehr_prediction_modeling.embeddings.basic_embedding_lookup
+   :members:
+   :undoc-members:
+   :show-inheritance:

@@ -1,0 +1,7 @@
+aki\_predictions.ehr\_prediction\_modeling.embeddings.deep\_embedding module
+============================================================================
+
+.. automodule:: aki_predictions.ehr_prediction_modeling.embeddings.deep_embedding
+   :members:
+   :undoc-members:
+   :show-inheritance:

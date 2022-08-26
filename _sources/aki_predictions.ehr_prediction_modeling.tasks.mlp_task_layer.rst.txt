@@ -1,0 +1,7 @@
+aki\_predictions.ehr\_prediction\_modeling.tasks.mlp\_task\_layer module
+========================================================================
+
+.. automodule:: aki_predictions.ehr_prediction_modeling.tasks.mlp_task_layer
+   :members:
+   :undoc-members:
+   :show-inheritance:

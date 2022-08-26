@@ -1,0 +1,35 @@
+aki\_predictions.ehr\_prediction\_modeling package
+==================================================
+
+.. automodule:: aki_predictions.ehr_prediction_modeling
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Subpackages
+-----------
+
+.. toctree::
+   :maxdepth: 4
+
+   aki_predictions.ehr_prediction_modeling.data
+   aki_predictions.ehr_prediction_modeling.embeddings
+   aki_predictions.ehr_prediction_modeling.eval
+   aki_predictions.ehr_prediction_modeling.metrics
+   aki_predictions.ehr_prediction_modeling.models
+   aki_predictions.ehr_prediction_modeling.tasks
+   aki_predictions.ehr_prediction_modeling.utils
+
+Submodules
+----------
+
+.. toctree::
+   :maxdepth: 4
+
+   aki_predictions.ehr_prediction_modeling.config
+   aki_predictions.ehr_prediction_modeling.configdict
+   aki_predictions.ehr_prediction_modeling.encoder_module_base
+   aki_predictions.ehr_prediction_modeling.experiment
+   aki_predictions.ehr_prediction_modeling.losses
+   aki_predictions.ehr_prediction_modeling.mask_manager
+   aki_predictions.ehr_prediction_modeling.types

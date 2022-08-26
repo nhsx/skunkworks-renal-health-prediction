@@ -1,0 +1,7 @@
+aki\_predictions.ehr\_prediction\_modeling.utils.distributions module
+=====================================================================
+
+.. automodule:: aki_predictions.ehr_prediction_modeling.utils.distributions
+   :members:
+   :undoc-members:
+   :show-inheritance:

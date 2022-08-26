@@ -1,0 +1,7 @@
+aki\_predictions.training.multiple\_adverse\_outcomes\_training\_recurrent\_block\_scan module
+==============================================================================================
+
+.. automodule:: aki_predictions.training.multiple_adverse_outcomes_training_recurrent_block_scan
+   :members:
+   :undoc-members:
+   :show-inheritance:

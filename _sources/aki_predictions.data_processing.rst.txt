@@ -1,0 +1,18 @@
+aki\_predictions.data\_processing package
+=========================================
+
+.. automodule:: aki_predictions.data_processing
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Submodules
+----------
+
+.. toctree::
+   :maxdepth: 4
+
+   aki_predictions.data_processing.extract_metrics
+   aki_predictions.data_processing.ingest_data
+   aki_predictions.data_processing.normalise_data
+   aki_predictions.data_processing.split_data

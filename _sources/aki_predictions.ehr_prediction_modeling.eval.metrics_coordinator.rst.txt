@@ -1,0 +1,7 @@
+aki\_predictions.ehr\_prediction\_modeling.eval.metrics\_coordinator module
+===========================================================================
+
+.. automodule:: aki_predictions.ehr_prediction_modeling.eval.metrics_coordinator
+   :members:
+   :undoc-members:
+   :show-inheritance:

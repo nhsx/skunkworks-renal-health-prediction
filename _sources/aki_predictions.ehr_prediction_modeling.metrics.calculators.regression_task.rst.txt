@@ -1,0 +1,7 @@
+aki\_predictions.ehr\_prediction\_modeling.metrics.calculators.regression\_task module
+======================================================================================
+
+.. automodule:: aki_predictions.ehr_prediction_modeling.metrics.calculators.regression_task
+   :members:
+   :undoc-members:
+   :show-inheritance:

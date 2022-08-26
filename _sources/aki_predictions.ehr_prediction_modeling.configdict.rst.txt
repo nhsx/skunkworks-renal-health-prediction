@@ -1,0 +1,7 @@
+aki\_predictions.ehr\_prediction\_modeling.configdict module
+============================================================
+
+.. automodule:: aki_predictions.ehr_prediction_modeling.configdict
+   :members:
+   :undoc-members:
+   :show-inheritance:

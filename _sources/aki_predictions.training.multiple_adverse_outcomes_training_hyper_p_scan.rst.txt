@@ -1,0 +1,7 @@
+aki\_predictions.training.multiple\_adverse\_outcomes\_training\_hyper\_p\_scan module
+======================================================================================
+
+.. automodule:: aki_predictions.training.multiple_adverse_outcomes_training_hyper_p_scan
+   :members:
+   :undoc-members:
+   :show-inheritance:

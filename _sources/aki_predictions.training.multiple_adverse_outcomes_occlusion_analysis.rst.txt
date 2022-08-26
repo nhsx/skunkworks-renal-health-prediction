@@ -1,0 +1,7 @@
+aki\_predictions.training.multiple\_adverse\_outcomes\_occlusion\_analysis module
+=================================================================================
+
+.. automodule:: aki_predictions.training.multiple_adverse_outcomes_occlusion_analysis
+   :members:
+   :undoc-members:
+   :show-inheritance:

@@ -1,0 +1,23 @@
+aki\_predictions.training package
+=================================
+
+.. automodule:: aki_predictions.training
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Submodules
+----------
+
+.. toctree::
+   :maxdepth: 4
+
+   aki_predictions.training.multiple_adverse_outcomes_occlusion_analysis
+   aki_predictions.training.multiple_adverse_outcomes_threshold_sweep
+   aki_predictions.training.multiple_adverse_outcomes_training
+   aki_predictions.training.multiple_adverse_outcomes_training_hyper_p_scan
+   aki_predictions.training.multiple_adverse_outcomes_training_recurrent_block_scan
+   aki_predictions.training.multiple_adverse_outcomes_w_context_occlusion_analysis
+   aki_predictions.training.multiple_adverse_outcomes_w_context_threshold_sweep
+   aki_predictions.training.multiple_adverse_outcomes_w_context_training
+   aki_predictions.training.multiple_adverse_outcomes_w_curriculum

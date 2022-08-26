@@ -1,0 +1,7 @@
+aki\_predictions.ehr\_prediction\_modeling.encoder\_module\_base module
+=======================================================================
+
+.. automodule:: aki_predictions.ehr_prediction_modeling.encoder_module_base
+   :members:
+   :undoc-members:
+   :show-inheritance:

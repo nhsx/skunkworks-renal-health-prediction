@@ -1,0 +1,29 @@
+aki\_predictions.ehr\_prediction\_modeling.models package
+=========================================================
+
+.. automodule:: aki_predictions.ehr_prediction_modeling.models
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Subpackages
+-----------
+
+.. toctree::
+   :maxdepth: 4
+
+   aki_predictions.ehr_prediction_modeling.models.nets
+
+Submodules
+----------
+
+.. toctree::
+   :maxdepth: 4
+
+   aki_predictions.ehr_prediction_modeling.models.cell_factory
+   aki_predictions.ehr_prediction_modeling.models.model_utils
+   aki_predictions.ehr_prediction_modeling.models.reset_core
+   aki_predictions.ehr_prediction_modeling.models.rnn_model
+   aki_predictions.ehr_prediction_modeling.models.sequence_model
+   aki_predictions.ehr_prediction_modeling.models.snr_cell_wrapper
+   aki_predictions.ehr_prediction_modeling.models.snrnn_model

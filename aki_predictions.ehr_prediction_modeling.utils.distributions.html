@@ -1,0 +1,240 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>aki_predictions.ehr_prediction_modeling.utils.distributions module &#8212; aki-predictions 1.0.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="aki_predictions.ehr_prediction_modeling.utils.label_utils module" href="aki_predictions.ehr_prediction_modeling.utils.label_utils.html" />
+    <link rel="prev" title="aki_predictions.ehr_prediction_modeling.utils.curriculum_learning_utils module" href="aki_predictions.ehr_prediction_modeling.utils.curriculum_learning_utils.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="module-aki_predictions.ehr_prediction_modeling.utils.distributions">
+<span id="aki-predictions-ehr-prediction-modeling-utils-distributions-module"></span><h1>aki_predictions.ehr_prediction_modeling.utils.distributions module<a class="headerlink" href="#module-aki_predictions.ehr_prediction_modeling.utils.distributions" title="Permalink to this heading">¶</a></h1>
+<p>Wrappers for probability distributions needed for EHR modelling.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="aki_predictions.ehr_prediction_modeling.utils.distributions.HardConcrete">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">aki_predictions.ehr_prediction_modeling.utils.distributions.</span></span><span class="sig-name descname"><span class="pre">HardConcrete</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">logits</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">temperature</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lower</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">higher</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">validate_args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">allow_nan_stats</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'HardConcrete'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.utils.distributions.HardConcrete" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Distribution</span></code></p>
+<p>Hard Concrete distribution. <a class="reference external" href="https://arxiv.org/abs/1712.01312">https://arxiv.org/abs/1712.01312</a>.</p>
+<p>Create a HardConcrete distribution.</p>
+<p>Parameter validation are performed by self._parameter_control_dependencies.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>logits</strong> – An N-D <cite>Tensor</cite> representing the log-odds of a positive event. In
+the paper, this corresponds to the parameter <cite>log(alpha)</cite>.</p></li>
+<li><p><strong>temperature</strong> – The temperature value. Must have <cite>temperature &gt; 0.0</cite>. Beta in
+the paper.</p></li>
+<li><p><strong>lower</strong> – The lower boundary of the support interval. Must have <cite>lower &lt;
+higher</cite> and <cite>lowers &lt; 0.0</cite>. Gamma in the paper.</p></li>
+<li><p><strong>higher</strong> – The upper boundary of the support interval. Must have <cite>lower &lt;
+higher</cite> and <cite>higher &gt; 1.0</cite>. Zeta in the paper</p></li>
+<li><p><strong>validate_args</strong> – When <cite>True</cite> distribution parameters are checked for
+validity despite possibly degrading runtime performance.</p></li>
+<li><p><strong>allow_nan_stats</strong> – When <cite>True</cite>, statistics (e.g., mean, mode, variance) use
+the value “<cite>NaN</cite>” to indicate the result is undefined. When <cite>False</cite>, an
+exception is raised if one or more of the statistic’s batch members are
+undefined.</p></li>
+<li><p><strong>name</strong> – Name prefixed to Ops created by this class.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError if temperature</strong><strong>, </strong><strong>lower</strong><strong> or </strong><strong>higher have rank &gt; 0.</strong> – </p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="aki_predictions.ehr_prediction_modeling.utils.distributions.HardConcrete.cross_entropy">
+<span class="sig-name descname"><span class="pre">cross_entropy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'cross_entropy'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.utils.distributions.HardConcrete.cross_entropy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Computes the (Shannon) cross entropy.</p>
+<p>Denote this distribution (<cite>self</cite>) by <cite>P</cite> and the <cite>other</cite> distribution by
+<cite>Q</cite>. Assuming <cite>P, Q</cite> are absolutely continuous with respect to
+one another and permit densities <cite>p(x) dr(x)</cite> and <cite>q(x) dr(x)</cite>, (Shannon)
+cross entropy is defined as:</p>
+<p><code class="docutils literal notranslate"><span class="pre">`none</span>
+<span class="pre">H[P,</span> <span class="pre">Q]</span> <span class="pre">=</span> <span class="pre">E_p[-log</span> <span class="pre">q(X)]</span> <span class="pre">=</span> <span class="pre">-int_F</span> <span class="pre">p(x)</span> <span class="pre">log</span> <span class="pre">q(x)</span> <span class="pre">dr(x)</span>
+<span class="pre">`</span></code></p>
+<p>where <cite>F</cite> denotes the support of the random variable <cite>X ~ P</cite>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>other</strong> – <cite>tfp.distributions.Distribution</cite> instance.</p></li>
+<li><p><strong>name</strong> – Python <cite>str</cite> prepended to names of ops created by this function.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><dl class="simple">
+<dt><cite>self.dtype</cite> <cite>Tensor</cite> with shape <cite>[B1, …, Bn]</cite></dt><dd><p>representing <cite>n</cite> different calculations of (Shannon) cross entropy.</p>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>cross_entropy</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="aki_predictions.ehr_prediction_modeling.utils.distributions.HardConcrete.hard_sigmoid">
+<span class="sig-name descname"><span class="pre">hard_sigmoid</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tensor</span></span></span><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.utils.distributions.HardConcrete.hard_sigmoid" title="Permalink to this definition">¶</a></dt>
+<dd><p>Computes the hard Sigmoid gate at test time.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="aki_predictions.ehr_prediction_modeling.utils.distributions.HardConcrete.kl_divergence">
+<span class="sig-name descname"><span class="pre">kl_divergence</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'kl_divergence'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.utils.distributions.HardConcrete.kl_divergence" title="Permalink to this definition">¶</a></dt>
+<dd><p>Computes the Kullback–Leibler divergence.</p>
+<p>Denote this distribution (<cite>self</cite>) by <cite>p</cite> and the <cite>other</cite> distribution by
+<cite>q</cite>. Assuming <cite>p, q</cite> are absolutely continuous with respect to reference
+measure <cite>r</cite>, the KL divergence is defined as:</p>
+<p><a href="#id1"><span class="problematic" id="id2">``</span></a><a href="#id3"><span class="problematic" id="id4">`</span></a>none
+KL[p, q] = E_p[log(p(X)/q(X))]</p>
+<blockquote>
+<div><p>= -int_F p(x) log q(x) dr(x) + int_F p(x) log p(x) dr(x)
+= H[p, q] - H[p]</p>
+</div></blockquote>
+<p><a href="#id5"><span class="problematic" id="id6">``</span></a><a href="#id7"><span class="problematic" id="id8">`</span></a></p>
+<p>where <cite>F</cite> denotes the support of the random variable <cite>X ~ p</cite>, <cite>H[., .]</cite>
+denotes (Shannon) cross entropy, and <cite>H[.]</cite> denotes (Shannon) entropy.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>other</strong> – <cite>tfp.distributions.Distribution</cite> instance.</p></li>
+<li><p><strong>name</strong> – Python <cite>str</cite> prepended to names of ops created by this function.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><dl class="simple">
+<dt><cite>self.dtype</cite> <cite>Tensor</cite> with shape <cite>[B1, …, Bn]</cite></dt><dd><p>representing <cite>n</cite> different calculations of the Kullback-Leibler
+divergence.</p>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>kl_divergence</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="aki_predictions.ehr_prediction_modeling.utils.distributions.HardConcrete.l0_norm">
+<span class="sig-name descname"><span class="pre">l0_norm</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tensor</span></span></span><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.utils.distributions.HardConcrete.l0_norm" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the L0 norm.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">aki-predictions</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="readme.html">NHS AI Lab Skunkworks project: Predictive Renal Health</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="aki_predictions.html">aki_predictions package</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="aki_predictions.html#subpackages">Subpackages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="aki_predictions.html#submodules">Submodules</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">aki_predictions</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="aki_predictions.html">aki_predictions package</a></li>
+</ul>
+</li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  <li><a href="aki_predictions.html">aki_predictions package</a><ul>
+  <li><a href="aki_predictions.ehr_prediction_modeling.html">aki_predictions.ehr_prediction_modeling package</a><ul>
+  <li><a href="aki_predictions.ehr_prediction_modeling.utils.html">aki_predictions.ehr_prediction_modeling.utils package</a><ul>
+      <li>Previous: <a href="aki_predictions.ehr_prediction_modeling.utils.curriculum_learning_utils.html" title="previous chapter">aki_predictions.ehr_prediction_modeling.utils.curriculum_learning_utils module</a></li>
+      <li>Next: <a href="aki_predictions.ehr_prediction_modeling.utils.label_utils.html" title="next chapter">aki_predictions.ehr_prediction_modeling.utils.label_utils module</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;Crown copyright.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 5.1.0</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/aki_predictions.ehr_prediction_modeling.utils.distributions.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

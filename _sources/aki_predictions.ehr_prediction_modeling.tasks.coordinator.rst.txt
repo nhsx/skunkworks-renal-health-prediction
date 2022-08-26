@@ -1,0 +1,7 @@
+aki\_predictions.ehr\_prediction\_modeling.tasks.coordinator module
+===================================================================
+
+.. automodule:: aki_predictions.ehr_prediction_modeling.tasks.coordinator
+   :members:
+   :undoc-members:
+   :show-inheritance:

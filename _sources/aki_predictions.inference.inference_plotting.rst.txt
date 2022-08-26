@@ -1,0 +1,7 @@
+aki\_predictions.inference.inference\_plotting module
+=====================================================
+
+.. automodule:: aki_predictions.inference.inference_plotting
+   :members:
+   :undoc-members:
+   :show-inheritance:

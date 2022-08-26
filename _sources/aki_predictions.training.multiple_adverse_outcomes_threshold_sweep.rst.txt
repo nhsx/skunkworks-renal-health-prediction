@@ -1,0 +1,7 @@
+aki\_predictions.training.multiple\_adverse\_outcomes\_threshold\_sweep module
+==============================================================================
+
+.. automodule:: aki_predictions.training.multiple_adverse_outcomes_threshold_sweep
+   :members:
+   :undoc-members:
+   :show-inheritance:

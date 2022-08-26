@@ -1,0 +1,7 @@
+aki\_predictions.inference.multiple\_adverse\_outcomes\_w\_context\_inference module
+====================================================================================
+
+.. automodule:: aki_predictions.inference.multiple_adverse_outcomes_w_context_inference
+   :members:
+   :undoc-members:
+   :show-inheritance:

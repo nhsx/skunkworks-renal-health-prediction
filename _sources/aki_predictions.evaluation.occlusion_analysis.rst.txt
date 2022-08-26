@@ -1,0 +1,7 @@
+aki\_predictions.evaluation.occlusion\_analysis module
+======================================================
+
+.. automodule:: aki_predictions.evaluation.occlusion_analysis
+   :members:
+   :undoc-members:
+   :show-inheritance:

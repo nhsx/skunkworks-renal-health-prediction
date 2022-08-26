@@ -1,0 +1,183 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>aki_predictions.ehr_prediction_modeling.utils.curriculum_learning_utils module &#8212; aki-predictions 1.0.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="aki_predictions.ehr_prediction_modeling.utils.distributions module" href="aki_predictions.ehr_prediction_modeling.utils.distributions.html" />
+    <link rel="prev" title="aki_predictions.ehr_prediction_modeling.utils.batches module" href="aki_predictions.ehr_prediction_modeling.utils.batches.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="module-aki_predictions.ehr_prediction_modeling.utils.curriculum_learning_utils">
+<span id="aki-predictions-ehr-prediction-modeling-utils-curriculum-learning-utils-module"></span><h1>aki_predictions.ehr_prediction_modeling.utils.curriculum_learning_utils module<a class="headerlink" href="#module-aki_predictions.ehr_prediction_modeling.utils.curriculum_learning_utils" title="Permalink to this heading">¶</a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="aki_predictions.ehr_prediction_modeling.utils.curriculum_learning_utils.sample_curriculum">
+<span class="sig-prename descclassname"><span class="pre">aki_predictions.ehr_prediction_modeling.utils.curriculum_learning_utils.</span></span><span class="sig-name descname"><span class="pre">sample_curriculum</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">curriculum</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_records</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">epoch</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">final_epoch</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.utils.curriculum_learning_utils.sample_curriculum" title="Permalink to this definition">¶</a></dt>
+<dd><p>Draw indices with replacement of a dataset according to probabilities defined by its curriculum
+Hard example mining is performed, progressing towards uniform sampling on later epochs
+:param curriculum: 1D array, values &gt;0, higher values mean higher chance of being sampled
+:type curriculum: np.ndarray
+:param num_records: The number of indices to draw
+:type num_records: int
+:param epoch: the current epoch
+:type epoch: int
+:param final_epoch: the total number of epochs expected
+:type final_epoch: int</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>1D array if int indices</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>(ndarray)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="aki_predictions.ehr_prediction_modeling.utils.curriculum_learning_utils.update_curriculum">
+<span class="sig-prename descclassname"><span class="pre">aki_predictions.ehr_prediction_modeling.utils.curriculum_learning_utils.</span></span><span class="sig-name descname"><span class="pre">update_curriculum</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">curriculum</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_records</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">previous_record_order</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">losses_by_batch</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">min_prob</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.25</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_prob</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">curr_epoch</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_epoch</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.utils.curriculum_learning_utils.update_curriculum" title="Permalink to this definition">¶</a></dt>
+<dd><p>Update a curriculum of difficulties of elements in a dataset according to they were recently
+sampled and what loss was obtained for them, only updating beyond start_epoch and capping probabilities
+:param curriculum: 1D array, values &gt;0, higher values mean higher chance of being sampled
+:type curriculum: ndarray
+:param num_records: The number of indices to draw
+:type num_records: int
+:param previous_record_order: Array of ints, indices of which elements of the dataset the losses
+:type previous_record_order: ndarray
+:param pertain to:
+:param losses_by_batch: List detailing the loss encountered per element in each batch in the past
+:type losses_by_batch: list of ndarrays
+:param epoch:
+:param min_prob: A minimum value to cap probabilties to, or a dict with keys ‘method’ and ‘thresh’.
+:type min_prob: float or dict
+:param Method ‘percentile’ currently supported. The value of ‘thresh’ should be a float in range 0-100:
+:param max_prob: A maximum value to cap probabilties to, or a dict with keys ‘method’ and ‘thresh’.
+:type max_prob: float or dict
+:param Method ‘percentile’ currently supported. The value of ‘thresh’ should be a float in range 0-100:
+:param curr_epoch: the current epoch
+:type curr_epoch: int
+:param start_epoch: the epoch after which to start updating the curriculum, otherwise return existing curriculum
+:type start_epoch: int</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>the new curriculum</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>(ndarray)</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">aki-predictions</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="readme.html">NHS AI Lab Skunkworks project: Predictive Renal Health</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="aki_predictions.html">aki_predictions package</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="aki_predictions.html#subpackages">Subpackages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="aki_predictions.html#submodules">Submodules</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">aki_predictions</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="aki_predictions.html">aki_predictions package</a></li>
+</ul>
+</li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  <li><a href="aki_predictions.html">aki_predictions package</a><ul>
+  <li><a href="aki_predictions.ehr_prediction_modeling.html">aki_predictions.ehr_prediction_modeling package</a><ul>
+  <li><a href="aki_predictions.ehr_prediction_modeling.utils.html">aki_predictions.ehr_prediction_modeling.utils package</a><ul>
+      <li>Previous: <a href="aki_predictions.ehr_prediction_modeling.utils.batches.html" title="previous chapter">aki_predictions.ehr_prediction_modeling.utils.batches module</a></li>
+      <li>Next: <a href="aki_predictions.ehr_prediction_modeling.utils.distributions.html" title="next chapter">aki_predictions.ehr_prediction_modeling.utils.distributions module</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;Crown copyright.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 5.1.0</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/aki_predictions.ehr_prediction_modeling.utils.curriculum_learning_utils.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

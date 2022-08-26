@@ -1,0 +1,24 @@
+aki\_predictions.ehr\_prediction\_modeling.metrics package
+==========================================================
+
+.. automodule:: aki_predictions.ehr_prediction_modeling.metrics
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Subpackages
+-----------
+
+.. toctree::
+   :maxdepth: 4
+
+   aki_predictions.ehr_prediction_modeling.metrics.calculators
+
+Submodules
+----------
+
+.. toctree::
+   :maxdepth: 4
+
+   aki_predictions.ehr_prediction_modeling.metrics.calibration
+   aki_predictions.ehr_prediction_modeling.metrics.pr_roc

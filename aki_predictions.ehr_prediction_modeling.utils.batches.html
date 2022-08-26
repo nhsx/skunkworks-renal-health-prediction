@@ -1,0 +1,211 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>aki_predictions.ehr_prediction_modeling.utils.batches module &#8212; aki-predictions 1.0.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="aki_predictions.ehr_prediction_modeling.utils.curriculum_learning_utils module" href="aki_predictions.ehr_prediction_modeling.utils.curriculum_learning_utils.html" />
+    <link rel="prev" title="aki_predictions.ehr_prediction_modeling.utils.activations module" href="aki_predictions.ehr_prediction_modeling.utils.activations.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="module-aki_predictions.ehr_prediction_modeling.utils.batches">
+<span id="aki-predictions-ehr-prediction-modeling-utils-batches-module"></span><h1>aki_predictions.ehr_prediction_modeling.utils.batches module<a class="headerlink" href="#module-aki_predictions.ehr_prediction_modeling.utils.batches" title="Permalink to this heading">¶</a></h1>
+<p>TensorFlow utility functions to extract Tensor and batch from tf protos.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="aki_predictions.ehr_prediction_modeling.utils.batches.TFBatch">
+<span class="sig-prename descclassname"><span class="pre">aki_predictions.ehr_prediction_modeling.utils.batches.</span></span><span class="sig-name descname"><span class="pre">TFBatch</span></span><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.utils.batches.TFBatch" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <code class="xref py py-class docutils literal notranslate"><span class="pre">Batch</span></code></p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="aki_predictions.ehr_prediction_modeling.utils.batches.batch_to_components">
+<span class="sig-prename descclassname"><span class="pre">aki_predictions.ehr_prediction_modeling.utils.batches.</span></span><span class="sig-name descname"><span class="pre">batch_to_components</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">batch</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Batch</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">context_features</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sequential_features</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Tensor</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.utils.batches.batch_to_components" title="Permalink to this definition">¶</a></dt>
+<dd><p>Unpack data into constituent components.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>batch</strong> – iterator to provide data.</p></li>
+<li><p><strong>context_features</strong> – list of features required from the context. e.g. [“pres”,
+“num”, “dom”]</p></li>
+<li><p><strong>sequential_features</strong> – list of features required from the sequence. e.g.
+[“pres_s”, “num_s”, “dom_s”]</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><p>Dictionary of str (feature types) to tf.SparseTensor of dimension
+(num_unroll, batch_size, d).</p>
+<p>For each feature_type (t, dt), there is a tf.Tensor associated storing all
+the information.</p>
+<p>For each feature_type &lt;feat_type&gt; (dom, dom_s, dom_recent, num,
+num_s, num_recent, pres, pres_s, pres_recent), there are two tf.SparseTensor
+associated in the dict: idx_&lt;feat_type&gt; and val_&lt;feat_type&gt; (called idx and
+val in what follows for clarity). The information stored in idx and val is
+used to represent some very sparse matrix M in a compact format.</p>
+<p>idx and val are of type tf.SparseTensor with 3 attributes <cite>dense_shape</cite>,
+<cite>values</cite>, and <cite>indices</cite>.</p>
+<dl>
+<dt>The following holds:</dt><dd><ol class="arabic">
+<li><dl class="simple">
+<dt>The dimensions are the same:</dt><dd><p>np.all(val.dense_shape.numpy() == idx.dense_shape.numpy())</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>The indices are the same:</dt><dd><p>np.all(val.indices.numpy() == idx.indices.numpy())</p>
+</dd>
+</dl>
+</li>
+<li><p>If (M_{t,b,d})_{t&lt;T, b&lt;batch_size, d&lt;n_features} is the matrix
+represented by idx and val, and that it has K nonzero values named
+x_0, …, x_K-1, we have that:</p>
+<blockquote>
+<div><dl class="simple">
+<dt>for all k &lt; K:</dt><dd><p>M_{t_k, b_k, d_k} = x_k,</p>
+</dd>
+<dt>with:</dt><dd><p>t_k == idx.indices[k][0] == val.indices[k][0]
+b_k == idx.indices[k][1] == val.indices[k][1]
+d_k == idx.values[k]
+x_k == val.values[k]</p>
+</dd>
+</dl>
+</div></blockquote>
+</li>
+</ol>
+</dd>
+</dl>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="aki_predictions.ehr_prediction_modeling.utils.batches.flatten_batch">
+<span class="sig-prename descclassname"><span class="pre">aki_predictions.ehr_prediction_modeling.utils.batches.</span></span><span class="sig-name descname"><span class="pre">flatten_batch</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">val</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tensor</span></span></span><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.utils.batches.flatten_batch" title="Permalink to this definition">¶</a></dt>
+<dd><p>Flatten a ND Tensor into a 2D Tensor.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="aki_predictions.ehr_prediction_modeling.utils.batches.get_unflatten_batch_fn">
+<span class="sig-prename descclassname"><span class="pre">aki_predictions.ehr_prediction_modeling.utils.batches.</span></span><span class="sig-name descname"><span class="pre">get_unflatten_batch_fn</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">batch_shape</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><span class="pre">Tensor</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Tensor</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.utils.batches.get_unflatten_batch_fn" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a function that reshape its input back into batch_shape.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="aki_predictions.ehr_prediction_modeling.utils.batches.sparse_fill_empty_rows">
+<span class="sig-prename descclassname"><span class="pre">aki_predictions.ehr_prediction_modeling.utils.batches.</span></span><span class="sig-name descname"><span class="pre">sparse_fill_empty_rows</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">val</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">Tensor</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">SparseTensor</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">Tensor</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">SparseTensor</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#aki_predictions.ehr_prediction_modeling.utils.batches.sparse_fill_empty_rows" title="Permalink to this definition">¶</a></dt>
+<dd><p>If input is a sparse tensor, fill empty rows with 0.</p>
+</dd></dl>
+
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">aki-predictions</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="readme.html">NHS AI Lab Skunkworks project: Predictive Renal Health</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="aki_predictions.html">aki_predictions package</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="aki_predictions.html#subpackages">Subpackages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="aki_predictions.html#submodules">Submodules</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">aki_predictions</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="aki_predictions.html">aki_predictions package</a></li>
+</ul>
+</li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  <li><a href="aki_predictions.html">aki_predictions package</a><ul>
+  <li><a href="aki_predictions.ehr_prediction_modeling.html">aki_predictions.ehr_prediction_modeling package</a><ul>
+  <li><a href="aki_predictions.ehr_prediction_modeling.utils.html">aki_predictions.ehr_prediction_modeling.utils package</a><ul>
+      <li>Previous: <a href="aki_predictions.ehr_prediction_modeling.utils.activations.html" title="previous chapter">aki_predictions.ehr_prediction_modeling.utils.activations module</a></li>
+      <li>Next: <a href="aki_predictions.ehr_prediction_modeling.utils.curriculum_learning_utils.html" title="next chapter">aki_predictions.ehr_prediction_modeling.utils.curriculum_learning_utils module</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;Crown copyright.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 5.1.0</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/aki_predictions.ehr_prediction_modeling.utils.batches.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

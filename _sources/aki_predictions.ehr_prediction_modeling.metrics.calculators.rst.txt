@@ -1,0 +1,17 @@
+aki\_predictions.ehr\_prediction\_modeling.metrics.calculators package
+======================================================================
+
+.. automodule:: aki_predictions.ehr_prediction_modeling.metrics.calculators
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Submodules
+----------
+
+.. toctree::
+   :maxdepth: 4
+
+   aki_predictions.ehr_prediction_modeling.metrics.calculators.base
+   aki_predictions.ehr_prediction_modeling.metrics.calculators.classification_task
+   aki_predictions.ehr_prediction_modeling.metrics.calculators.regression_task

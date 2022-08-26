@@ -1,0 +1,19 @@
+aki\_predictions.ehr\_prediction\_modeling.models.nets package
+==============================================================
+
+.. automodule:: aki_predictions.ehr_prediction_modeling.models.nets
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Submodules
+----------
+
+.. toctree::
+   :maxdepth: 4
+
+   aki_predictions.ehr_prediction_modeling.models.nets.deep_encoders
+   aki_predictions.ehr_prediction_modeling.models.nets.encoder_base
+   aki_predictions.ehr_prediction_modeling.models.nets.net_utils
+   aki_predictions.ehr_prediction_modeling.models.nets.snr
+   aki_predictions.ehr_prediction_modeling.models.nets.sparse_lookup

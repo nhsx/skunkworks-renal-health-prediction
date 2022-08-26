@@ -1,0 +1,7 @@
+aki\_predictions.data\_processing.extract\_metrics module
+=========================================================
+
+.. automodule:: aki_predictions.data_processing.extract_metrics
+   :members:
+   :undoc-members:
+   :show-inheritance:
