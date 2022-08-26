@@ -185,6 +185,22 @@ To run pre-commit code checks globally:
 pre-commit run --all-files
 ```
 
+## Building docs
+
+Documentation is automatically deployed to [X] by a [Github action](.github/workflows/build-docs.yml).
+
+To build the docs manually, in your environment, run:
+
+```shell
+pip install -e ".[cpu]"
+pip install -e ".[docs]"
+pip install --upgrade m2r2
+sphinx-apidoc -f -M -e -o docs/source aki_predictions
+sphinx-build -b html docs/source/ docs/build/html
+```
+
+These will be available in the `docs/build/html` folder.
+
 ## CLI Tool
 
 A CLI tool has been developed to allow access to the key elements of the primary data ingest and training pipeline (additional scripting is included).

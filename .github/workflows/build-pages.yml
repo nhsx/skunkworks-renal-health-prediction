@@ -1,0 +1,57 @@
+name: Build and Deploy Docs
+
+on:
+  push:
+    branches-ignore:
+      - "gh-pages"
+
+jobs:
+  deploy:
+    runs-on: ubuntu-18.04
+    env:
+      repo-directory: ./renal-health
+      docs-directory: ./renal-health/docs
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          path: ${{ env.repo-directory }}
+
+      - name: Setup Python
+        uses: actions/setup-python@v1
+        with:
+          python-version: "3.8.13"
+          architecture: "x64"
+
+      - name: Cache dependencies
+        uses: actions/cache@v2
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
+
+      - name: Install dependencies
+        working-directory: ${{ env.repo-directory }}
+        run: |
+          pip install -e ".[cpu]"
+          pip install -e ".[docs]"
+          pip install --upgrade m2r2
+
+      - name: Build docs
+        working-directory: ${{ env.repo-directory }}
+        run: |
+          sphinx-apidoc -f -M -e -o docs/source aki_predictions
+          sphinx-build -b html docs/source/ docs/build/html
+
+      - name: Copy images
+        working-directory: ${{ env.docs-directory }}
+        run: |
+          mkdir -p build/html/docs
+          cp *.png build/html/docs/
+          cp *.pdf build/html/docs/
+
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ${{ env.docs-directory }}/build/html
