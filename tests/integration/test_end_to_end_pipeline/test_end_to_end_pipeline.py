@@ -173,7 +173,8 @@ class TestEndToEndPipeline:
     def test_end_to_end_pipeline(self, tmpdir):
         tf.keras.backend.clear_session()
 
-        output_dir = Path(tmpdir) / "test_main_log"
+        # output_dir = Path(tmpdir) / "test_main_log"
+        output_dir = Path("tests") / "output"
 
         if not Path.exists(output_dir):
             Path.mkdir(output_dir)
