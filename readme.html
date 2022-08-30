@@ -270,10 +270,14 @@ The pre-commit configuration will apply linting and general formatting checks an
 <h2>Automated tests<a class="headerlink" href="#automated-tests" title="Permalink to this heading"></a></h2>
 <p>This project uses PyTest to run automated testing across the tools developed.</p>
 <p>To run these tests from within the installed environment:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">e</span> <span class="o">.</span><span class="p">[</span><span class="n">tests</span><span class="p">]</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">e</span> <span class="s2">&quot;.[tests]&quot;</span>
 <span class="n">pytest</span> <span class="o">--</span><span class="n">cov</span><span class="o">-</span><span class="n">report</span> <span class="n">term</span><span class="o">-</span><span class="n">missing</span> <span class="o">--</span><span class="n">cov</span><span class="o">=</span><span class="n">aki_predictions</span> <span class="o">--</span><span class="n">junitxml</span><span class="o">=</span><span class="n">report</span><span class="o">.</span><span class="n">xml</span> <span class="n">tests</span><span class="o">/</span>
 </pre></div>
 </div>
+<blockquote>
+<div><p>Note: running all tests above will perform an end-to-end integration test using example data</p>
+</div></blockquote>
+<p>This will generate test output in the <code class="docutils literal notranslate"><span class="pre">tests/output</span></code> subfolder.</p>
 <p>To run code linting and checking:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">flake8</span> <span class="n">aki_predictions</span> <span class="n">tests</span> <span class="o">--</span><span class="n">count</span> <span class="o">--</span><span class="n">config</span> <span class="o">.</span><span class="n">flake8</span>
 </pre></div>
@@ -768,7 +772,9 @@ This could be alternative data files or sets of data.</p>
 <h2>Example pipeline<a class="headerlink" href="#example-pipeline" title="Permalink to this heading"></a></h2>
 <p>Use the following steps to run the example pipeline using fake test data.
 This test data is included in <code class="docutils literal notranslate"><span class="pre">tests/fixtures/</span></code></p>
-<p>An integrated example is available in the <code class="docutils literal notranslate"><span class="pre">tests/test_end_to_end_pipeline/test_end_to_end_pipline.py</span></code>.</p>
+<blockquote>
+<div><p>An integrated example is available in the <code class="docutils literal notranslate"><span class="pre">tests/test_end_to_end_pipeline/test_end_to_end_pipeline.py</span></code>.</p>
+</div></blockquote>
 <p><strong>NOTE</strong>: to use an alternative model for downstream processing (different to the final step checkpoint) the following steps are required prior:</p>
 <ul class="simple">
 <li><p>Train model as normal</p></li>
