@@ -4,11 +4,11 @@
 
 ![Banner of NHS AI Lab Skunkworks ](docs/banner.png)
 
-# NHS AI Lab Skunkworks project: Predictive Renal Health
+# NHS AI Lab Skunkworks project: Renal Health Prediction
 
-> A pilot project for the NHS AI (Artificial Intelligence) Lab Skunkworks team, Predictive Renal Health seeks to build a machine learning model to assist in identifying those acute kidney injury (AKI) patients at higher risk of requiring ITU, needing renal support (dialysis), or likely to have a higher potential for mortality.
+> A pilot project for the NHS AI (Artificial Intelligence) Lab Skunkworks team, Renal Health Prediction seeks to build a machine learning model to assist in identifying those acute kidney injury (AKI) patients at higher risk of requiring ITU, needing renal support (dialysis), or likely to have a higher potential for mortality.
 
-Predictive Renal Health was selected as a project in Spring 2022 following a succesful pitch to the AI Skunkworks problem-sourcing programme.
+Renal Health Prediction was selected as a project in Spring 2022 following a succesful pitch to the AI Skunkworks problem-sourcing programme.
 
 This project is based upon work by Google's DeepMind as "Modeling for Electronic Health Records Predictions" available publically under the Apache-2.0 licence [here](https://github.com/google/ehr-predictions/modeling)
 
