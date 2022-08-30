@@ -36,6 +36,7 @@ therefore the opportunity to reduce severity of deterioration is limited.
 
 A Proof-of-Concept tool is needed that can help identify (more than 24hrs in advance) those AKI patients at higher risk of the aformentioned outcomes. This projects seeks to develop such a tool.
 
+> The full [technical report (pdf)](docs/renal-health-prediction-technical-report.pdf) is available to download.
 
 ## Model selection
 
@@ -171,9 +172,13 @@ This project uses PyTest to run automated testing across the tools developed.
 To run these tests from within the installed environment:
 
 ```
-pip install -e .[tests]
+pip install -e ".[tests]"
 pytest --cov-report term-missing --cov=aki_predictions --junitxml=report.xml tests/
 ```
+
+> Note: running all tests above will perform an end-to-end integration test using example data
+
+This will generate test output in the `tests/output` subfolder.
 
 To run code linting and checking:
 ```
@@ -633,7 +638,7 @@ To run inference:
 Use the following steps to run the example pipeline using fake test data.
 This test data is included in ```tests/fixtures/```
 
-An integrated example is available in the `tests/test_end_to_end_pipeline/test_end_to_end_pipline.py`.
+> An integrated example is available in the `tests/test_end_to_end_pipeline/test_end_to_end_pipeline.py`.
 
 **NOTE**: to use an alternative model for downstream processing (different to the final step checkpoint) the following steps are required prior:
 
