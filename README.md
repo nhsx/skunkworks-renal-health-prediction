@@ -36,6 +36,7 @@ therefore the opportunity to reduce severity of deterioration is limited.
 
 A Proof-of-Concept tool is needed that can help identify (more than 24hrs in advance) those AKI patients at higher risk of the aformentioned outcomes. This projects seeks to develop such a tool.
 
+> The full [technical report (pdf)](docs/renal-health-prediction-technical-report.pdf) is available to download.
 
 ## Model selection
 
