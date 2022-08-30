@@ -1,0 +1,13 @@
+id,id2,year_of_birth,diagnosis,numerical_field,categorical_field,datetime,ethnic_origin,sex,method_of_admission
+A0,1,2000,"a,b",6,categorical_value,2020-01-01 01:02:03,a,a,a
+A0,1,2001,"a,b",6,irrelevant_categorical_value,2020-01-01 01:02:03,a,a,a
+A1,1,2002,"a,b",6,categorical_value,2020-01-01 01:02:03,b,b,b
+A2,1,2003,"a,b",6,categorical_value,2020-01-01 01:02:03,b,b,b
+A3,1,2004,"a,b",6,categorical_value,2020-01-01 01:02:03,b,b,b
+A4,1,2005,"a,b",6,categorical_value,2020-01-01 01:02:03,b,b,b
+A5,1,2006,"a,b",6,categorical_value,2020-01-01 01:02:03,b,b,b
+A6,1,2007,"a,b",6,categorical_value,2020-01-01 01:02:03,b,b,b
+A7,1,2008,"a,b",6,categorical_value,2020-01-01 01:02:03,b,b,b
+A8,1,2009,"a,b",6,categorical_value,2020-01-01 01:02:03,b,b,b
+A9,1,2010,"a,b",6,categorical_value,2020-01-01 01:02:03,b,b,b
+A10,11,2012,"a,b",6,categorical_value_2,2020-01-01 01:02:03,b,b,b

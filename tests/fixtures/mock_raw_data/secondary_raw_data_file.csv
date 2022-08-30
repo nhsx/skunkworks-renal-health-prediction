@@ -1,0 +1,13 @@
+id,additional_numerical_field,datetime,additional_categorical_field
+A0,10,2020-01-02 04:05:06,adverse_catetorical_value
+A0,20,2020-01-02 04:05:06,adverse_catetorical_value
+A1,20,2020-01-02 04:05:06,adverse_catetorical_value
+A2,20,2020-01-02 04:05:06,adverse_catetorical_value
+A3,20,2020-01-02 04:05:06,additional_categorical_value_2
+A4,20,2020-01-02 04:05:06,additional_categorical_value_2
+A5,20,2020-01-02 04:05:06,adverse_catetorical_value
+A6,20,2020-01-02 04:05:06,adverse_catetorical_value
+A7,20,2020-01-02 04:05:06,adverse_catetorical_value
+A8,20,2020-01-02 04:05:06,additional_categorical_value_2
+A9,20,2020-01-02 04:05:06,additional_categorical_value_2
+A10,30,2020-01-02 04:05:06,additional_categorical_value_3
